@@ -17,7 +17,6 @@ angular.module('app')
 
         user.myScore = null;
 
-
         var obj = {};
 
         obj.logIn = function (firstName, lastName, gender, email, country, profilePicture, loginType, loginTypeData) {
