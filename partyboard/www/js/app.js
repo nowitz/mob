@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('main', ['ionic', 'login.controllers'])
+angular.module('app', ['ionic'])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, User, ModalService) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -19,6 +19,11 @@ angular.module('main', ['ionic', 'login.controllers'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            if(!User.isLoggedIn()){
+                ModalService.showLogin();
+            }
+
         });
     })
 
@@ -29,7 +34,7 @@ angular.module('main', ['ionic', 'login.controllers'])
                 url: '/app',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
+                controller: ''
             })
 
             .state('app.search', {
