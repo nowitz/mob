@@ -10,37 +10,44 @@ angular.module('app')
         //login
         $scope.doLogin = function () {
             /*
-            Alert.show({loading: true});
-            $http.post(SERVER_URL + "/login", {
-                user: $scope.loginData,
-                device: Device.getDataToServer()
-            }, {timeout: SERVER_TIMEOUT})
-                .success(function (data, status, header, config) {
-                    if (data.success) {
-                        User.logIn(data.user.firstName, data.user.lastName, data.user.gender, $scope.loginData.email, data.user.country, data.user.profilePicture, 'account', null);
-                        //ulozeni dat pro silent login
-                        localStorage.setItem('userEmail', $scope.loginData.email);
-                        localStorage.setItem('userId', data._id);
+             Alert.show({loading: true});
+             $http.post(SERVER_URL + "/login", {
+             user: $scope.loginData,
+             device: Device.getDataToServer()
+             }, {timeout: SERVER_TIMEOUT})
+             .success(function (data, status, header, config) {
+             if (data.success) {
+             User.logIn(data.user.firstName, data.user.lastName, data.user.gender, $scope.loginData.email, data.user.country, data.user.profilePicture, 'account', null);
+             //ulozeni dat pro silent login
+             localStorage.setItem('userEmail', $scope.loginData.email);
+             localStorage.setItem('userId', data._id);
 
-                        ModalService.showProfile();
-                        ModalService.hideLogin();
-                        ModalService.hideChooseAccount();
-                        Alert.hide();
+             ModalService.showProfile();
+             ModalService.hideLogin();
+             ModalService.hideChooseAccount();
+             Alert.hide();
 
-                        $scope.loginData = {};
+             $scope.loginData = {};
 
-                    } else
-                        Alert.show({msg: 'INVALID_EMAIL_OR_PASS', time: 3000});
-                })
-                .error(function (data, status, header, config) {
-                    Device.isOnline() ? Alert.show({
-                        msg: "AN_ERROR_CONNECTION",
-                        time: 3000
-                    }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
-                });
-            */
+             } else
+             Alert.show({msg: 'INVALID_EMAIL_OR_PASS', time: 3000});
+             })
+             .error(function (data, status, header, config) {
+             Device.isOnline() ? Alert.show({
+             msg: "AN_ERROR_CONNECTION",
+             time: 3000
+             }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
+             });
+             */
             console.log($scope.loginData)
+            ModalService.hideLogin();
         };
+
+        $scope.logout = function () {
+            delete($scope.loginData);
+            console.log($scope.loginData);
+            ModalService.showLogin();
+        }
 
 
         //forgot password

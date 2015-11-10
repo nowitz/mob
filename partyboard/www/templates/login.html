@@ -34,11 +34,11 @@
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">EMAIL</span>
-                    <input type="email" name="email" ng-model="loginData.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                    <input type="email" name="email" ng-model="loginData.email" ng-init="loginData.email='test@test.cz'"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">PASSWORD</span>
-                    <input type="password" name="password" ng-model="loginData.password" required>
+                    <input type="password" name="password" ng-model="loginData.password" ng-init="loginData.password='heslo'" required>
                 </label>
 
 
