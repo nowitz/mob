@@ -7,7 +7,8 @@ angular.module('app')
                 service.loginModal.show();
             } else {
                 $ionicModal.fromTemplateUrl('templates/login.html', {
-                    scope: null
+                    scope: null,
+                    animation : 'no-animation'
                 }).then(function (modal) {
                     service.loginModal = modal;
                     service.loginModal.show();
