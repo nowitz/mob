@@ -4,7 +4,7 @@ angular.module('app')
 
         $scope.languages = [
             {name:'English', shade:'en'},
-            {name:'Česky', shade:'cz'}
+            {name:'Česky', shade:'cs'}
         ];
         if(localStorage.getItem("language") === "en"){
             $scope.language = $scope.languages[0];
