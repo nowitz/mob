@@ -4,27 +4,47 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'pascalprecht.translate'])
+angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, User, ModalService) {
+    .run(function ($ionicPlatform, User, ModalService, $ionicPopup, $cordovaNetwork, $translate) {
+
+        /**
+         * Zjisti mi to jazyk prohlizece a nastavi mi podle toho aplikaci
+         */
+        var language = localStorage.getItem('language') === null ? (navigator.language || navigator.userLanguage).split("-")[0] : localStorage.getItem('language');
+        $translate.use(language);
+        localStorage.setItem("language", language);
+
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
             /**
-             * Vyskoci modalni okno pro prihlaseni
+             * Overi mi to zda jsem pripojenej k internetu
              */
-            if(!User.isLoggedIn()){
-                ModalService.showLogin();
-            }
+            document.addEventListener("deviceready", function () {
+                if ($cordovaNetwork.isOffline()) {
+                    $ionicPopup.alert({
+                        title: 'Internet',
+                        template: '{{"connection" | translate}}'
+                    });
+                    /**
+                     * Vyskoci modalni okno pro prihlaseni
+                     */
+                    if(!User.isLoggedIn()){
+                        ModalService.showLogin();
+                    }
+                }
+            }, false);
+
 
         });
     })
@@ -34,8 +54,8 @@ angular.module('app', ['ionic', 'pascalprecht.translate'])
          * Slouzi pri prepinani jazyku
          */
         $translateProvider.translations('en', english);
-        $translateProvider.translations('cz', czech);
-        $translateProvider.preferredLanguage("cz");
+        $translateProvider.translations('cs', czech);
+        $translateProvider.preferredLanguage("en");
         $translateProvider.fallbackLanguage("en");
 
         $stateProvider
@@ -44,7 +64,6 @@ angular.module('app', ['ionic', 'pascalprecht.translate'])
                 url: '/app',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: ''
             })
 
             .state('app.search', {

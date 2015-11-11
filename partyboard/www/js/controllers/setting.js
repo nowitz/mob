@@ -6,7 +6,11 @@ angular.module('app')
             {name:'English', shade:'en'},
             {name:'Česky', shade:'cz'}
         ];
-        $scope.language = $scope.languages[1];
+        if(localStorage.getItem("language") === "en"){
+            $scope.language = $scope.languages[0];
+        }else{
+            $scope.language = $scope.languages[1];
+        }
 
         $scope.changeLanguage = function(language){
             $translate.use(language);

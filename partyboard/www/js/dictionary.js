@@ -7,7 +7,9 @@ var english = {
     logout: "Log out",
 
     setting: "Setting",
-    language: "Language"
+    language: "Language",
+
+    connection: "You aren´t connected to the Internet!"
 }
 
 var czech = {
@@ -19,5 +21,7 @@ var czech = {
     logout: "Odhlásit se",
 
     setting: "Nastavení",
-    language: "Jazyk"
+    language: "Jazyk",
+
+    connection: "Nejste připojeni k internetu!"
 }
