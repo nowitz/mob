@@ -19,7 +19,9 @@ angular.module('app', ['ionic', 'pascalprecht.translate'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
-
+            /**
+             * Vyskoci modalni okno pro prihlaseni
+             */
             if(!User.isLoggedIn()){
                 ModalService.showLogin();
             }
@@ -28,16 +30,12 @@ angular.module('app', ['ionic', 'pascalprecht.translate'])
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
-
-        $translateProvider.translations('en', {
-            email: "Email",
-            password: "Password"
-        });
-        $translateProvider.translations('cz', {
-            email: "Email",
-            password: "Heslo"
-        });
-        $translateProvider.preferredLanguage("en");
+        /**
+         * Slouzi pri prepinani jazyku
+         */
+        $translateProvider.translations('en', english);
+        $translateProvider.translations('cz', czech);
+        $translateProvider.preferredLanguage("cz");
         $translateProvider.fallbackLanguage("en");
 
         $stateProvider
@@ -58,11 +56,11 @@ angular.module('app', ['ionic', 'pascalprecht.translate'])
                 }
             })
 
-            .state('app.browse', {
-                url: '/browse',
+            .state('app.setting', {
+                url: '/setting',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/browse.html'
+                        templateUrl: 'templates/setting.html'
                     }
                 }
             })

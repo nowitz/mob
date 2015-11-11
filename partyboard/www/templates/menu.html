@@ -24,15 +24,15 @@
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item class="item-icon-left" menu-close href="#/app/setting">
+          <i class="icon ion-android-settings"></i>
+          {{"setting" | translate}}
         </ion-item>
         <div class="item item-divider">
-          Candy Bars
         </div>
         <ion-item class="item-icon-left" menu-close ng-controller="LoginController" ng-click="logout()">
           <i class="icon ion-log-out"></i>
-          Logout
+          {{"logout" | translate}}
         </ion-item>
       </ion-list>
     </ion-content>
