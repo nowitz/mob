@@ -28,23 +28,24 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             }
 
             /**
+             * Vyskoci modalni okno pro prihlaseni
+             */
+            if(!User.isLoggedIn()){
+                ModalService.showLogin();
+            }
+
+            /**
              * Overi mi to zda jsem pripojenej k internetu
              */
             document.addEventListener("deviceready", function () {
+                console.log("asd");
                 if ($cordovaNetwork.isOffline()) {
                     $ionicPopup.alert({
                         title: 'Internet',
                         template: '{{"connection" | translate}}'
                     });
-                    /**
-                     * Vyskoci modalni okno pro prihlaseni
-                     */
-                    if(!User.isLoggedIn()){
-                        ModalService.showLogin();
-                    }
                 }
             }, false);
-
 
         });
     })
@@ -66,11 +67,11 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 templateUrl: 'templates/menu.html',
             })
 
-            .state('app.search', {
-                url: '/search',
+            .state('app.partyboard', {
+                url: '/partyboard',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/search.html'
+                        templateUrl: 'templates/partyboard.html'
                     }
                 }
             })
@@ -84,15 +85,15 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 }
             })
 
-            .state('app.main', {
-                url: '/main',
+            .state('app.info', {
+                url: '/info',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/main.html'
+                        templateUrl: 'templates/info.html'
                     }
                 }
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/main');
+        $urlRouterProvider.otherwise('/app/info');
     });

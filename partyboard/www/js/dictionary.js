@@ -9,7 +9,13 @@ var english = {
     setting: "Setting",
     language: "Language",
 
-    connection: "You aren´t connected to the Internet!"
+    connection: "You aren´t connected to the Internet!",
+
+    info: "Information",
+    partyboard: "Partyboard",
+
+    selectionPB: "Selection Partyboard",
+    setNick: "Setting nickname"
 }
 
 var czech = {
@@ -23,5 +29,11 @@ var czech = {
     setting: "Nastavení",
     language: "Jazyk",
 
-    connection: "Nejste připojeni k internetu!"
+    connection: "Nejste připojeni k internetu!",
+
+    info: "Informace",
+    partyboard: "Partyboard",
+
+    selectionPB: "Výběr Partyboardu",
+    setNick: "Nastavení přezdívky"
 }

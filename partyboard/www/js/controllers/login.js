@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, User, ModalService) {
+    .controller('LoginController', function ($scope, User, ModalService, $cordovaNetwork) {
 
         $scope.user = User;
         $scope.modalService = ModalService;
@@ -39,7 +39,7 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-            console.log($scope.loginData)
+
             ModalService.hideLogin();
         };
 
