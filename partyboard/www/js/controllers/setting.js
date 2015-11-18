@@ -1,6 +1,12 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate) {
+    .controller('SettingController', function ($scope, $translate, ModalService) {
+
+        /**
+         * Propisu si ModalService abych nemusel metody implementovat v kontroleru menu.js
+         */
+        $scope.modalService = ModalService;
+
 
         $scope.languages = [
             {name: 'English', shade: 'en'},

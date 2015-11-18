@@ -15,7 +15,11 @@ var english = {
     partyboard: "Partyboard",
 
     selectionPB: "Selection Partyboard",
-    setNick: "Setting nickname"
+    setNick: "Setting nickname",
+
+    backButton: "Back",
+
+    registrationForm: "Registration"
 }
 
 var czech = {
@@ -35,5 +39,9 @@ var czech = {
     partyboard: "Partyboard",
 
     selectionPB: "Výběr Partyboardu",
-    setNick: "Nastavení přezdívky"
+    setNick: "Nastavení přezdívky",
+
+    backButton: "Zpět",
+
+    registrationForm: "Registrace"
 }

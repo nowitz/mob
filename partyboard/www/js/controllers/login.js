@@ -40,6 +40,7 @@ angular.module('app')
              });
              */
             ModalService.hideLogin();
+
             /**
              * Pokud nebuud online tak me to nenecha skryt prihlaseni
              *//*

@@ -72,24 +72,6 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 }
             })
 
-            .state('app.setting', {
-                url: '/setting',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/setting.html'
-                    }
-                }
-            })
-
-            .state('app.info', {
-                url: '/info',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/info.html'
-                    }
-                }
-            });
-
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/info');
+        $urlRouterProvider.otherwise('/app/partyboard');
     });
