@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, User, ModalService, $ionicPopup, $cordovaNetwork, $translate) {
+    .run(function ($ionicPlatform, User, ModalService, NetworkService, $translate) {
 
         /**
          * Zjisti mi to jazyk prohlizece a nastavi mi podle toho aplikaci
@@ -14,6 +14,7 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
         var language = localStorage.getItem('language') === null ? (navigator.language || navigator.userLanguage).split("-")[0] : localStorage.getItem('language');
         $translate.use(language);
         localStorage.setItem("language", language);
+
 
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -27,25 +28,20 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 StatusBar.styleDefault();
             }
 
+            document.addEventListener("deviceready", function () {
+                /**
+                 * Inicialzace Networkservice
+                 */
+                NetworkService.init();
+            });
+
             /**
              * Vyskoci modalni okno pro prihlaseni
              */
-            if(!User.isLoggedIn()){
+            if (!User.isLoggedIn()) {
                 ModalService.showLogin();
             }
 
-            /**
-             * Overi mi to zda jsem pripojenej k internetu
-             */
-            document.addEventListener("deviceready", function () {
-                console.log("asd");
-                if ($cordovaNetwork.isOffline()) {
-                    $ionicPopup.alert({
-                        title: 'Internet',
-                        template: '{{"connection" | translate}}'
-                    });
-                }
-            }, false);
 
         });
     })

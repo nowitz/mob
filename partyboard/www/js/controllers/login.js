@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, User, ModalService, $cordovaNetwork) {
+    .controller('LoginController', function ($scope, $ionicPopup, User, ModalService, NetworkService) {
 
         $scope.user = User;
         $scope.modalService = ModalService;
@@ -39,8 +39,20 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-
             ModalService.hideLogin();
+            /**
+             * Pokud nebuud online tak me to nenecha skryt prihlaseni
+             *//*
+            if(NetworkService.checkOnline()){
+                //TODO tady bude cele prihlaseni
+                ModalService.hideLogin();
+            }else{
+                $ionicPopup.alert({
+                    title: 'Internet',
+                    template: '{{"connection" | translate}}'
+                });
+            }*/
+
         };
 
         $scope.logout = function () {

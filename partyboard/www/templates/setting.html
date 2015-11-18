@@ -8,12 +8,12 @@
           <div class="input-label">
             {{"selectionPB" | translate}}
           </div>
-          <select ng-change="changeLanguage(language.shade)" ng-model="language" ng-options="language.name for language in languages"></select>
+          <select ng-change="selectionPartyboard(partyboard.shade)" ng-model="partyboard" ng-options="partyboard.name for partyboard in partyboards"></select>
         </label>
       </li>
       <li class="item item-input">
           <span class="input-label">{{"setNick" | translate}}</span>
-          <input style="background-color: #444; color:white; padding-left: 5px;" maxlength="20" type="text">
+          <input ng-change="nickChange(nick)" ng-model="nick" style="background-color: #444; color:white; padding-left: 5px;" maxlength="15" type="text">
       </li>
 
       <li class="item item-divider"></li>
