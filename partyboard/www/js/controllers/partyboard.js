@@ -6,6 +6,20 @@ angular.module('app')
          */
         $scope.modalService = ModalService;
 
+        $scope.message = "";
 
+        $scope.$watch(function () {
+                return $scope.message;
+            },
+            function (newValue, oldValue) {
+                if(newValue == oldValue){return;}
+                //console.log(newValue);
+                $scope.message = newValue;
+            }, true);
+
+        $scope.send = function(message){
+            console.log(message);
+            $scope.message = "";
+        }
 
     });

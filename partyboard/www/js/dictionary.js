@@ -13,6 +13,8 @@ var english = {
 
     info: "Information",
     partyboard: "Partyboard",
+    chars: "chars",
+    message: "Text messages",
 
     selectionPB: "Selection Partyboard",
     setNick: "Setting nickname",
@@ -37,6 +39,8 @@ var czech = {
 
     info: "Informace",
     partyboard: "Partyboard",
+    chars: "znaků",
+    message: "Text zprávy",
 
     selectionPB: "Výběr Partyboardu",
     setNick: "Nastavení přezdívky",

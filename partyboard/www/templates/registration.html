@@ -8,6 +8,52 @@
         <h1 class="title">{{"registrationForm" | translate}}</h1>
     </ion-header-bar>
     <ion-content>
-        <p>formular pro registraci</p>
+        <form ng-submit="doRegister()" name="registerForm" novalidate>
+
+            <div class="list">
+
+                <label class="item item-input">
+                    <span class="input-label">{{"FIRST_NAME" | translate}} <i ng-class="{ 'has-error': registerForm.fn.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <input type="text" name="fn" ng-model="registerData.fn" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">{{"LAST_NAME" | translate}} <i ng-class="{ 'has-error': registerForm.ln.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <input type="text" name="ln" ng-model="registerData.ln" required>
+                </label>
+
+                <label class="item item-input item-select">
+                    <span class="input-label">{{"COUNTRY" | translate}} <i ng-class="{ 'has-error': registerData.co =='' }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <select required name="co" ng-model="registerData.co" ng-init="registerData.co=''">
+                        <option value="">{{"SELECT_YOUR_COUNTRY" | translate}}</option>
+                        <option ng-repeat="(key, value) in countries" value="{{key}}">{{value}}</option>
+                    </select>
+                </label>
+
+
+                <label class="item item-input em-gender">
+                    <span class="input-label">{{"GENDER" | translate}} <i ng-class="{ 'has-error': !registerData.ge}" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <ion-checkbox class="em-gender-cb" name="ge" ng-model="isMale" ng-change="isMale ? registerData.ge='male' : registerData.ge = 'female'; isFemale = false" ng-checked="registerData.ge === 'male'">{{"MALE" | translate}}</ion-checkbox>
+                    <ion-checkbox class="em-gender-cb" name="ge" ng-model="isFemale" ng-change="isFemale ? registerData.ge='female' : registerData.ge = 'male'; isMale = false" ng-checked="registerData.ge === 'female'">{{"FEMALE" | translate}}</ion-checkbox>
+                </label>
+
+
+                <label class="item item-input">
+                    <span class="input-label">{{"EMAIL" | translate}} <i ng-class="{ 'has-error': registerForm.email.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <input type="email" name="email" ng-model="registerData.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">{{"PASSWORD" | translate}} <i ng-class="{ 'has-error': registerForm.password.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <input type="password" name="password" ng-model="registerData.password" required>
+                </label>
+
+
+                <!--SUBMIT-->
+                <label class="item">
+                    <button class="button button-block button-positive" ng-disabled="registerForm.$invalid || !registerData.ge" type="submit">{{"REGISTER_BUTTON" | translate}}</button>
+                </label>
+            </div>
+        </form>
     </ion-content>
 </ion-modal-view>
