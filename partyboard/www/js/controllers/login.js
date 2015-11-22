@@ -42,7 +42,7 @@ angular.module('app')
             ModalService.hideLogin();
 
             /**
-             * Pokud nebuud online tak me to nenecha skryt prihlaseni
+             * Pokud nebude online tak me to nenecha skryt prihlaseni
              *//*
             if(NetworkService.checkOnline()){
                 //TODO tady bude cele prihlaseni

@@ -15,9 +15,13 @@ var english = {
     partyboard: "Partyboard",
     chars: "chars",
     message: "Text messages",
+    smsSuccess: "SMS was send.",
+    smsError: "Error: ",
 
     selectionPB: "Selection Partyboard",
     setNick: "Setting nickname",
+    //todo lepsi nazev
+    colors: "Color partyboard",
 
     backButton: "Back",
 
@@ -41,9 +45,12 @@ var czech = {
     partyboard: "Partyboard",
     chars: "znaků",
     message: "Text zprávy",
+    smsSuccess: "SMS byla odeslaná.",
+    smsError: "Chyba: ",
 
     selectionPB: "Výběr Partyboardu",
     setNick: "Nastavení přezdívky",
+    colors: "Barva partyboardu",
 
     backButton: "Zpět",
 

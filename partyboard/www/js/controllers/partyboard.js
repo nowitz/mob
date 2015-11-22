@@ -1,10 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService) {
-        /**
-         * Propisu si ModalService abych nemusel metody implementovat v kontroleru menu.js
-         */
-        $scope.modalService = ModalService;
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService) {
 
         $scope.message = "";
 
@@ -18,7 +14,8 @@ angular.module('app')
             }, true);
 
         $scope.send = function(message){
-            console.log(message);
+            //todo bude se tu nacitat mobilni cislo, message, atd..
+            SendSMSService.init('728452510',message);
             $scope.message = "";
         }
 

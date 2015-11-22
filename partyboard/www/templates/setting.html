@@ -26,6 +26,15 @@
       <li class="item item-input item-select">
         <label>
           <div class="input-label">
+            {{"colors" | translate}}
+          </div>
+          <select ng-change="colorChange(color.shade)" ng-model="color" ng-options="color.name for color in colors"></select>
+        </label>
+      </li>
+
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
             {{"language" | translate}}
           </div>
           <select ng-change="changeLanguage(language.shade)" ng-model="language" ng-options="language.name for language in languages"></select>
