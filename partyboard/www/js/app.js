@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, User, ModalService, NetworkService, $translate) {
+    .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate) {
 
         /**
          * Zjisti mi to jazyk prohlizece a nastavi mi podle toho aplikaci
@@ -38,8 +38,9 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             /**
              * Vyskoci modalni okno pro prihlaseni
              */
-            if (!User.isLoggedIn()) {
+            if (!UserFactory.isLoggedIn()) {
                 ModalService.showLogin();
+
             }
 
 

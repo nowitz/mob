@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .factory('Colors', function () {
+    .factory('ColorsFactory', function () {
         var coloRgb = "#0000FF";
 
         var colors = [

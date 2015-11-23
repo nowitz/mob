@@ -1,8 +1,8 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, $ionicPopup, User, ModalService, NetworkService) {
+    .controller('LoginController', function ($scope, $ionicPopup, UserFactory, ModalService, NetworkService) {
 
-        $scope.user = User;
+        $scope.user = UserFactory;
         $scope.modalService = ModalService;
 
         $scope.loginData = {};
@@ -17,7 +17,7 @@ angular.module('app')
              }, {timeout: SERVER_TIMEOUT})
              .success(function (data, status, header, config) {
              if (data.success) {
-             User.logIn(data.user.firstName, data.user.lastName, data.user.gender, $scope.loginData.email, data.user.country, data.user.profilePicture, 'account', null);
+             UserFactory.logIn(data.user.firstName, data.user.lastName, data.user.gender, $scope.loginData.email, data.user.country, data.user.profilePicture, 'account', null);
              //ulozeni dat pro silent login
              localStorage.setItem('userEmail', $scope.loginData.email);
              localStorage.setItem('userId', data._id);
@@ -39,6 +39,8 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
+            alert("asda");
+            UserFactory.logIn("jan", "novak", "male", "jan@novak.com",728452510,"Czech Republic", 'account', null);
             ModalService.hideLogin();
 
             /**
@@ -58,7 +60,6 @@ angular.module('app')
 
         $scope.logout = function () {
             delete($scope.loginData);
-            console.log($scope.loginData);
             ModalService.showLogin();
         }
 

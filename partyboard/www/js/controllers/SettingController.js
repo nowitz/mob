@@ -1,13 +1,17 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, Colors) {
+    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory) {
 
         /**
-         * Propisu si ModalService abych nemusel metody implementovat v kontroleru menu.js
+         * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
         $scope.modalService = ModalService;
 
 
+        /**
+         * Prepinani jazyka
+         * @type {*[]}
+         */
         $scope.languages = [
             {name: 'English', shade: 'en'},
             {name: 'Česky', shade: 'cs'}
@@ -21,6 +25,11 @@ angular.module('app')
             $translate.use(language);
         }
 
+
+        /**
+         * Vyber partyboardu
+         * @type {*[]}
+         */
         $scope.partyboards = [
             //TODO bude se natahodat z DB;
             {name: 'McFabrika', shade: 'mcfabrika'},
@@ -31,16 +40,36 @@ angular.module('app')
             console.log(partyboard);
         }
 
+        /**
+         * Uchovani prezdivky pro odesilani zprav
+         * @param nick
+         */
         $scope.nickChange = function (nick) {
             console.log(nick);
         }
 
-        $scope.colors = Colors.all();
+        /**
+         * Nastaveni barvy
+         */
+        $scope.colors = ColorsFactory.all();
         $scope.color = $scope.colors[2];
-
         $scope.colorChange = function (rgb) {
-            Colors.setRgbColor(rgb);
+            ColorsFactory.setRgbColor(rgb);
         }
 
+        /**
+         * Nastaveni typu zpravy
+         */
+        $scope.typeMessages = [
+            //TODO bude se natahodat z DB;
+            {name: 'internet', key: 'int'},
+            {name: 'sms', key: 'sms'},
+            {name: '5 sms win', key: '5smsWin'}
+        ]
+        $scope.typeMessage = $scope.typeMessages[0];
+
+        $scope.selectionTypeMessage = function(key){
+            console.log(key);
+        }
 
     });

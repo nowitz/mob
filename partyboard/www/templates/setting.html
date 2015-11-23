@@ -20,6 +20,14 @@
           <span class="input-label">{{"setNick" | translate}}</span>
           <input ng-change="nickChange(nick)" ng-model="nick" style="background-color: #444; color:white; padding-left: 5px;" maxlength="15" type="text">
       </li>
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"setMessage" | translate}}
+          </div>
+          <select ng-change="selectionTypeMessage(typeMessage.key)" ng-model="typeMessage" ng-options="typeMessage.name for typeMessage in typeMessages"></select>
+        </label>
+      </li>
 
       <li class="item item-divider"></li>
 

@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .factory('User', function () {
+    .factory('UserFactory', function () {
 
         var user = {};
 
@@ -12,6 +12,7 @@ angular.module('app')
         user.lastName = null;
         user.gender = null;
         user.email = null;
+        user.phone = null;
         user.country = null;
         //user.profilePicture = null;
 
@@ -19,7 +20,7 @@ angular.module('app')
 
         var obj = {};
 
-        obj.logIn = function (firstName, lastName, gender, email, country, profilePicture, loginType, loginTypeData) {
+        obj.logIn = function (firstName, lastName, gender, email, phone, country, loginType, loginTypeData) { //profilePicture
             if (!user.isLoggedIn) {
                 user.isLoggedIn = true;
 
@@ -28,8 +29,9 @@ angular.module('app')
                 user.lastName = lastName;
                 user.gender = gender; //'male' nebo 'female'
                 user.email = email;
+                user.phone = phone;
                 user.country = country; //zkratka z service -> flags
-                user.profilePicture = profilePicture; //url
+               // user.profilePicture = profilePicture; //url
                 user.loginType = loginType; //'facebook', 'google', 'account'
                 user.loginTypeData = loginTypeData; //dalsi data napr ze socialnich siti id, age_range, locale, link atd
             }
@@ -43,6 +45,7 @@ angular.module('app')
             user.lastName = null;
             user.gender = null;
             user.email = null;
+            user.phone = null;
             user.country = null;
            // user.profilePicture = null;
             user.myScore = null;
@@ -86,6 +89,10 @@ angular.module('app')
             return user.email;
         };
 
+        obj.getPhone = function () {
+            return user.phone;
+        };
+
         obj.getCountry = function () {
             return user.country;
         };
@@ -98,7 +105,7 @@ angular.module('app')
         };*/
 
         obj.getDataToServer = function () {
-            return {firstName: obj.getFirstName(), lastName: obj.getLastName(), gender: obj.getGender(), email: obj.getEmail(), country: obj.getCountry()};// profilePicture: obj.getProfilePicture()
+            return {firstName: obj.getFirstName(), lastName: obj.getLastName(), gender: obj.getGender(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getCountry()};// profilePicture: obj.getProfilePicture()
         };
 
         obj.getMyScore = function () {

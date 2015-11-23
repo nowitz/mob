@@ -1,23 +1,23 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, Colors) {
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory) {
 
         $scope.message = "";
 
-        $scope.colors = Colors;
+        $scope.colors = ColorsFactory;
 
         $scope.$watch(function () {
                 return $scope.message;
             },
             function (newValue, oldValue) {
                 if(newValue == oldValue){return;}
-                //console.log(newValue);
                 $scope.message = newValue;
             }, true);
 
         $scope.send = function(message){
             //todo bude se tu nacitat mobilni cislo, message, atd..
-            SendSMSService.init('728452510',message);
+            alert("jsem tu");
+            SendSMSService.init(UserFactory.getPhone(),message); //UserFactory.getPhone()
             $scope.message = "";
         }
 
