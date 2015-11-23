@@ -15,6 +15,7 @@ var english = {
     partyboard: "Partyboard",
     chars: "chars",
     message: "Text messages",
+    smsSend: "Send",
     smsSuccess: "SMS was send.",
     smsError: "Error: ",
 
@@ -45,6 +46,7 @@ var czech = {
     partyboard: "Partyboard",
     chars: "znaků",
     message: "Text zprávy",
+    smsSend: "Odeslat",
     smsSuccess: "SMS byla odeslaná.",
     smsError: "Chyba: ",
 

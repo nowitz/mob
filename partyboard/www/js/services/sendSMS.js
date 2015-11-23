@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('SendSMSService', function ($cordovaSms, $cordovaToast) {
+    .service('SendSMSService', function ($cordovaSms) {
 
         var device = {};
         device.options = {

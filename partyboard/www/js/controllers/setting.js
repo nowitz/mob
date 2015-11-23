@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService) {
+    .controller('SettingController', function ($scope, $translate, ModalService, Colors) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru menu.js
@@ -17,7 +17,6 @@ angular.module('app')
         } else {
             $scope.language = $scope.languages[1];
         }
-
         $scope.changeLanguage = function (language) {
             $translate.use(language);
         }
@@ -32,10 +31,16 @@ angular.module('app')
             console.log(partyboard);
         }
 
-        $scope.nickChange = function(nick){
+        $scope.nickChange = function (nick) {
             console.log(nick);
         }
 
+        $scope.colors = Colors.all();
+        $scope.color = $scope.colors[2];
+
+        $scope.colorChange = function (rgb) {
+            Colors.setRgbColor(rgb);
+        }
 
 
     });

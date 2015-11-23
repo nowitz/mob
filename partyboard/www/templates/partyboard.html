@@ -4,7 +4,7 @@
     </ion-content>
 
 
-    <div class="bar bar-footer bar-positive" style="height: 80px;">
+    <div class="bar bar-footer " style="height: 80px; background-color: {{colors.getRgbColor()}}">
 
         <div class="item-input-inset" style="width: 9999px;">
             <label class="item-input-wrapper">
@@ -14,9 +14,9 @@
 
             <div style="padding-left:8px;">
                 <button class="button button-small" ng-click="send(message)" ng-disabled="message.length == 0">
-                    Submit
+                    {{ 'smsSend' | translate }}
                 </button>
-                <div>
+                <div style="color:white;">
                     {{message.length}} {{"chars" | translate}}
                 </div>
             </div>

@@ -1,8 +1,10 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService) {
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, Colors) {
 
         $scope.message = "";
+
+        $scope.colors = Colors;
 
         $scope.$watch(function () {
                 return $scope.message;
@@ -18,5 +20,6 @@ angular.module('app')
             SendSMSService.init('728452510',message);
             $scope.message = "";
         }
+
 
     });
