@@ -18,21 +18,9 @@ angular.module('app')
             setTypeMessage: function (tmp) {
                 typeMessage = tmp;
             },
-            getTypeMessager: function(){
+            getTypeMessager: function () {
                 return typeMessage;
             }
         }
-
-        /*
-        $scope.selectionTypeMessage = function(key){
-            console.log(key);
-        }
-
-
-        var obj = {};
-        obj.init = function (phone, text) {
-
-        }
-        return obj;*/
     });
 
