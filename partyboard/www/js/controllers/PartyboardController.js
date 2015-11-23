@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory) {
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory) {
 
         $scope.message = "";
 
@@ -16,9 +16,17 @@ angular.module('app')
 
         $scope.send = function(message){
             //todo bude se tu nacitat mobilni cislo, message, atd..
-            alert("jsem tu");
-            SendSMSService.init(UserFactory.getPhone(),message); //UserFactory.getPhone()
-            $scope.message = "";
+            console.log(SendInternetFactory.getTypeMessager());
+            if(SendInternetFactory.getTypeMessager().key == "int"){
+                alert("zprava z netu");
+            }else if (SendInternetFactory.getTypeMessager().key == "sms"){
+                SendSMSService.init(UserFactory.getPhone(),message);
+                $scope.message = "";
+            }else{
+                //todo doresit vyherni sms
+                alert("vyherni sms");
+            }
+
         }
 
 

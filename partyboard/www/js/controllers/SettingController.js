@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory) {
+    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
@@ -60,16 +60,11 @@ angular.module('app')
         /**
          * Nastaveni typu zpravy
          */
-        $scope.typeMessages = [
-            //TODO bude se natahodat z DB;
-            {name: 'internet', key: 'int'},
-            {name: 'sms', key: 'sms'},
-            {name: '5 sms win', key: '5smsWin'}
-        ]
+        $scope.typeMessages = SendInternetFactory.all();
         $scope.typeMessage = $scope.typeMessages[0];
 
-        $scope.selectionTypeMessage = function(key){
-            console.log(key);
+        $scope.selectionTypeMessage = function(typeMessage){
+            SendInternetFactory.setTypeMessage(typeMessage);
         }
 
     });

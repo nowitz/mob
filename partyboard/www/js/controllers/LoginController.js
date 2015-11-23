@@ -39,7 +39,6 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-            alert("asda");
             UserFactory.logIn("jan", "novak", "male", "jan@novak.com",728452510,"Czech Republic", 'account', null);
             ModalService.hideLogin();
 
