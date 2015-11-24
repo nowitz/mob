@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, $ionicPopup, UserFactory, ModalService, NetworkService) {
+    .controller('LoginController', function ($scope, $ionicPopup, UserFactory, ModalService, NetworkServiceQ) {
 
         $scope.user = UserFactory;
         $scope.modalService = ModalService;
@@ -39,21 +39,22 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-            UserFactory.logIn("jan", "novak", "male", "jan@novak.com",728452510,"Czech Republic", 'account', null);
+            UserFactory.logIn("jan", "novak", "male", "jan@novak.com", 728452510, "Czech Republic", 'account', null);
             ModalService.hideLogin();
 
             /**
              * Pokud nebude online tak me to nenecha skryt prihlaseni
-             *//*
-            if(NetworkService.checkOnline()){
-                //TODO tady bude cele prihlaseni
-                ModalService.hideLogin();
-            }else{
-                $ionicPopup.alert({
-                    title: 'Internet',
-                    template: '{{"connection" | translate}}'
-                });
-            }*/
+             */
+            /*
+             if(NetworkService.checkOnline()){
+             //TODO tady bude cele prihlaseni
+             ModalService.hideLogin();
+             }else{
+             $ionicPopup.alert({
+             title: 'Internet',
+             template: '{{"connection" | translate}}'
+             });
+             }*/
 
         };
 
@@ -108,4 +109,12 @@ angular.module('app')
                 });
             });
         };
+        var permisions = ["public_profile", "email", "user_friends"];
+        $scope.loginFacebook = function () {
+            facebookConnectPlugin.login(permisions, function (success) {
+                console.log(success)//tady jsou info jako token atd
+                obj.processFacebookData();
+            });
+        }
+
     });
