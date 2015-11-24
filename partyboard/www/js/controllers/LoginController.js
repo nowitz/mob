@@ -113,7 +113,9 @@ angular.module('app')
         $scope.loginFacebook = function(){
             facebookConnectPlugin.login(permisions, function (success) {
                 console.log(success)//tady jsou info jako token atd
-                obj.processFacebookData();
+                //obj.processFacebookData();
+            }, function(error){
+                alert("error: "+error);
             });
         }
     });
