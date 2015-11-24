@@ -15,7 +15,7 @@
             <div style="width: 300px; height: 38px;" class="spacer"></div>
             <button class="button button-balanced button-block icon-left ion-log-in" ng-disabled="loginForm.$invalid" type="submit"> {{"login" | translate}}</button>
         </form>
-        <button style="margin-top: -25px;" class="button button-positive button-block  icon-left ion-social-facebook-outline">Facebook</button>
+        <button style="margin-top: -25px;" class="button button-positive button-block  icon-left ion-social-facebook-outline" ng-click="loginFacebook()">Facebook</button>
         <a ng-click="modalService.showRegistration()" class="button button-positive button-clear button-block ">{{"registration" | translate}}</a>
         <a ng-click="forgotPassword()" class="button button-positive button-clear button-block ">{{"forgetPassword" | translate}}</a>
     </ion-content>

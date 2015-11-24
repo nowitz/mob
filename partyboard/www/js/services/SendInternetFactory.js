@@ -22,17 +22,5 @@ angular.module('app')
                 return typeMessage;
             }
         }
-
-        /*
-        $scope.selectionTypeMessage = function(key){
-            console.log(key);
-        }
-
-
-        var obj = {};
-        obj.init = function (phone, text) {
-
-        }
-        return obj;*/
     });
 
