@@ -3,6 +3,7 @@ angular.module('app')
     .factory('ColorsFactory', function () {
         var coloRgb = "#0000FF";
 
+        // todo Prepsani barev podle typu jazyka
         var colors = [
             {id: 0, color: "#FF0000", name: "Red", rgb: "255, 0, 0"},
             {id: 1, color: "#00FF00", name: "Green", rgb: "0, 255, 0"},

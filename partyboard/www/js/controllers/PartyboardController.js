@@ -1,10 +1,10 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory, MessageService, $ionicLoading) {
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate) {
 
         $scope.message = "";
-
         $scope.colors = ColorsFactory;
+
 
         $scope.$watch(function () {
                 return $scope.message;
@@ -32,10 +32,22 @@ angular.module('app')
 
         $scope.messages = [];
         $scope.params = {};
-        $scope.a = function () {
-            $ionicLoading.show({template: "Loading blogs..."});
+
+        // todo opravit udalost kdy se maji nacitat data
+        /*
+         $scope.a = function () {
+             $translate('loadMessage').then(
+                function (translate) {//prelozeno
+                $ionicLoading.show({template: translate});
+             });
+             MessageService.loadBlogs();
+         };
+         */
+
+        $scope.loadMore = function () {
             MessageService.loadBlogs();
-        };
+        }
+
 
         $scope.$on("messages", function (_, result) {
             result.forEach(function (b) {
@@ -44,7 +56,8 @@ angular.module('app')
                     message: b.message
                 });
             });
-            $ionicLoading.hide();
+            //$ionicLoading.hide();
+            $scope.$broadcast("scroll.infiniteScrollComplete");
         });
 
     });

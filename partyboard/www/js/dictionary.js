@@ -19,6 +19,7 @@ var english = {
     smsSuccess: "SMS was send.",
     smsError: "Error: ",
     setMessage: "Set message",
+    loadMessage: "Loading messages...",
 
     selectionPB: "Selection Partyboard",
     setNick: "Setting nickname",
@@ -51,6 +52,7 @@ var czech = {
     smsSuccess: "SMS byla odeslaná.",
     smsError: "Chyba: ",
     setMessage: "Nasvavení zprávy",
+    loadMessage: "Načítání zpráv...",
 
     selectionPB: "Výběr Partyboardu",
     setNick: "Nastavení přezdívky",

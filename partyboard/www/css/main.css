@@ -1,3 +1,25 @@
 .backgroundColor {
   background-color: rgba(29, 29, 29, 0.98);
 }
+/**** partyboard.html ****/
+.footerPB {
+  height: 80px;
+}
+.footerPB textarea {
+  width: 9999px;
+  background-color: #EEE;
+  height: 70px;
+  font-size: 16px;
+}
+.contentPB {
+  margin-bottom: 80px;
+}
+.contentPB .viewMessage div {
+  border-radius: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.contentPB .viewMessage p {
+  color: white;
+  margin: 10px 10px 10px 10px;
+}

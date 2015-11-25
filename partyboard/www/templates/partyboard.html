@@ -1,19 +1,19 @@
 <ion-view class="backgroundColor" view-title='{{"partyboard" | translate}}' ng-controller="PartyboardController">
-    <ion-content>
-        <button ng-click="a()">asd</button>
+    <ion-content class="contentPB">
+        <!-- <button ng-click="a()">asd</button> Pokud data budu chtitat natahovat na nejakou udalost -->
         <ionic-list>
-            <ionic-item ng-repeat="b in messages">
-                <p style="color:white;">{{b.nick}} - {{ b.message }}</p>
+            <ionic-item  class="viewMessage" ng-repeat="b in messages">
+                <div style="background-color: {{colors.getRgbColor()}};">
+                <p>{{b.nick}} - {{ b.message }}</p>
+                </div>
             </ionic-item>
         </ionic-list>
+        <ion-infinite-scroll on-infinite="loadMore()"></ion-infinite-scroll> <!-- pokud scrolluju dolu tak se dotahujou dalsi data -->
     </ion-content>
-
-    <div class="bar bar-footer " style="height: 80px; background-color: {{colors.getRgbColor()}}">
-
+    <div class="bar bar-footer footerPB" style="background-color: {{colors.getRgbColor()}}">
         <div class="item-input-inset" style="width: 9999px;">
             <label class="item-input-wrapper">
-                <textarea style="width: 9999px; background-color: #EEE; height: 70px; font-size: 16px;" type="text"
-                          placeholder="{{ 'message' | translate }}" ng-model="message"></textarea>
+                <textarea type="text" placeholder="{{ 'message' | translate }}" ng-model="message"></textarea>
             </label>
 
             <div style="padding-left:8px;">
@@ -25,6 +25,6 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 </ion-view>

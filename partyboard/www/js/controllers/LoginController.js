@@ -109,6 +109,7 @@ angular.module('app')
                 });
             });
         };
+        // todo doresit prihlaseni uzivatele
         var permisions = ["public_profile", "email", "user_friends"];
         $scope.loginFacebook = function(){
             facebookConnectPlugin.login(permisions, function (success) {
