@@ -112,10 +112,16 @@ angular.module('app')
         var permisions = ["public_profile", "email", "user_friends"];
         $scope.loginFacebook = function(){
             facebookConnectPlugin.login(permisions, function (success) {
-                console.log(success)//tady jsou info jako token atd
+                //console.log(success)//tady jsou info jako token atd
+                facebookConnectPlugin.api('/me?fields=id,first_name,last_name,age_range)', permisions, function (data) {
+                    alert(data);
+                }, function (error){
+                    alert(error);
+                });
+               // alert(success);
                 //obj.processFacebookData();
             }, function(error){
-                alert("error: "+error);
+                alert("Nejste pripojeni k internetu");
             });
         }
     });
