@@ -59,6 +59,12 @@ angular.module('app')
         };
 
         $scope.logout = function () {
+            facebookConnectPlugin.logout(function(){
+                alert("Odhlaseni");
+            }, function(){
+                alert("error - Odhlaseni")
+            });
+
             delete($scope.loginData);
             ModalService.showLogin();
         }
@@ -109,20 +115,19 @@ angular.module('app')
                 });
             });
         };
+
         // todo doresit prihlaseni uzivatele
         var permisions = ["public_profile", "email", "user_friends"];
         $scope.loginFacebook = function(){
             facebookConnectPlugin.login(permisions, function (success) {
-                //console.log(success)//tady jsou info jako token atd
-                facebookConnectPlugin.api('/me?fields=id,first_name,last_name,age_range)', permisions, function (data) {
-                    alert(data);
+                facebookConnectPlugin.api("/me?fields=id,first_name,last_name,age_range", permisions, function (data) {
+                    ModalService.hideLogin();
+                    alert(JSON.stringify(data));
                 }, function (error){
-                    alert(error);
+                    alert("error data - " + JSON.stringify(error));
                 });
-               // alert(success);
-                //obj.processFacebookData();
             }, function(error){
-                alert("Nejste pripojeni k internetu");
+                alert("login error - " + + JSON.stringify(error));
             });
         }
     });

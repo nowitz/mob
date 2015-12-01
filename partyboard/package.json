@@ -21,7 +21,15 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-network-information"
+    "cordova-plugin-network-information",
+    {
+      "variables": {
+        "APP_ID": "1057218650975685",
+        "APP_NAME": "Partyboard"
+      },
+      "locator": "https://github.com/jeduan/cordova-plugin-facebook4",
+      "id": "cordova-plugin-facebook4"
+    }
   ],
   "cordovaPlatforms": [
     "android"

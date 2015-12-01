@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="cz.jannovak.partyboard" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="cz.zcu.jannovak.partyboard" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Partyboard</name>
     <description>
 
         An Ionic Framework and Cordova project.
-
     </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">
 
@@ -45,7 +44,7 @@
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4">
-        <variable name="APP_ID" value="1539968252961353" />
-        <variable name="APP_NAME" value="cz.jannovak.partyboard" />
+        <variable name="APP_ID" value="1057218650975685" />
+        <variable name="APP_NAME" value="Partyboard" />
     </plugin>
 </widget>
