@@ -52,7 +52,7 @@ angular.module('app')
          * Nastaveni barvy
          */
         $scope.colors = ColorsFactory.all();
-        $scope.color = $scope.colors[2];
+        $scope.color = $scope.colors[6];
         $scope.colorChange = function (rgb) {
             ColorsFactory.setRgbColor(rgb);
         }

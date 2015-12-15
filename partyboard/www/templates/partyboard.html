@@ -13,7 +13,7 @@
     <div class="bar bar-footer footerPB" style="background-color: {{colors.getRgbColor()}}">
         <div class="item-input-inset" style="width: 9999px;">
             <label class="item-input-wrapper">
-                <textarea type="text" placeholder="{{ 'message' | translate }}" ng-model="message"></textarea>
+                <textarea type="text" placeholder="{{ 'message' | translate }}" maxlength="160" ng-model="message"></textarea>
             </label>
 
             <div style="padding-left:8px;">

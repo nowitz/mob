@@ -1,18 +1,18 @@
 'user strict';
 angular.module('app')
     .factory('ColorsFactory', function () {
-        var coloRgb = "#0000FF";
+        var coloRgb = "#003366";
 
         // todo Prepsani barev podle typu jazyka
         var colors = [
-            {id: 0, color: "#FF0000", name: "Red", rgb: "255, 0, 0"},
-            {id: 1, color: "#00FF00", name: "Green", rgb: "0, 255, 0"},
-            {id: 2, color: "#0000FF", name: "Dark blue", rgb: "0, 0, 255"},
-            {id: 3, color: "#00FFFF", name: "Light blue", rgb: "0, 255, 255"},
-            {id: 4, color: "#FFFF00", name: "Yellow", rgb: "255, 255, 0"},
-            {id: 5, color: "#9900FF", name: "Purple", rgb: "153, 0, 255"},
-            {id: 6, color: "#FF66FF", name: "Pink", rgb: "255, 102, 255"},
-            {id: 7, color: "#FF9900", name: "Orange", rgb: "255, 153, 0"},
+            {id: 0, color: "#FFFF66", name: "Yellow", rgb: "255, 255, 204"},
+            {id: 1, color: "#FF9900", name: "Orange", rgb: "255, 153, 0"},
+            {id: 2, color: "#D82A2A", name: "Red", rgb: "216, 42, 42"},
+            {id: 3, color: "#CC0066", name: "Pink", rgb: "204, 0, 102"},
+            {id: 4, color: "#660066", name: "Purple", rgb: "106, 0, 106"},
+            {id: 5, color: "#00CCCC", name: "Light blue", rgb: "00, 204, 204"},
+            {id: 6, color: "#003366", name: "Dark blue", rgb: "0, 51, 102"},
+            {id: 7, color: "#50D420", name: "Light Green", rgb: "80, 212, 32"},
             {id: 8, color: "#009933", name: "Dark green", rgb: "0, 153, 51"}
         ];
 
