@@ -1,9 +1,14 @@
 <ion-view class="backgroundColor" view-title='{{"partyboard" | translate}}' ng-controller="PartyboardController">
     <ion-content class="contentPB" has-bouncing="true" overflow-scroll="false">
+        <ion-refresher
+                pulling-icon="none"
+                refreshing-icon="none"
+                on-refresh="doRefresh()">
+        </ion-refresher>
         <ionic-list>
-            <ionic-item  class="viewMessage" ng-repeat="b in result">
+            <ionic-item  class="viewMessage" ng-repeat="b in result.slice().reverse() ">
                 <div style="background-color: {{colors.getRgbColor()}};">
-                <p>{{b.nick}} - {{ b.text }}</p>
+                <p>{{ b.id_incomming_message}}:{{b.nick}} - {{ b.text }}</p>
                 </div>
             </ionic-item>
             <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory" class="item item-spinner">

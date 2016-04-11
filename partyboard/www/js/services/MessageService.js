@@ -8,7 +8,7 @@ angular.module('app')
             $http.get("http://students.kiv.zcu.cz:8088/~nowitz/incomming_messages/", { // http://private-23397-partyboard.apiary-mock.com/v1/messages/board/1/?count=6 https://public-api.wordpress.com/rest/v1/freshly-pressed/
                 params: params
             }).success(function (result) {
-                //console.log(result);
+                console.log(result);
                 $scope.result = result;
                 typeof callback === 'function' && callback(); //test jestli se jedna o funkci
             });
@@ -19,6 +19,7 @@ angular.module('app')
             $http.post("http://students.kiv.zcu.cz:8088/~nowitz/incomming_messages/", data,{
                 headers: {'Content-Type': 'application/json'}
             }).success(function (result) {
+                console.log(result);
                 $scope.loadMore();
             });
         };

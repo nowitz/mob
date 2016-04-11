@@ -5,9 +5,10 @@ angular.module('app')
         $scope.message = "";
         $scope.colors = ColorsFactory;
 
+        var _limit = 20;
         var params = {
-            limit: 100,
-            offset: 0
+            limit: _limit
+            //offset: 0
         };
 
         var data = {
@@ -36,6 +37,7 @@ angular.module('app')
                 //alert("zprava z netu");
                 data.text = message;
                 MessageService.sendMessage(data, $scope);
+                $scope.message = "";
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
                 SendSMSService.init(UserFactory.getPhone(), message);
                 $scope.message = "";
@@ -50,15 +52,24 @@ angular.module('app')
         });
 
         $scope.loadMore = function () {
-            console.log(params.limit);
+            //console.log(params.limit);
             $scope.loadingHistory = true;
             MessageService.loadBlogs(params, function () {
                 $scope.$broadcast("scroll.infiniteScrollComplete");
                 $scope.loadingHistory = false;
+                params.limit = _limit;
                 $ionicScrollDelegate.scrollBottom(); //soupnu list dolu
             }, $scope);
 
         };
 
+        $scope.doRefresh = function(){
+            params.limit = params.limit + 10;
+            MessageService.loadBlogs(params, function () {
+                $scope.$broadcast("scroll.infiniteScrollComplete");
+                $scope.loadingHistory = false;
+                params.limit = _limit;
+            }, $scope);
+        };
 
     });
