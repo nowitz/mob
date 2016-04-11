@@ -1,10 +1,23 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate) {
+    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate, $ionicScrollDelegate) {
 
         $scope.message = "";
         $scope.colors = ColorsFactory;
 
+        var params = {
+            limit: 100,
+            offset: 0
+        };
+
+        var data = {
+            "id_partyboard": 1,
+            "phone": 752365214,
+            "nick": "Honza",
+            "text": "Ahoj lidi jak se mate?"
+        }
+
+        $scope.loadingHistory = false;
 
         $scope.$watch(function () {
                 return $scope.message;
@@ -20,7 +33,9 @@ angular.module('app')
             //todo bude se tu nacitat mobilni cislo, message, atd..
             console.log(SendInternetFactory.getTypeMessager());
             if (SendInternetFactory.getTypeMessager().key == "int") {
-                alert("zprava z netu");
+                //alert("zprava z netu");
+                data.text = message;
+                MessageService.sendMessage(data, $scope);
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
                 SendSMSService.init(UserFactory.getPhone(), message);
                 $scope.message = "";
@@ -30,34 +45,20 @@ angular.module('app')
             }
         }
 
-        $scope.messages = [];
-        $scope.params = {};
-
-        // todo opravit udalost kdy se maji nacitat data
-        /*
-         $scope.a = function () {
-             $translate('loadMessage').then(
-                function (translate) {//prelozeno
-                $ionicLoading.show({template: translate});
-             });
-             MessageService.loadBlogs();
-         };
-         */
+        $scope.$on("$ionicView.beforeEnter", function () { //pred nactenim kontroleru se zavola takhle funkce
+            $scope.loadMore();
+        });
 
         $scope.loadMore = function () {
-            MessageService.loadBlogs();
-        }
+            console.log(params.limit);
+            $scope.loadingHistory = true;
+            MessageService.loadBlogs(params, function () {
+                $scope.$broadcast("scroll.infiniteScrollComplete");
+                $scope.loadingHistory = false;
+                $ionicScrollDelegate.scrollBottom(); //soupnu list dolu
+            }, $scope);
 
+        };
 
-        $scope.$on("messages", function (_, result) {
-            result.forEach(function (b) {
-                $scope.messages.push({
-                    nick: b.nick,
-                    message: b.message
-                });
-            });
-            //$ionicLoading.hide();
-            $scope.$broadcast("scroll.infiniteScrollComplete");
-        });
 
     });
