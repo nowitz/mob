@@ -1,0 +1,53 @@
+<ion-modal-view ng-controller="SettingController">
+  <ion-header-bar class="bar-dark">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="modalService.hideAdministration()"><i class="icon ion-ios-arrow-left"></i>{{"backButton" | translate}}</button>
+    </div>
+    <h1 class="title">{{"administration" | translate}}</h1>
+  </ion-header-bar>
+
+  <ion-content>
+    <ul class="list">
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"selectionPB" | translate}}
+          </div>
+          <select ng-change="selectionPartyboard(partyboard.shade)" ng-model="partyboard" ng-options="partyboard.name for partyboard in partyboards"></select>
+        </label>
+      </li>
+      <li class="item item-input">
+          <span class="input-label">{{"setNick" | translate}}</span>
+          <input ng-change="nickChange(nick)" ng-model="nick" style="background-color: #444; color:white; padding-left: 5px;" maxlength="15" type="text">
+      </li>
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"setMessage" | translate}}
+          </div>
+          <select ng-change="selectionTypeMessage(typeMessage)" ng-model="typeMessage" ng-options="typeMessage.name for typeMessage in typeMessages"></select>
+        </label>
+      </li>
+
+      <li class="item item-divider"></li>
+
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"colors" | translate}}
+          </div>
+          <select ng-change="colorChange(color)" ng-model="color" ng-options="color.name for color in colors"></select>
+        </label>
+      </li>
+
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"language" | translate}}
+          </div>
+          <select ng-change="changeLanguage(language.shade)" ng-model="language" ng-options="language.name for language in languages"></select>
+        </label>
+      </li>
+    </ul>
+  </ion-content>
+</ion-modal-view>

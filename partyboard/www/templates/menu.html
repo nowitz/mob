@@ -33,6 +33,12 @@
                 </ion-item>
                 <div class="item item-divider">
                 </div>
+                <ion-item class="item-icon-left" menu-close ng-click="modalService.showAdministration()">
+                    <i class="icon ion-gear-a"></i>
+                    {{"administration" | translate}}
+                </ion-item>
+                <div class="item item-divider">
+                </div>
                 <ion-item class="item-icon-left" menu-close ng-controller="LoginController" ng-click="logout()">
                     <i class="icon ion-log-out"></i>
                     {{"logout" | translate}}

@@ -16,7 +16,7 @@ angular.module('app')
             "phone": 752365214,
             "nick": "Honza",
             "text": "Ahoj lidi jak se mate?"
-        }
+        };
 
         $scope.loadingHistory = false;
 
@@ -68,7 +68,6 @@ angular.module('app')
             MessageService.loadBlogs(params, function () {
                 $scope.$broadcast("scroll.infiniteScrollComplete");
                 $scope.loadingHistory = false;
-                params.limit = _limit;
             }, $scope);
         };
 

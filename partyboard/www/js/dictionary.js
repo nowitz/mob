@@ -28,7 +28,9 @@ var english = {
 
     backButton: "Back",
 
-    registrationForm: "Registration"
+    registrationForm: "Registration",
+
+    administration:"administration"
 }
 
 var czech = {
@@ -60,5 +62,7 @@ var czech = {
 
     backButton: "Zpět",
 
-    registrationForm: "Registrace"
+    registrationForm: "Registrace",
+
+    administration:"administrace"
 }

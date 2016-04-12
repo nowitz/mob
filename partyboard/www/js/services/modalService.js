@@ -38,7 +38,7 @@ angular.module('app')
                     service.settingModal.show();
                 });
             }
-        }
+        };
         this.hideSetting = function () {
             this.settingModal && this.settingModal.hide();
         };
@@ -58,7 +58,7 @@ angular.module('app')
                     service.infoModal.show();
                 });
             }
-        }
+        };
         this.hideInfo = function () {
             this.infoModal && this.infoModal.hide();
         };
@@ -78,8 +78,31 @@ angular.module('app')
                     service.registrationModal.show();
                 });
             }
-        }
+        };
+
         this.hideRegistration = function () {
             this.registrationModal && this.registrationModal.hide();
         };
+
+        /**
+         * Administrace
+         */
+        this.showAdministration = function(){
+            var service = this;
+            if (service.administrationModal) {
+                service.administrationModal.show();
+            } else {
+                $ionicModal.fromTemplateUrl('templates/administration.html', {
+                    scope: null
+                }).then(function (modal) {
+                    service.administrationModal = modal;
+                    service.administrationModal.show();
+                });
+            }
+        };
+
+        this.hideAdministration = function () {
+            this.administrationModal && this.administrationModal.hide();
+        };
+
     });
