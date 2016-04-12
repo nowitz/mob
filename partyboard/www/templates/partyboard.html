@@ -1,32 +1,33 @@
-<ion-view class="backgroundColor" view-title='{{"partyboard" | translate}}' ng-controller="PartyboardController">
-    <ion-content class="contentPB" has-bouncing="true" overflow-scroll="false">
-        <ion-refresher
-                pulling-icon="none"
-                refreshing-icon="none"
-                on-refresh="doRefresh()">
-        </ion-refresher>
+<ion-view class="backgroundColor" hide-back-button="true" view-title='{{"partyboard" | translate}}' ng-controller="PartyboardController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="contentPB" on-scroll-complete="historyData()" has-bouncing="true" overflow-scroll="false">
         <ionic-list>
-            <ionic-item  class="viewMessage" ng-repeat="b in result.slice().reverse() ">
+            <ionic-item class="viewMessage" ng-repeat="b in result.slice().reverse() ">
                 <div style="background-color: {{colors.getRgbColor()}};">
-                <p>{{ b.id_incomming_message}}:{{b.nick}} - {{ b.text }}</p>
+                    <p>{{ b.id_incomming_message}}:{{b.nick}} - {{ b.text }}</p>
                 </div>
             </ionic-item>
-            <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory" class="item item-spinner">
+            <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory"
+                class="item item-spinner">
                 <ion-spinner icon="android"></ion-spinner>
             </li>
-            <ion-infinite-scroll on-infinite="loadMore()"
-                                 immediate-check="false"
-                                 icon="none"
-                                 distance="-50px"
-                                 style="height: 0">
-            </ion-infinite-scroll>
         </ionic-list>
+        <ion-infinite-scroll on-infinite="loadMore()"
+                             immediate-check="false"
+                             icon="none"
+                             distance="-50px"
+                             style="height: 0">
+        </ion-infinite-scroll>
 
     </ion-content>
     <div class="bar bar-footer footerPB" style="background-color: {{colors.getRgbColor()}}">
         <div class="item-input-inset" style="width: 9999px;">
             <label class="item-input-wrapper">
-                <textarea type="text" placeholder="{{ 'message' | translate }}" maxlength="160" ng-model="message"></textarea>
+                    <textarea type="text" placeholder="{{ 'message' | translate }}" maxlength="160"
+                              ng-model="message"></textarea>
             </label>
 
             <div style="padding-left:8px;">
@@ -39,5 +40,4 @@
             </div>
         </div>
     </div>
-
 </ion-view>

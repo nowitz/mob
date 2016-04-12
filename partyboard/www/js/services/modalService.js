@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('ModalService', function ($ionicModal) {
+    .service('ModalService', function ($ionicModal, $state) {
 
         /**
          * Login
@@ -41,6 +41,7 @@ angular.module('app')
         };
         this.hideSetting = function () {
             this.settingModal && this.settingModal.hide();
+            $state.go($state.current, {}, {reload: true});
         };
 
         /**

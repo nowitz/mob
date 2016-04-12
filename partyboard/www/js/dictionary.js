@@ -30,7 +30,8 @@ var english = {
 
     registrationForm: "Registration",
 
-    administration:"administration"
+    administration:"administration",
+    groupSetting:"Group setting"
 }
 
 var czech = {
@@ -64,5 +65,6 @@ var czech = {
 
     registrationForm: "Registrace",
 
-    administration:"administrace"
+    administration:"administrace",
+    groupSetting: "Skupina nastavení"
 }

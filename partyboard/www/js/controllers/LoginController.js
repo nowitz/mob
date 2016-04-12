@@ -59,6 +59,7 @@ angular.module('app')
         };
 
         $scope.logout = function () {
+            //odhlaseni pres facebook
             facebookConnectPlugin.logout(function(){
                 alert("Odhlaseni");
             }, function(){
@@ -66,6 +67,7 @@ angular.module('app')
             });
 
             delete($scope.loginData);
+            delete(window.history);
             ModalService.showLogin();
         }
 

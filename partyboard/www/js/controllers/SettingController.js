@@ -1,13 +1,13 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory) {
+    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory,SettingFactory) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
         $scope.modalService = ModalService;
 
-
+        $scope.setting = SettingFactory;
         /**
          * Prepinani jazyka
          * @type {*[]}
@@ -37,7 +37,14 @@ angular.module('app')
         ]
 
         $scope.selectionPartyboard = function (partyboard) {
-            console.log(partyboard);
+            //todo nahradi se to stazenyma PB
+            var partyboardTest = {
+                id_partyboard: 1,
+                name: "McFabrika",
+                sms_key: "board1"
+            }
+            $scope.setting.setPartyboard(partyboardTest);
+            console.log( $scope.setting.getPartyboard());
         }
 
         /**

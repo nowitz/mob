@@ -1,9 +1,11 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, ModalService, SendSMSService, ColorsFactory, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate, $ionicScrollDelegate) {
+    .controller('PartyboardController', function ($scope, $state, ColorsFactory, ModalService, SendSMSService, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate, $ionicScrollDelegate, SettingFactory) {
+
+        $scope.setting = SettingFactory;
+        $scope.colors = ColorsFactory;
 
         $scope.message = "";
-        $scope.colors = ColorsFactory;
 
         var _limit = 20;
         var params = {
@@ -13,7 +15,7 @@ angular.module('app')
 
         var data = {
             "id_partyboard": 1,
-            "phone": 752365214,
+            "phone": "00420752365214",
             "nick": "Honza",
             "text": "Ahoj lidi jak se mate?"
         };
@@ -47,12 +49,23 @@ angular.module('app')
             }
         }
 
-        $scope.$on("$ionicView.beforeEnter", function () { //pred nactenim kontroleru se zavola takhle funkce
-            $scope.loadMore();
+        //Promenna ktera mi zajisti to ze se mi to obnovi jenom jednou
+        var unRepeater = true;
+
+        $scope.$on("$ionicView.beforeEnter", function () { //pred nactenim kontroleru se zavola takhle funkce a overi se zda je vybranej nejaky PB
+            if($scope.setting.getPartyboard().id_partyboard !== false){
+                $scope.loadMore();
+                if (unRepeater === true){
+                   // delete(window.history);
+                    $state.go('app.partyboard', {}, {reload: true});
+                    unRepeater = false;
+                }
+            }
         });
 
+
         $scope.loadMore = function () {
-            //console.log(params.limit);
+            console.log(params.limit);
             $scope.loadingHistory = true;
             MessageService.loadBlogs(params, function () {
                 $scope.$broadcast("scroll.infiniteScrollComplete");
@@ -63,12 +76,16 @@ angular.module('app')
 
         };
 
-        $scope.doRefresh = function(){
-            params.limit = params.limit + 10;
-            MessageService.loadBlogs(params, function () {
-                $scope.$broadcast("scroll.infiniteScrollComplete");
-                $scope.loadingHistory = false;
-            }, $scope);
-        };
 
+        $scope.historyData = function(){
+            var scrollTop = $ionicScrollDelegate.getScrollPosition().top;
+            //console.log("top: "+scrollTop);
+            if(scrollTop <= 0){
+                params.limit = params.limit + 10;
+                MessageService.loadBlogs(params, function () {
+                    $scope.$broadcast("scroll.infiniteScrollComplete");
+                    $scope.loadingHistory = false;
+                }, $scope);
+            }
+        };
     });

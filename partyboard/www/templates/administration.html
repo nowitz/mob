@@ -1,4 +1,4 @@
-<ion-modal-view ng-controller="SettingController">
+<ion-modal-view ng-controller="AdministrationController">
   <ion-header-bar class="bar-dark">
     <div class="buttons">
       <button class="button button-clear" ng-click="modalService.hideAdministration()"><i class="icon ion-ios-arrow-left"></i>{{"backButton" | translate}}</button>
@@ -11,9 +11,9 @@
       <li class="item item-input item-select">
         <label>
           <div class="input-label">
-            {{"selectionPB" | translate}}
+            {{"groupSetting" | translate}}
           </div>
-          <select ng-change="selectionPartyboard(partyboard.shade)" ng-model="partyboard" ng-options="partyboard.name for partyboard in partyboards"></select>
+          <select ng-change="selectionPartyboard(partyboard.shade)" ng-model="groupSetting" ng-options="groupSetting.gs_name for groupSetting in groupSettings"></select>
         </label>
       </li>
       <li class="item item-input">

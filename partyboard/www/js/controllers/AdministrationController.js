@@ -1,12 +1,16 @@
 'user strict';
 angular.module('app')
-    .controller('AdministrationController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory) {
+    .controller('AdministrationController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, RestService) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
         $scope.modalService = ModalService;
 
+        RestService.get("group_settings", $scope,  function () {
+            console.log($scope.result);
+            $scope.groupSettings = $scope.result;
+        });
 
         /**
          * Prepinani jazyka
@@ -30,11 +34,6 @@ angular.module('app')
          * Vyber partyboardu
          * @type {*[]}
          */
-        $scope.partyboards = [
-            //TODO bude se natahodat z DB;
-            {name: 'McFabrika', shade: 'mcfabrika'},
-            {name: 'Duplex', shade: 'duplex'}
-        ]
 
         $scope.selectionPartyboard = function (partyboard) {
             console.log(partyboard);
