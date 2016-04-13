@@ -41,6 +41,7 @@ angular.module('app')
         };
         this.hideSetting = function () {
             this.settingModal && this.settingModal.hide();
+            //zajisti mi to presmerovani na controller partyboard
             $state.go($state.current, {}, {reload: true});
         };
 

@@ -14,10 +14,11 @@ angular.module('app')
         };
 
         var data = {
-            "id_partyboard": 1,
-            "phone": "00420752365214",
-            "nick": "Honza",
-            "text": "Ahoj lidi jak se mate?"
+            "id_partyboard": null,
+            //"phone": $scope.setting.,
+            "key_word": null,
+            "nick": null,
+            "text": null
         };
 
         $scope.loadingHistory = false;
@@ -35,18 +36,20 @@ angular.module('app')
         $scope.send = function (message) {
             //todo bude se tu nacitat mobilni cislo, message, atd..
             console.log(SendInternetFactory.getTypeMessager());
+            data.nick = "honza";
+            data.text = message;
             if (SendInternetFactory.getTypeMessager().key == "int") {
-                //alert("zprava z netu");
-                data.text = message;
+                data.id_partyboard = $scope.setting.getPartyboard().id_partyboard;
                 MessageService.sendMessage(data, $scope);
-                $scope.message = "";
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
-                SendSMSService.init(UserFactory.getPhone(), message);
-                $scope.message = "";
+                data.key_word = $scope.setting.getPartyboard().sms_key;
+                SendSMSService.init(UserFactory.getPhone(), data.key_word+" "+ data.nick+" "+message);
             } else {
                 //todo doresit vyherni sms
                 alert("vyherni sms");
             }
+            $scope.message = "";
+            //console.log(data);
         }
 
         //Promenna ktera mi zajisti to ze se mi to obnovi jenom jednou
@@ -56,7 +59,7 @@ angular.module('app')
             if($scope.setting.getPartyboard().id_partyboard !== false){
                 $scope.loadMore();
                 if (unRepeater === true){
-                   // delete(window.history);
+                    //delete(window.history);
                     $state.go('app.partyboard', {}, {reload: true});
                     unRepeater = false;
                 }
@@ -65,7 +68,7 @@ angular.module('app')
 
 
         $scope.loadMore = function () {
-            console.log(params.limit);
+            //console.log(params.limit);
             $scope.loadingHistory = true;
             MessageService.loadBlogs(params, function () {
                 $scope.$broadcast("scroll.infiniteScrollComplete");

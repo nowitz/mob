@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory,SettingFactory) {
+    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
@@ -8,6 +8,21 @@ angular.module('app')
         $scope.modalService = ModalService;
 
         $scope.setting = SettingFactory;
+
+        $scope.partyboards = null;
+
+        RestService.get("partyboards").then(function(data) {
+            $scope.partyboards = data;
+        });
+
+/*
+        RestService.get("partyboards",  function (data) {
+            alert(data[0].id_partyboard);
+            //todo tady musi byt if kterej urci do ktery scope se to ma poslat
+            $scope.partyboards = data;
+        });*/
+
+
         /**
          * Prepinani jazyka
          * @type {*[]}
@@ -26,24 +41,14 @@ angular.module('app')
         }
 
 
-        /**
-         * Vyber partyboardu
-         * @type {*[]}
-         */
-        $scope.partyboards = [
-            //TODO bude se natahodat z DB;
-            {name: 'McFabrika', shade: 'mcfabrika'},
-            {name: 'Duplex', shade: 'duplex'}
-        ]
-
         $scope.selectionPartyboard = function (partyboard) {
-            //todo nahradi se to stazenyma PB
-            var partyboardTest = {
-                id_partyboard: 1,
-                name: "McFabrika",
-                sms_key: "board1"
+            var tmp = {
+                id_partyboard: partyboard.id_partyboard,
+                name: partyboard.name,
+                sms_key: partyboard.sms_key
             }
-            $scope.setting.setPartyboard(partyboardTest);
+            $scope.setting.setPartyboard(tmp);
+            console.log("vypis stazenyho PB");
             console.log( $scope.setting.getPartyboard());
         }
 
