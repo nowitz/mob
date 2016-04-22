@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, $state, ColorsFactory, ModalService, SendSMSService, UserFactory, SendInternetFactory, MessageService, $ionicLoading, $translate, $ionicScrollDelegate, SettingFactory) {
+    .controller('PartyboardController', function ($scope, $state, ColorsFactory, ModalService, SendSMSService, UserFactory, SendInternetFactory, MessageService,$ionicHistory, $ionicLoading, $translate, $ionicScrollDelegate, SettingFactory) {
 
         $scope.setting = SettingFactory;
         $scope.colors = ColorsFactory;
@@ -60,6 +60,8 @@ angular.module('app')
                 $scope.loadMore();
                 if (unRepeater === true){
                     //delete(window.history);
+                    //$ionicHistory.clearHistory();
+                   // $ionicHistory.clearCache();
                     $state.go('app.partyboard', {}, {reload: true});
                     unRepeater = false;
                 }

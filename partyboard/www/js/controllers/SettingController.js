@@ -1,14 +1,19 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
+    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService, UserFactory) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
         $scope.modalService = ModalService;
+        $scope.userFactory = UserFactory;
 
         $scope.setting = SettingFactory;
 
+        /**
+         * Seznam Partyboardu stazeny z DB
+         * @type {null}
+         */
         $scope.partyboards = null;
 
         RestService.get("partyboards").then(function(data) {
@@ -40,7 +45,10 @@ angular.module('app')
             $translate.use(language);
         }
 
-
+        /**
+         * Prepinani Partyboardu
+         * @param partyboard
+         */
         $scope.selectionPartyboard = function (partyboard) {
             var tmp = {
                 id_partyboard: partyboard.id_partyboard,
@@ -48,17 +56,9 @@ angular.module('app')
                 sms_key: partyboard.sms_key
             }
             $scope.setting.setPartyboard(tmp);
-            console.log("vypis stazenyho PB");
-            console.log( $scope.setting.getPartyboard());
+            //console.log( $scope.setting.getPartyboard());
         }
 
-        /**
-         * Uchovani prezdivky pro odesilani zprav
-         * @param nick
-         */
-        $scope.nickChange = function (nick) {
-            console.log(nick);
-        }
 
         /**
          * Nastaveni barvy

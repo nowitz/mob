@@ -39,7 +39,7 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-            UserFactory.logIn("jan", "novak", "male", "jan@novak.com", 728452510, "Czech Republic", 'account', null);
+            UserFactory.logIn("jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null);
             ModalService.hideLogin();
 
             /**

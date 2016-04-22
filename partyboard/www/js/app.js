@@ -32,7 +32,8 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                  * Inicialzace Networkservice
                  */
                 NetworkService.init();
-            });
+            },false);
+
 
             /**
              * Vyskoci modalni okno pro prihlaseni
@@ -44,6 +45,14 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
 
         });
+
+        /**
+         * ZAREHISTROVANI UDALOSTI NA TLACITKO BACK
+         */
+        $ionicPlatform.registerBackButtonAction(function(e) {
+            e.preventDefault();
+        }, 1000);
+
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {

@@ -10,7 +10,7 @@ angular.module('app')
         user.loginTypeData = null;
         user.firstName = null;
         user.lastName = null;
-        user.gender = null;
+        user.nick = null;
         user.email = null;
         user.phone = null;
         user.country = null;
@@ -20,14 +20,14 @@ angular.module('app')
 
         var obj = {};
 
-        obj.logIn = function (firstName, lastName, gender, email, phone, country, loginType, loginTypeData) { //profilePicture
+        obj.logIn = function (firstName, lastName, nick, email, phone, country, loginType, loginTypeData) { //profilePicture
             if (!user.isLoggedIn) {
                 user.isLoggedIn = true;
 
 
                 user.firstName = firstName;
                 user.lastName = lastName;
-                user.gender = gender; //'male' nebo 'female'
+                user.nick = nick; //
                 user.email = email;
                 user.phone = phone;
                 user.country = country; //zkratka z service -> flags
@@ -43,7 +43,7 @@ angular.module('app')
             user.loginTypeData = null;
             user.firstName = null;
             user.lastName = null;
-            user.gender = null;
+            user.nick = null;
             user.email = null;
             user.phone = null;
             user.country = null;
@@ -81,8 +81,8 @@ angular.module('app')
             return user.lastName;
         };
 
-        obj.getGender = function () {
-            return user.gender;
+        obj.getNick = function () {
+            return user.nick;
         };
 
         obj.getEmail = function () {
@@ -105,7 +105,7 @@ angular.module('app')
         };*/
 
         obj.getDataToServer = function () {
-            return {firstName: obj.getFirstName(), lastName: obj.getLastName(), gender: obj.getGender(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getCountry()};// profilePicture: obj.getProfilePicture()
+            return {firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getnick(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getCountry()};// profilePicture: obj.getProfilePicture()
         };
 
         obj.getMyScore = function () {

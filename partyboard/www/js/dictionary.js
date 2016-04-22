@@ -6,6 +6,15 @@ var english = {
     login: "Log in",
     logout: "Log out",
 
+    checkPassword:"Check Password",
+    firstName:"First name",
+    lastName:"Last Name",
+    nick:"Nick",
+    phone:"Phone number",
+    birthday:"Birthday",
+    town:"Towns",
+    register:"Register",
+
     setting: "Setting",
     language: "Language",
 
@@ -42,6 +51,16 @@ var czech = {
     login: "Přihlásit se",
     logout: "Odhlásit se",
 
+    checkPassword:"Ověření hesla",
+    firstName:"Jméno",
+    lastName:"Příjmení",
+    nick:"Přezdívka",
+    phone:"Tel. číslo",
+    birthday:"Datum narození",
+    town:"Město",
+    register:"Zaregistrovat se",
+
+
     setting: "Nastavení",
     language: "Jazyk",
 
@@ -67,4 +86,5 @@ var czech = {
 
     administration:"administrace",
     groupSetting: "Skupina nastavení"
+
 }

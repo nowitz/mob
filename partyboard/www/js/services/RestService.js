@@ -3,7 +3,8 @@ angular.module('app')
     .service('RestService', function ($http) {
         var url = {
             group_settings: "group_settings/",
-            partyboards: "partyboards/"
+            partyboards: "partyboards/",
+            towns:"towns"
         };
 
         var data;
