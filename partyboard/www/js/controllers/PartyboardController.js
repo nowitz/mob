@@ -1,6 +1,8 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, $state, ColorsFactory, ModalService, SendSMSService, UserFactory, SendInternetFactory, MessageService,$ionicHistory, $ionicLoading, $translate, $ionicScrollDelegate, SettingFactory) {
+    .controller('PartyboardController', function ($scope, $state, $ionicLoading, ColorsFactory, ModalService, SendSMSService, UserFactory,
+                                                  SendInternetFactory, MessageService, $ionicLoading, $translate,
+                                                  $ionicScrollDelegate, SettingFactory) {
 
         $scope.setting = SettingFactory;
         $scope.colors = ColorsFactory;
@@ -82,15 +84,42 @@ angular.module('app')
         };
 
 
-        $scope.historyData = function(){
-            var scrollTop = $ionicScrollDelegate.getScrollPosition().top;
-            //console.log("top: "+scrollTop);
-            if(scrollTop <= 0){
+        $scope.historyData = function(param){
+            //console.log(param.gesture);
+           // console.log(params.limit);
+            if(param.gesture.direction == 'down' && params.limit < 100){
                 params.limit = params.limit + 10;
                 MessageService.loadBlogs(params, function () {
                     $scope.$broadcast("scroll.infiniteScrollComplete");
-                    $scope.loadingHistory = false;
                 }, $scope);
             }
+        };
+
+
+        $scope.data = {
+            showDelete: false
+        };
+
+        /**
+         * Skryje notifikaci
+         */
+        $scope.hide = function(){
+            $ionicLoading.hide();
+        };
+
+        /**
+         * Masazi zprav
+         * @param msg
+         */
+        $scope.delete = function(msg){
+            console.log(msg);
+            $ionicLoading.show({
+                template: '<div ng-click="hide()" >'+
+                '<button style="margin-right: 2ch" class="button button-energized">BAN</button>' +
+                '<button class="button button-assertive">DEL </button>'+
+                '</div>',
+                // duration:300,
+                scope: $scope
+            });
         };
     });

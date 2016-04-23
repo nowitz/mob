@@ -1,6 +1,9 @@
 .backgroundColor {
   background-color: rgba(29, 29, 29, 0.98);
 }
+.modal-open.loading-active {
+  pointer-events: auto;
+}
 /**** partyboard.html ****/
 .footerPB {
   height: 80px;
@@ -17,8 +20,26 @@
   border-radius: 10px;
   margin-left: 8px;
   margin-right: 8px;
+  margin-bottom: 5px;
+  color: red;
 }
 .contentPB .viewMessage p {
   color: white;
   margin: 10px 10px 10px 10px;
+}
+/****  registrace alert  ****/
+.error {
+  display: none;
+  color: #FFAEAE;
+}
+.has-error {
+  display: inline;
+}
+/*
+.obalMsg{
+  clear:both;
+  display: table;
+}*/
+.hideButton {
+  display: none;
 }

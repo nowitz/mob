@@ -4,6 +4,11 @@
   background-color: @backgroundColor;
 }
 
+//chyba pokud je otevrenej modal nejde klikat v Alertu na cancel
+.modal-open.loading-active {
+  pointer-events: auto;
+}
+
 /**** partyboard.html ****/
 @size: 80px;
 .footerPB {
@@ -24,12 +29,35 @@
       border-radius: 10px;
       margin-left: 8px;
       margin-right: 8px;
+      margin-bottom: 5px;
+      color: red;
+
     }
-    p{
-      color:white;
+    p {
+      color: white;
       margin: 10px 10px 10px 10px;
     }
   }
+}
+
+/****  registrace alert  ****/
+.error {
+  display: none;
+  color: #FFAEAE;
+}
+
+.has-error {
+  display: inline;
+}
+
+
+/*
+.obalMsg{
+  clear:both;
+  display: table;
+}*/
+.hideButton {
+  display: none;
 }
 
 

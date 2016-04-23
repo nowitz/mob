@@ -23,8 +23,8 @@
                 </label>
 
                 <label class="item item-input">
-                    <span class="input-label">{{"checkPassword" | translate}} <i ng-class="{ 'has-error': registerForm.password.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
-                    <input type="password" name="checkPassword" ng-model="registerData.checkPassword" required>
+                    <span class="input-label">{{"checkPassword" | translate}} <i ng-class="{ 'has-error': registerForm.checkPassword.$invalid}" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <input type="password" name="checkPassword" ng-model="registerData.checkPassword" required> <!-- registerForm.checkPassword.$invalid || ( -->
                 </label>
 
                 <label class="item item-divider"></label>
@@ -60,7 +60,7 @@
                 <!--</label>-->
 
                 <label class="item item-input item-select">
-                    <span class="input-label">{{"town" | translate}} <i ng-class="{ 'has-error': registerForm.town == '' }" class="error icon ion-android-alert placeholder-icon"></i></span>
+                    <span class="input-label">{{"town" | translate}} <i ng-class="{ 'has-error': registerForm.town.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
                     <select required name="town" ng-model="registerData.town">
                         <option ng-repeat="(key, value) in towns" value="{{value.id_town}}">{{value.name}}</option>
                     </select>
@@ -68,7 +68,7 @@
 
                 <!--SUBMIT-->
                 <label class="item">
-                    <button class="button button-block button-balanced"  type="submit">{{"register" | translate}}</button> <!-- ng-disabled="registerForm.$invalid || !registerData.ge" -->
+                    <button class="button button-block button-balanced" ng-disabled="registerForm.$invalid" type="submit">{{"register" | translate}}</button> <!-- ng-disabled="registerForm.$invalid || !registerData.ge" -->
                 </label>
             </div>
         </form>

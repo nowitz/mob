@@ -3,18 +3,40 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
     </ion-nav-buttons>
-    <ion-content class="contentPB" on-scroll-complete="historyData()" has-bouncing="true" overflow-scroll="false">
-        <ionic-list>
-            <ionic-item class="viewMessage" ng-repeat="b in result.slice().reverse() ">
-                <div style="background-color: {{colors.getRgbColor()}};">
-                    <p>{{ b.id_incomming_message}}:{{b.nick}} - {{ b.text }}</p>
-                </div>
-            </ionic-item>
-            <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory"
-                class="item item-spinner">
-                <ion-spinner icon="android"></ion-spinner>
-            </li>
-        </ionic-list>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-gear-a"
+                ng-click="data.showDelete = !data.showDelete;"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="contentPB" on-drag-end="historyData($event)" has-bouncing="true" overflow-scroll="false">
+        <!--<ionic-list>-->
+            <!--<ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">-->
+                <!--<div class="obalMsg" style="background-color: {{colors.getRgbColor()}};">-->
+                    <!--&lt;!&ndash;<p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a style="float:right" ng-class="{'hideButton': data.showDelete==true}" class="ion-minus-circled"></a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                    <!--<div>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>-->
+                    <!--<div style="display: table-cell;"><a ng-class="{'hideButton': data.showDelete==true}" class="ion-minus-circled"></a></div>-->
+                <!--</div>-->
+            <!--</ionic-item>-->
+        <!--</ionic-list>-->
+
+        <ion-list show-reorder="data.showDelete">
+            <ion-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">
+                {{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}
+                <!--<ion-option-button ng-if="false" class="button-assertive" ng-click="delete(msg)">Edit</ion-option-button>-->
+                <ion-reorder-button class="ion-gear-a" ng-click="delete(msg)"></ion-reorder-button>
+                <!--<ion-delete-button class="ion-minus-circled"-->
+                                   <!--ng-click="delete(msg)">-->
+                <!--</ion-delete-button>-->
+            </ion-item>
+        </ion-list>
+
+        <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory"
+            class="item item-spinner">
+            <ion-spinner icon="android"></ion-spinner>
+        </li>
         <ion-infinite-scroll on-infinite="loadMore()"
                              immediate-check="false"
                              icon="none"
@@ -26,7 +48,7 @@
     <div class="bar bar-footer footerPB" style="background-color: {{colors.getRgbColor()}}">
         <div class="item-input-inset" style="width: 9999px;">
             <label class="item-input-wrapper">
-                    <textarea type="text" placeholder="{{ 'message' | translate }}" maxlength="160"
+                    <textarea style="width:100%" type="text" placeholder="{{ 'message' | translate }}" maxlength="160"
                               ng-model="message"></textarea>
             </label>
 
