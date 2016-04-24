@@ -12,7 +12,7 @@ var english = {
     nick:"Nick",
     phone:"Phone number",
     birthday:"Birthday",
-    town:"Towns",
+    town:"Town",
     register:"Register",
 
     setting: "Setting",

@@ -8,30 +8,27 @@ angular.module('app')
 
         user.loginType = null;
         user.loginTypeData = null;
+        user.idUser = null;
         user.firstName = null;
         user.lastName = null;
         user.nick = null;
         user.email = null;
         user.phone = null;
-        user.country = null;
-        //user.profilePicture = null;
-
-        user.myScore = null;
+        user.birthday = null;
 
         var obj = {};
 
-        obj.logIn = function (firstName, lastName, nick, email, phone, country, loginType, loginTypeData) { //profilePicture
+        obj.logIn = function (idUser, firstName, lastName, nick, email, phone, birthday, loginType, loginTypeData) {
             if (!user.isLoggedIn) {
                 user.isLoggedIn = true;
 
-
+                user.idUser = idUser;
                 user.firstName = firstName;
                 user.lastName = lastName;
-                user.nick = nick; //
+                user.nick = nick;
                 user.email = email;
                 user.phone = phone;
-                user.country = country; //zkratka z service -> flags
-               // user.profilePicture = profilePicture; //url
+                user.birthday = birthday;
                 user.loginType = loginType; //'facebook', 'google', 'account'
                 user.loginTypeData = loginTypeData; //dalsi data napr ze socialnich siti id, age_range, locale, link atd
             }
@@ -41,14 +38,13 @@ angular.module('app')
 
             user.loginType = null;
             user.loginTypeData = null;
+            user.idUser = null;
             user.firstName = null;
             user.lastName = null;
             user.nick = null;
             user.email = null;
             user.phone = null;
-            user.country = null;
-           // user.profilePicture = null;
-            user.myScore = null;
+            user.birthday = null;
 
             //smazani informaci o uctu
             localStorage.removeItem('userEmail');
@@ -73,6 +69,10 @@ angular.module('app')
             return user.loginTypeData;
         };
 
+        obj.getIdUser = function () {
+            return user.idUser;
+        };
+
         obj.getFirstName = function () {
             return user.firstName;
         };
@@ -93,23 +93,12 @@ angular.module('app')
             return user.phone;
         };
 
-        obj.getCountry = function () {
-            return user.country;
+        obj.getBirthday = function () {
+            return user.birthday;
         };
-/*
-        obj.setProfilePicture = function (profilePicture) { //potreba protoze na fb se profile picture dostane az dyl
-            user.profilePicture = profilePicture;
-        };
-        obj.getProfilePicture = function () {
-            return user.profilePicture ? user.profilePicture : 'img/profile-pic-default.png';
-        };*/
 
         obj.getDataToServer = function () {
-            return {firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getnick(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getCountry()};// profilePicture: obj.getProfilePicture()
-        };
-
-        obj.getMyScore = function () {
-            return user.myScore;
+            return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getBirthday()};
         };
 
         return obj;

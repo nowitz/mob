@@ -7,7 +7,7 @@ angular.module('app')
          */
         $scope.modalService = ModalService;
 
-        RestService.get("group_settings", $scope,  function () {
+        RestService.get("groupSettings", $scope,  function () {
             console.log($scope.result);
             $scope.groupSettings = $scope.result;
         });
