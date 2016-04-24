@@ -43,7 +43,13 @@ var english = {
     groupSetting:"Group setting",
 
     delMessage:"Message was deleted",
-    delErrorMessage:"Message could not delete"
+    delErrorMessage:"Message could not delete",
+
+    emailExample: "example@email.com",
+    forgotPasswordButton: "Password recovery",
+    forgotPasswordText: "Please fill in your registered email",
+    cancel: "Cancel",
+    send: "Send"
 }
 
 var czech = {
@@ -91,6 +97,12 @@ var czech = {
     groupSetting: "Skupina nastavení",
 
     delMessage:"Zpráva byla odstraněna",
-    delErrorMessage:"Zprávu se nepodařilo odstranit"
+    delErrorMessage:"Zprávu se nepodařilo odstranit",
+
+    emailExample: "ukázkový@email.cz",
+    forgotPasswordButton: "Obnova hesla",
+    forgotPasswordText: "Prosím vyplňte Vámi registrovany email",
+    cancel: "Zavřít",
+    send: "Odeslat"
 
 }

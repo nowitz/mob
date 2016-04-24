@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, $ionicPopup, UserFactory, ModalService, NetworkService) {
+    .controller('LoginController', function ($scope, $ionicPopup, $translate, UserFactory, ModalService, NetworkService) {
 
         $scope.user = UserFactory;
         $scope.modalService = ModalService;
@@ -39,7 +39,7 @@ angular.module('app')
              }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
              });
              */
-            UserFactory.logIn(1, "jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null);
+            UserFactory.logIn(1, "jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null, {admin:true, noob:"test"});
             ModalService.hideLogin();
 
             /**
@@ -75,16 +75,16 @@ angular.module('app')
         //forgot password
         $scope.forgotPassword = function () {
             var myPopup = null;
-            $translate(['EMAIL_EXAMPLE', 'FORGOTPASSWORD_BUTTON', 'FORGOTPASSWORD_TEXT', 'EMAIL_EXAMPLE', 'CANCEL', 'SEND']).then(function (translation) {
+            $translate(['emailExample', 'forgotPasswordButton', 'forgotPasswordText','cancel', 'send']).then(function (translation) {
                 myPopup = $ionicPopup.show({
-                    template: '<input class="popup-input" type="email" placeholder="' + translation.EMAIL_EXAMPLE + '" ng-model="loginData.email" ng-pattern="/^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$/">',
-                    title: translation.FORGOTPASSWORD_BUTTON,
-                    subTitle: translation.FORGOTPASSWORD_TEXT,
+                    template: '<input class="popup-input" type="email" placeholder="' + translation.emailExample + '" ng-model="loginData.email" ng-pattern="/^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$/">',
+                    title: translation.forgotPasswordButton,
+                    subTitle: translation.forgotPasswordText,
                     scope: $scope,
                     buttons: [
-                        {text: translation.CANCEL},
+                        {text: translation.cancel},
                         {
-                            text: '<b>' + translation.SEND + '</b>',
+                            text: '<b>' + translation.send + '</b>',
                             type: 'button-positive',
                             onTap: function (e) {
                                 if (!$scope.loginData.email) {
@@ -99,20 +99,20 @@ angular.module('app')
                 myPopup.then(function (email) {
                     console.log(email);
                     if (email) {
-                        Alert.show({loading: true});
-                        $http.post(SERVER_URL + "/forgottenpassword", {email: email}, {timeout: SERVER_TIMEOUT})
-                            .success(function (data, status, header, config) {
-                                if (data.success)
-                                    Alert.show({msg: 'NEW_PASSWORD_SENT', time: 3000}); //heslo se nemaze z loginData.email aby zustalo v Emailu pro prihlaseni
-                                else
-                                    Alert.show({msg: data.msg, time: 3000});
-                            })
-                            .error(function (data, status, header, config) {
-                                Device.isOnline() ? Alert.show({
-                                    msg: "AN_ERROR_CONNECTION",
-                                    time: 3000
-                                }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
-                            });
+                        //Alert.show({loading: true});
+                        //$http.post(SERVER_URL + "/forgottenpassword", {email: email}, {timeout: SERVER_TIMEOUT})
+                        //    .success(function (data, status, header, config) {
+                        //        if (data.success)
+                        //            Alert.show({msg: 'NEW_PASSWORD_SENT', time: 3000}); //heslo se nemaze z loginData.email aby zustalo v Emailu pro prihlaseni
+                        //        else
+                        //            Alert.show({msg: data.msg, time: 3000});
+                        //    })
+                        //    .error(function (data, status, header, config) {
+                        //        Device.isOnline() ? Alert.show({
+                        //            msg: "AN_ERROR_CONNECTION",
+                        //            time: 3000
+                        //        }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
+                        //    });
                     }
                 });
             });

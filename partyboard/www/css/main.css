@@ -27,6 +27,10 @@
   color: white;
   margin: 10px 10px 10px 10px;
 }
+.obalMsg {
+  clear: both;
+  display: table;
+}
 /****  registrace alert  ****/
 .error {
   display: none;
@@ -34,10 +38,6 @@
 }
 .has-error {
   display: inline;
-}
-.obalMsg {
-  clear: both;
-  display: table;
 }
 .loadingClose {
   position: relative;

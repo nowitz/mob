@@ -16,9 +16,11 @@ angular.module('app')
         user.phone = null;
         user.birthday = null;
 
+        user.permissions = null;
+
         var obj = {};
 
-        obj.logIn = function (idUser, firstName, lastName, nick, email, phone, birthday, loginType, loginTypeData) {
+        obj.logIn = function (idUser, firstName, lastName, nick, email, phone, birthday, loginType, loginTypeData, permissions) {
             if (!user.isLoggedIn) {
                 user.isLoggedIn = true;
 
@@ -31,6 +33,7 @@ angular.module('app')
                 user.birthday = birthday;
                 user.loginType = loginType; //'facebook', 'google', 'account'
                 user.loginTypeData = loginTypeData; //dalsi data napr ze socialnich siti id, age_range, locale, link atd
+                user.permissions = permissions;
             }
         };
         obj.logOut = function () {
@@ -45,6 +48,8 @@ angular.module('app')
             user.email = null;
             user.phone = null;
             user.birthday = null;
+
+            user.permissions = null;
 
             //smazani informaci o uctu
             localStorage.removeItem('userEmail');
@@ -96,6 +101,10 @@ angular.module('app')
         obj.getBirthday = function () {
             return user.birthday;
         };
+
+        obj.getPermissions = function (){
+            return user.permissions;
+        }
 
         obj.getDataToServer = function () {
             return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getBirthday()};

@@ -26,7 +26,7 @@ angular.module('app')
 
         $scope.registerData = {};
         $scope.doRegister = function() {
-            //console.log($scope.registerData);
+            //console.log($scope.registerData); //todo doresit hlasku pri registraci
             $ionicLoading.show({
                 template: '<div ng-click="hide()" >'+$scope.hide+'</div>',
                // duration:300,

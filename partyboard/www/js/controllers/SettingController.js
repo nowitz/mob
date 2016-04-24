@@ -20,14 +20,6 @@ angular.module('app')
             $scope.partyboards = data;
         });
 
-/*
-        RestService.get("partyboards",  function (data) {
-            alert(data[0].id_partyboard);
-            //todo tady musi byt if kterej urci do ktery scope se to ma poslat
-            $scope.partyboards = data;
-        });*/
-
-
         /**
          * Prepinani jazyka
          * @type {*[]}
