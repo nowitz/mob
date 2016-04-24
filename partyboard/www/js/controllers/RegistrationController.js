@@ -35,5 +35,19 @@ angular.module('app')
             $scope.registerData = null;
         };
 
+        //if(NetworkService.checkOnline()){
+        //    //console.log($scope.registerData); //todo doresit hlasku pri registraci
+        //    $ionicLoading.show({
+        //        template: '<div ng-click="hide()" >'+'prihlaseni'+'</div>',
+        //        duration:3000,
+        //        scope: $scope
+        //    });
+        //    $scope.registerData = null;
+        //}else {
+        //    $ionicPopup.alert({
+        //        title: 'Internet',
+        //        template: '{{"connection" | translate}}'
+        //    });
+        //}
 
     });
