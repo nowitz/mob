@@ -40,7 +40,10 @@ var english = {
     registrationForm: "Registration",
 
     administration:"administration",
-    groupSetting:"Group setting"
+    groupSetting:"Group setting",
+
+    delMessage:"Message was deleted",
+    delErrorMessage:"Message could not delete"
 }
 
 var czech = {
@@ -85,6 +88,9 @@ var czech = {
     registrationForm: "Registrace",
 
     administration:"administrace",
-    groupSetting: "Skupina nastavení"
+    groupSetting: "Skupina nastavení",
+
+    delMessage:"Zpráva byla odstraněna",
+    delErrorMessage:"Zprávu se nepodařilo odstranit"
 
 }

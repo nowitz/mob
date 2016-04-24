@@ -4,25 +4,25 @@ angular.module('app')
         var url = {
             groupSettings: "group_settings/",
             partyboards: "partyboards/",
-            towns:"towns",
-            bunUserPartyboard:"ban_user_partyboard"
+            towns:"towns/",
+            bunUserPartyboard:"ban_user_partyboard/",
+            incommingMessages:"incomming_messages/"
         };
 
-        var data;
         return {
             get: function(param){
                 //console.log(param);
                 return $http.get('http://students.kiv.zcu.cz:8088/~nowitz/'+url[param]).then(function(response) {
-                    data = response.data;
-                    return data;
+                    return response.data;
                 });
             },
             post: function(param, obj) {
                 console.log(obj);
-                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj).then(function (response) {
+                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
+                    headers: {'Content-Type': 'application/json'}
+                }).then(function (response) {
                     console.log(response);
-                    data = response.data;
-                    return data;
+                    return response.data;;
                 });
 
                 //return $http({
@@ -34,6 +34,11 @@ angular.module('app')
                 //    return data;
                 //});
 
+            },
+            delete: function(param, id) {
+                return $http.delete('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param]+id).then(function (response) {
+                    return response;
+                });
             }
         };
     });

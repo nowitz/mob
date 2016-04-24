@@ -20,15 +20,16 @@ angular.module('app')
             //TODO vyzkoušet...
             //RestService.post("bunUserPartyboard",obj).then(function(data) {
             //   console.log(data);
+            //   return data;
             //});
-        }
+        };
 
         /**
          * Zruší ban uživateli
         */
         obj.cancelBan = function (obj) {
             //return device.isOnline;
-        }
+        };
         return obj;
     });
 
