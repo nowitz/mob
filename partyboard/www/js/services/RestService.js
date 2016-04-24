@@ -2,19 +2,38 @@
 angular.module('app')
     .service('RestService', function ($http) {
         var url = {
-            group_settings: "group_settings/",
+            groupSettings: "group_settings/",
             partyboards: "partyboards/",
-            towns:"towns"
+            towns:"towns",
+            bunUserPartyboard:"ban_user_partyboard"
         };
 
         var data;
         return {
             get: function(param){
                 //console.log(param);
-                return $http.get('http://students.kiv.zcu.cz:8088/~nowitz/'+url[param]).then(function(items) {
-                    data = items.data;
+                return $http.get('http://students.kiv.zcu.cz:8088/~nowitz/'+url[param]).then(function(response) {
+                    data = response.data;
                     return data;
                 });
+            },
+            post: function(param, obj) {
+                console.log(obj);
+                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj).then(function (response) {
+                    console.log(response);
+                    data = response.data;
+                    return data;
+                });
+
+                //return $http({
+                //    method: "POST",
+                //    url: 'http://students.kiv.zcu.cz:8088/~nowitz/' + url[param]
+                //}).then(function (response) {
+                //    console.log(response)
+                //    data = response.data;
+                //    return data;
+                //});
+
             }
         };
     });
@@ -22,7 +41,7 @@ angular.module('app')
 
         /*
         var url = {
-            group_settings: "group_settings/",
+            groupSettings: "groupSettings/",
             partyboards: "partyboards/"
         };
 
