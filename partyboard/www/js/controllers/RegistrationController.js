@@ -64,7 +64,6 @@ angular.module('app')
                                 duration:3000,
                                 scope: $scope
                             });
-                            // console.log(response);
                         }
                     });
                 }
@@ -75,11 +74,6 @@ angular.module('app')
                     template: '{{"connection" | translate}}'
                 });
             }
-
-
-            // console.log($scope.registerData); //todo doresit hlasku pri registraci
-            //console.log($scope.registerData.password != $scope.registerData.checkPassword);
-
-
         };
+
     });
