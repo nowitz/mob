@@ -46,7 +46,7 @@
 
                 <label class="item item-input">
                     <span class="input-label">{{"phone" | translate}} <i ng-class="{ 'has-error': registerForm.phone.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
-                    <input type="text" name="phone" ng-model="registerData.phone" required>
+                    <input type="text" name="phone" ng-model="registerData.phone" placeholder="776642532" ng-pattern="/^\d{9}$/" maxlength="9" required>
                 </label>
 
                 <label class="item item-input">
@@ -59,12 +59,12 @@
                     <!--<ion-checkbox class="em-gender-cb" name="ge" ng-model="isFemale" ng-change="isFemale ? registerData.ge='female' : registerData.ge = 'male'; isMale = false" ng-checked="registerData.ge === 'female'">{{"FEMALE" | translate}}</ion-checkbox>-->
                 <!--</label>-->
 
-                <label class="item item-input item-select">
-                    <span class="input-label">{{"town" | translate}} <i ng-class="{ 'has-error': registerForm.town.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
-                    <select required name="town" ng-model="registerData.town">
-                        <option ng-repeat="(key, value) in towns" value="{{value.id_town}}">{{value.name}}</option>
-                    </select>
-                </label>
+                <!--<label class="item item-input item-select">-->
+                    <!--<span class="input-label">{{"town" | translate}} <i ng-class="{ 'has-error': registerForm.town.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>-->
+                    <!--<select required name="town" ng-model="registerData.town">-->
+                        <!--<option ng-repeat="(key, value) in towns" value="{{value.id_town}}">{{value.name}}</option>-->
+                    <!--</select>-->
+                <!--</label>-->
 
                 <!--SUBMIT-->
                 <label class="item">

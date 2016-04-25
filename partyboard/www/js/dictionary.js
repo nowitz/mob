@@ -54,7 +54,9 @@ var english = {
     cancel: "Cancel",
     send: "Send",
     errorPassword:"The passwords do not match",
-    registrationOK:"Registration successful"
+    registrationOK:"Registration successful",
+    errorNick:"Specified nick is already registered",
+    errorEmail:"The specified email is already registered"
 }
 
 var czech = {
@@ -113,6 +115,7 @@ var czech = {
     cancel: "Zavřít",
     send: "Odeslat",
     errorPassword:"Zadaná hesla se neshodují",
-    registrationOK:"Registrace proběhla úspěšně"
-
+    registrationOK:"Registrace proběhla úspěšně",
+    errorNick:"Zadaná přezdívka je již registrovaná",
+    errorEmail:"Zadaný email je již registrovaný"
 }

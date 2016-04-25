@@ -18,7 +18,7 @@ angular.module('app')
                 });
             },
             post: function(param, obj) {
-                console.log(obj);
+                //console.log(obj);
                 return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
                     headers: {'Content-Type': 'application/json'}
                 }).then(function successCallback(response) {
