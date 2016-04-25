@@ -137,7 +137,7 @@ angular.module('app')
          */
         $scope.administration = function(msg){
             //console.log(msg);
-            console.log(UserFactory.getPermissions().admin);
+           // console.log(UserFactory.getPermissions().admin);
             objMessage = msg;
             $ionicLoading.show({
                 template: '<div >'+
@@ -173,7 +173,7 @@ angular.module('app')
                 $timeout(function() {
                     $scope.hide();
                     $scope.loadMore();
-                }, 2000);
+                }, 1500);
             });
 
         };

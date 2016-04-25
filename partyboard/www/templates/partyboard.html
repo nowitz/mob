@@ -10,15 +10,17 @@
 
     <ion-content class="contentPB" on-drag-end="historyData($event)" has-bouncing="true" overflow-scroll="false">
         <ionic-list>
-            <ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">
+            <ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">  <!-- class="viewMessage" -->
                 <div class="obalMsg" style="background-color: {{colors.getRgbColor()}};">
-                    <!--<p>-->
-                        <!--<span>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</span>-->
-                        <!--<a style="float:right" ng-class="{'hideButton': data.showAdministration==true}" class="ion-minus-circled"></a>-->
-                    <!--</p>-->
-                    <div>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>
-                    <div style="display: table-cell;"><a ng-class="{'hideButton': data.showAdministration===true}" class="ion-gear-a" ng-click="administration(msg)"></a></div>
+                    <div class="obsah">{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>
+                    <div ng-class="{'hideButton': data.showAdministration===true}" class="buttona"> <a class="ion-gear-a button-clear " ng-click="administration(msg)"></a></div>
                 </div>
+                <!--<table class="tableMessage">-->
+                    <!--<tr style="background-color: {{colors.getRgbColor()}}">-->
+                        <!--<td>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</td>-->
+                        <!--<td><a ng-class="{'hideButton': data.showAdministration===true}" class="ion-gear-a" ng-click="administration(msg)"></a></td>-->
+                    <!--</tr>-->
+                </table>
             </ionic-item>
         </ionic-list>
 

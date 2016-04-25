@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('RegistrationController', function ($scope, $ionicLoading, ModalService, RestService, NetworkService) {
+    .controller('RegistrationController', function ($scope, $ionicLoading, $ionicPopup, ModalService, RestService, NetworkService) {
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
@@ -69,9 +69,14 @@ angular.module('app')
                 }
                 /***/
             }else {
+                //$ionicLoading.show({
+                //    template: '<span class="z-index:50000;">{{"connection" | translate}}</span>',
+                //    duration:2000,
+                //    scope: $scope
+                //});
                 $ionicPopup.alert({
                     title: 'Internet',
-                    template: '{{"connection" | translate}}'
+                    template: '<span class="z-index:10000;">{{"connection" | translate}}</span>'
                 });
             }
         };

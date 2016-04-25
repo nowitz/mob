@@ -16,20 +16,25 @@
 .contentPB {
   margin-bottom: 80px;
 }
-.contentPB .viewMessage div {
-  border-radius: 10px;
-  margin-left: 8px;
-  margin-right: 8px;
-  margin-bottom: 5px;
-  color: red;
-}
-.contentPB .viewMessage p {
-  color: white;
-  margin: 10px 10px 10px 10px;
+.contentPB .viewMessage {
+  position: relative;
+  font-size: medium;
 }
 .obalMsg {
-  clear: both;
-  display: table;
+  margin-bottom: 1ch;
+  position: relative;
+  border-radius: 1ch;
+  margin-left: 1ch;
+  margin-right: 1ch;
+  color: white;
+}
+.obsah {
+  display: table-cell;
+  padding: 1ch;
+}
+.buttona {
+  display: table-cell;
+  vertical-align: top;
 }
 /****  registrace alert  ****/
 .error {
