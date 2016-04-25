@@ -36,10 +36,13 @@ var english = {
     colors: "Color partyboard",
 
     backButton: "Back",
+    networkStatus:"Connection",
+    connected:"online",
+    disconnected:"offline",
 
     registrationForm: "Registration",
 
-    administration:"administration",
+    administration:"Administration",
     groupSetting:"Group setting",
 
     delMessage:"Message was deleted",
@@ -49,7 +52,9 @@ var english = {
     forgotPasswordButton: "Password recovery",
     forgotPasswordText: "Please fill in your registered email",
     cancel: "Cancel",
-    send: "Send"
+    send: "Send",
+    errorPassword:"The passwords do not match",
+    registrationOK:"Registration successful"
 }
 
 var czech = {
@@ -90,10 +95,13 @@ var czech = {
     colors: "Barva partyboardu",
 
     backButton: "Zpět",
+    networkStatus:"Připojení",
+    connected:"OK",
+    disconnected:"offline",
 
     registrationForm: "Registrace",
 
-    administration:"administrace",
+    administration:"Administrace",
     groupSetting: "Skupina nastavení",
 
     delMessage:"Zpráva byla odstraněna",
@@ -103,6 +111,8 @@ var czech = {
     forgotPasswordButton: "Obnova hesla",
     forgotPasswordText: "Prosím vyplňte Vámi registrovany email",
     cancel: "Zavřít",
-    send: "Odeslat"
+    send: "Odeslat",
+    errorPassword:"Zadaná hesla se neshodují",
+    registrationOK:"Registrace proběhla úspěšně"
 
 }

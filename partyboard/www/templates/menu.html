@@ -38,6 +38,12 @@
                     <i class="icon ion-gear-a"></i>
                     {{"administration" | translate}}
                 </ion-item>
+                <ion-item class="item-icon-left">
+                    <i class="icon ion-wifi"></i>
+                   {{"networkStatus" | translate}}
+                    <span ng-if="network.checkOnline()" class="item-note" style="color:green">{{"connected" | translate}}</span>
+                    <span ng-if="!network.checkOnline()" class="item-note" style="color:red">{{"disconnected" | translate}}</span>
+                </ion-item>
                 <div class="item item-divider">
                 </div>
                 <ion-item class="item-icon-left" menu-close ng-controller="LoginController" ng-click="logout()">
