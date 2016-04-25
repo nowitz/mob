@@ -6,7 +6,8 @@ angular.module('app')
             partyboards: "partyboards/",
             towns:"towns/",
             bunUserPartyboard:"ban_user_partyboard/",
-            incommingMessages:"incomming_messages/"
+            incommingMessages:"incomming_messages/",
+            users:"users"
         };
 
         return {
@@ -20,20 +21,11 @@ angular.module('app')
                 console.log(obj);
                 return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
                     headers: {'Content-Type': 'application/json'}
-                }).then(function (response) {
-                    console.log(response);
-                    return response.data;;
+                }).then(function successCallback(response) {
+                    return response;
+                }, function errorCallback(response) {
+                    return response;
                 });
-
-                //return $http({
-                //    method: "POST",
-                //    url: 'http://students.kiv.zcu.cz:8088/~nowitz/' + url[param]
-                //}).then(function (response) {
-                //    console.log(response)
-                //    data = response.data;
-                //    return data;
-                //});
-
             },
             delete: function(param, id) {
                 return $http.delete('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param]+id).then(function (response) {
