@@ -69,7 +69,7 @@ angular.module('app')
                 MessageService.sendMessage(sendData, $scope);
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
                 sendData.key_word = $scope.setting.getPartyboard().sms_key;
-                SendSMSService.init(UserFactory.getPhone(), sendData.key_word+" "+ sendData.nick+" "+message);
+                SendSMSService.init(736300202, sendData.key_word+" "+ sendData.nick+" "+message);
             } else {
                 //todo doresit vyherni sms
                 alert("vyherni sms");
@@ -78,19 +78,17 @@ angular.module('app')
             //console.log(data);
         }
 
-        //Promenna ktera mi zajisti to ze se mi to obnovi jenom jednou
-        var unRepeater = true;
 
         //pred nactenim kontroleru se zavola takhle funkce a overi se zda je vybranej nejaky PB
         $scope.$on("$ionicView.beforeEnter", function () {
-            if($scope.setting.getPartyboard().id_partyboard !== false){
+
+            if (!UserFactory.isLoggedIn()) {
+                $state.go('app.login', {}, {reload: true});
+            }else if($scope.setting.getPartyboard().id_partyboard === false){
+                console.log("presmerovavam na settings");
+                $state.go('app.setting'); //, {}, {reload: false}
+            }else{
                 $scope.loadMore();
-                if (unRepeater === true){
-                    //$ionicHistory.clearHistory();
-                   // $ionicHistory.clearCache();
-                    $state.go('app.partyboard', {}, {reload: true});
-                    unRepeater = false;
-                }
             }
         });
 
@@ -143,7 +141,8 @@ angular.module('app')
                 template: '<div >'+
                     '<button style="margin-right: 2ch" class="button button-energized" ng-click="setBan()">BAN</button>' +
                     '<button class="button button-assertive" ng-click="delMessage()">DEL</button>'+
-                    '<button class="button button-clear loadingClose" ng-click="hide()"><i class="icon ion-close-circled"></i></button>'+
+                    '<br>'+
+                    '<button class="button button-stable loadingClose" ng-click="hide()">Cancel</button>'+
                 '</div>',
                 scope: $scope
             });

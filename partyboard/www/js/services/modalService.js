@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('ModalService', function ($ionicModal, $state) {
+    .service('ModalService', function ($ionicModal) {
 
         /**
          * Login
@@ -23,48 +23,48 @@ angular.module('app')
             this.loginModal && this.loginModal.hide();
         };
 
-        /**
-         * Setting
-         */
-        this.showSetting = function () {
-            var service = this;
-            if (service.settingModal) {
-                service.settingModal.show();
-            } else {
-                $ionicModal.fromTemplateUrl('templates/setting.html', {
-                    scope: null
-                }).then(function (modal) {
-                    service.settingModal = modal;
-                    service.settingModal.show();
-                });
-            }
-        };
-        this.hideSetting = function () {
-            this.settingModal && this.settingModal.hide();
-            //zajisti mi to presmerovani na controller partyboard
-            $state.go($state.current, {}, {reload: true});
-        };
-
-        /**
-         * Info
-         */
-        this.showInfo = function () {
-            var service = this;
-            if (service.infoModal) {
-                service.infoModal.show();
-            } else {
-                $ionicModal.fromTemplateUrl('templates/info.html', {
-                    scope: null
-                }).then(function (modal) {
-                    service.infoModal = modal;
-                    service.infoModal.show();
-                });
-            }
-        };
-        this.hideInfo = function () {
-            this.infoModal && this.infoModal.hide();
-        };
-
+        ///**
+        // * Setting
+        // */
+        //this.showSetting = function () {
+        //    var service = this;
+        //    if (service.settingModal) {
+        //        service.settingModal.show();
+        //    } else {
+        //        $ionicModal.fromTemplateUrl('templates/setting.html', {
+        //            scope: null
+        //        }).then(function (modal) {
+        //            service.settingModal = modal;
+        //            service.settingModal.show();
+        //        });
+        //    }
+        //};
+        //this.hideSetting = function () {
+        //    this.settingModal && this.settingModal.hide();
+        //    //zajisti mi to presmerovani na controller partyboard
+        //    $state.go($state.current, {}, {reload: true});
+        //};
+        //
+        ///**
+        // * Info
+        // */
+        //this.showInfo = function () {
+        //    var service = this;
+        //    if (service.infoModal) {
+        //        service.infoModal.show();
+        //    } else {
+        //        $ionicModal.fromTemplateUrl('templates/info.html', {
+        //            scope: null
+        //        }).then(function (modal) {
+        //            service.infoModal = modal;
+        //            service.infoModal.show();
+        //        });
+        //    }
+        //};
+        //this.hideInfo = function () {
+        //    this.infoModal && this.infoModal.hide();
+        //};
+        //
         /**
          * Registration
          */
@@ -85,26 +85,26 @@ angular.module('app')
         this.hideRegistration = function () {
             this.registrationModal && this.registrationModal.hide();
         };
-
-        /**
-         * Administrace
-         */
-        this.showAdministration = function(){
-            var service = this;
-            if (service.administrationModal) {
-                service.administrationModal.show();
-            } else {
-                $ionicModal.fromTemplateUrl('templates/administration.html', {
-                    scope: null
-                }).then(function (modal) {
-                    service.administrationModal = modal;
-                    service.administrationModal.show();
-                });
-            }
-        };
-
-        this.hideAdministration = function () {
-            this.administrationModal && this.administrationModal.hide();
-        };
+        
+        ///**
+        // * Administrace
+        // */
+        //this.showAdministration = function(){
+        //    var service = this;
+        //    if (service.administrationModal) {
+        //        service.administrationModal.show();
+        //    } else {
+        //        $ionicModal.fromTemplateUrl('templates/administration.html', {
+        //            scope: null
+        //        }).then(function (modal) {
+        //            service.administrationModal = modal;
+        //            service.administrationModal.show();
+        //        });
+        //    }
+        //};
+        //
+        //this.hideAdministration = function () {
+        //    this.administrationModal && this.administrationModal.hide();
+        //};
 
     });

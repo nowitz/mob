@@ -16,6 +16,17 @@ angular.module('app')
             get: function () {
                 return setting;
             },
+            del: function () {
+                setting = {
+                    partyboard: {
+                        id_partyboard: false,
+                        name: null,
+                        sms_key: null
+                    },
+                    nick: null,
+                    type_message: null
+                };
+            },
             setPartyboard: function (pos) {
                 setting.partyboard.id_partyboard = pos.id_partyboard;
                 setting.partyboard.name = pos.name;

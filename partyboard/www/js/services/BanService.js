@@ -8,10 +8,10 @@ angular.module('app')
          * Nastaví ban uživateli
          */
         obj.setBan = function (msg) {
-            //console.log(msg);
+            console.log(msg);
             var obj = {
                 "id_partyboard": msg.id_partyboard,
-                "phone": msg.id_phone,
+                "phone": msg.phone,
                 "id_user": msg.id_user,
                 "length_hour": 24,
                 "description": "Zablokování odesílaní zpráv z dùvodu neslušného chování."

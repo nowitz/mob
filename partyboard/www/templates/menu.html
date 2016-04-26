@@ -17,24 +17,23 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <!--
-                <ion-item class="item-icon-left" menu-close href="#/app/partyboard">
+
+                <ion-item class="item-icon-left" menu-toggle="left" href="#/app/partyboard">
                     <i class="icon ion-android-chat"></i>
                     {{"partyboard" | translate}}
                 </ion-item>
-                -->
-                <ion-item class="item-icon-left" menu-close ng-click="modalService.showSetting()">
+                <ion-item class="item-icon-left" menu-toggle="left" href="#/app/setting">
                     <i class="icon ion-android-settings"></i>
                     {{"setting" | translate}}
                 </ion-item>
 
-                <ion-item class="item-icon-left" menu-close ng-click="modalService.showInfo()">
+                <ion-item class="item-icon-left" menu-toggle="left"  href="#/app/info">
                     <i class="icon ion-ios-information-outline"></i>
                     {{"info" | translate}}
                 </ion-item>
                 <div class="item item-divider" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }">
                 </div>
-                <ion-item class="item-icon-left" menu-close ng-click="modalService.showAdministration()" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }">
+                <ion-item class="item-icon-left" menu-toggle="left" href="#/app/administration" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }">
                     <i class="icon ion-gear-a"></i>
                     {{"administration" | translate}}
                 </ion-item>

@@ -1,12 +1,6 @@
-<ion-modal-view ng-controller="InfoController">
-    <ion-header-bar class="bar-dark">
-        <div class="buttons">
-            <button class="button button-clear" ng-click="modalService.hideInfo()"><i
-                    class="icon ion-ios-arrow-left"></i>{{"backButton" | translate}}
-            </button>
-        </div>
-        <h1 class="title">{{"info" | translate}}</h1>
-    </ion-header-bar>
+<!--<ion-nav-back-button>-->
+<!--</ion-nav-back-button>-->
+<ion-view view-title='{{"info" | translate}}' ng-controller="InfoController">
     <ion-content>
         <p>Proste tady budou nejaky kecy, obrazky atd...</p>
 
@@ -21,4 +15,4 @@
             Message Internet
         </a>
     </div>
-</ion-modal-view>
+</ion-view>

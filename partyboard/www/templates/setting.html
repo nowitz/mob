@@ -1,10 +1,4 @@
-<ion-modal-view ng-controller="SettingController">
-  <ion-header-bar class="bar-dark">
-    <div class="buttons">
-      <button class="button button-clear" ng-click="modalService.hideSetting()"><i class="icon ion-ios-arrow-left"></i>{{"backButton" | translate}}</button>
-    </div>
-    <h1 class="title">{{"setting" | translate}}</h1>
-  </ion-header-bar>
+<ion-view view-title='{{"setting" | translate}}' ng-controller="SettingController">
 
   <ion-content>
     <ul class="list">
@@ -50,4 +44,5 @@
       </li>
     </ul>
   </ion-content>
-</ion-modal-view>
+</ion-view>
+    <ion-nav-view>

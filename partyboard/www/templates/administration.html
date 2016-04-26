@@ -1,10 +1,6 @@
-<ion-modal-view ng-controller="AdministrationController">
-  <ion-header-bar class="bar-dark">
-    <div class="buttons">
-      <button class="button button-clear" ng-click="modalService.hideAdministration()"><i class="icon ion-ios-arrow-left"></i>{{"backButton" | translate}}</button>
-    </div>
-    <h1 class="title">{{"administration" | translate}}</h1>
-  </ion-header-bar>
+<!--<ion-nav-back-button>-->
+<!--</ion-nav-back-button>-->
+<ion-view  view-title='{{"administration" | translate}}' ng-controller="AdministrationController">
 
   <ion-content>
     <ul class="list">
@@ -50,4 +46,4 @@
       </li>
     </ul>
   </ion-content>
-</ion-modal-view>
+</ion-view>

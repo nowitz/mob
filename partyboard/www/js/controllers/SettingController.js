@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService, UserFactory) {
+    .controller('SettingController', function ($scope, $ionicLoading,$translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService, UserFactory) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
@@ -10,6 +10,7 @@ angular.module('app')
 
         $scope.setting = SettingFactory;
 
+
         /**
          * Seznam Partyboardu stazeny z DB
          * @type {null}
@@ -17,8 +18,37 @@ angular.module('app')
         $scope.partyboards = null;
 
         RestService.get("partyboards").then(function(data) {
+            console.log("tady jsem");
             $scope.partyboards = data;
         });
+
+        $scope.$on("$ionicView.loaded", function () {
+            console.log("cekam");
+        });
+
+        $scope.$on("$ionicView.enter", function () {
+            console.log("cekam1");
+
+        });
+        $scope.$on("$ionicView.leave", function () {
+            console.log("cekam2");
+        });
+        $scope.$on("$ionicView.beforeEnter", function () {
+            console.log("cekam3");
+        });
+        $scope.$on("$ionicView.beforeLeave", function () {
+            console.log("cekam4");
+        });
+        $scope.$on("$ionicView.afterEnter", function () {
+            console.log("cekam5");
+        });
+        $scope.$on("$ionicView.afterLeave", function () {
+            console.log("cekam6");
+        });
+        $scope.$on("$ionicView.unloaded", function () {
+            console.log("cekam7");
+        });
+
 
         /**
          * Prepinani jazyka

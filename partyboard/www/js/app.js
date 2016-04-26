@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate) {
+    .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate, $state) {
 
         /**
          * Zjisti mi to jazyk prohlizece a nastavi mi podle toho aplikaci
@@ -38,10 +38,11 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             /**
              * Vyskoci modalni okno pro prihlaseni
              */
-            if (!UserFactory.isLoggedIn()) {
-                ModalService.showLogin();
-
-            }
+            console.log(localStorage.getItem('user') === null);
+            console.log(localStorage.getItem('user') );
+            if(localStorage.getItem('user') !== null) {
+                $state.go('app.setting'); //,{}, {reload: false}
+           }
 
 
         });
@@ -49,9 +50,9 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
         /**
          * ZAREHISTROVANI UDALOSTI NA TLACITKO BACK
          */
-        $ionicPlatform.registerBackButtonAction(function(e) {
-            e.preventDefault();
-        }, 1000);
+        //$ionicPlatform.registerBackButtonAction(function(e) {
+        //    e.preventDefault();
+        //}, 1000);
 
     })
 
@@ -69,7 +70,7 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             .state('app', {
                 url: '/app',
                 abstract: true,
-                templateUrl: 'templates/menu.html',
+                templateUrl: 'templates/menu.html'
             })
 
             .state('app.partyboard', {
@@ -81,15 +82,42 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 }
             })
 
-            .state('app.partyboardHome', {
-                url: '/partyboardHome',
+            .state('app.administration', {
+                url: '/administration',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/partyboardHome.html'
+                        templateUrl: 'templates/administration.html'
                     }
                 }
             })
 
+            .state('app.info', {
+                url: '/info',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/info.html'
+                    }
+                }
+            })
+
+            .state('app.setting', {
+                url: '/setting',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/setting.html'
+                    }
+                }
+            })
+            .state('app.login', {
+                url: '/login',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/login.html'
+                    }
+                }
+            })
+
+
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/partyboardHome');
+        $urlRouterProvider.otherwise('/app/partyboard');
     });

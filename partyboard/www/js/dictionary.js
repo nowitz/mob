@@ -1,6 +1,9 @@
 var english = {
     email: "Email",
+    emailError:"Email is not registered in the system",
+    passwordError:"Password is incorrect",
     password: "Password",
+    loginError:"Login failed",
     registration: "Create an account",
     forgetPassword: "Forget your password",
     login: "Log in",
@@ -61,7 +64,10 @@ var english = {
 
 var czech = {
     email: "Email",
+    emailError:"Email není zaregistrovaný v systému",
+    passwordError:"Heslo je nesprávné",
     password: "Heslo",
+    loginError:"Chyba při přihlášení",
     registration: "Vytvořit nový účet",
     forgetPassword: "Zapomněli jste heslo",
     login: "Přihlásit se",

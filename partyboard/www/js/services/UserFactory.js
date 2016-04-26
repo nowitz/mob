@@ -14,13 +14,14 @@ angular.module('app')
         user.nick = null;
         user.email = null;
         user.phone = null;
-        user.birthday = null;
+        user.birthdate = null;
 
         user.permissions = null;
+        user.xAccessToken = null;
 
         var obj = {};
 
-        obj.logIn = function (idUser, firstName, lastName, nick, email, phone, birthday, loginType, loginTypeData, permissions) {
+        obj.logIn = function (idUser, firstName, lastName, nick, email, phone, birthdate, loginType, loginTypeData, permissions, xAccessToken) {
             if (!user.isLoggedIn) {
                 user.isLoggedIn = true;
 
@@ -30,10 +31,13 @@ angular.module('app')
                 user.nick = nick;
                 user.email = email;
                 user.phone = phone;
-                user.birthday = birthday;
+                user.birthdate = birthdate;
                 user.loginType = loginType; //'facebook', 'google', 'account'
                 user.loginTypeData = loginTypeData; //dalsi data napr ze socialnich siti id, age_range, locale, link atd
                 user.permissions = permissions;
+                user.xAccessToken = xAccessToken;
+
+                localStorage.setItem("user", JSON.stringify(user));
             }
         };
         obj.logOut = function () {
@@ -47,13 +51,14 @@ angular.module('app')
             user.nick = null;
             user.email = null;
             user.phone = null;
-            user.birthday = null;
+            user.birthdate = null;
 
             user.permissions = null;
+            user.xAccessToken = null;
 
             //smazani informaci o uctu
-            localStorage.removeItem('userEmail');
-            localStorage.removeItem('userId');
+            localStorage.removeItem('user');
+           // localStorage.removeItem('userId');
         };
         obj.isLoggedIn = function () {
             return user.isLoggedIn;
@@ -98,16 +103,20 @@ angular.module('app')
             return user.phone;
         };
 
-        obj.getBirthday = function () {
-            return user.birthday;
+        obj.getBirthdate = function () {
+            return user.birthdate;
         };
 
         obj.getPermissions = function (){
             return user.permissions;
         }
 
+        obj.getXAccessToken = function (){
+            return user.xAccessToken;
+        }
+
         obj.getDataToServer = function () {
-            return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), country: obj.getBirthday()};
+            return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), bitrhdate: obj.getBirthdate(), xAccessToken:obj.getXAccessToken()};
         };
 
         return obj;
