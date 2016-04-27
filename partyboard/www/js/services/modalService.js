@@ -85,6 +85,24 @@ angular.module('app')
         this.hideRegistration = function () {
             this.registrationModal && this.registrationModal.hide();
         };
+
+        this.showShow = function () {
+            var service = this;
+            if (service.showModal) {
+                service.showModal.show();
+            } else {
+                $ionicModal.fromTemplateUrl('templates/show.html', {
+                    scope: null
+                }).then(function (modal) {
+                    service.showModal = modal;
+                    service.showModal.show();
+                });
+            }
+        };
+
+        this.hideShow = function () {
+            this.showModal && this.showModal.hide();
+        };
         
         ///**
         // * Administrace
