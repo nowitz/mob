@@ -2,12 +2,12 @@
 angular.module('app')
     .controller('PartyboardController', function ($scope, $state, $timeout, $ionicLoading, ColorsFactory, ModalService, SendSMSService, UserFactory,
                                                   SendInternetFactory, MessageService, $ionicLoading, $translate, BanService, RestService,
-                                                  $ionicScrollDelegate, SettingFactory) {
+                                                  $ionicScrollDelegate, SettingFactory, BackButtonFactory) {
 
         $scope.setting = SettingFactory;
         $scope.colors = ColorsFactory;
-        $scope.userFactory = JSON.parse(localStorage.getItem('user'));
-
+        $scope.userFactory = null;
+        BackButtonFactory.backButtonCancel();
 
         /**
          * Pøenáší data do view
@@ -85,16 +85,23 @@ angular.module('app')
 
         //pred nactenim kontroleru se zavola takhle funkce a overi se zda je vybranej nejaky PB
         $scope.$on("$ionicView.beforeEnter", function () {
-
-            if (!UserFactory.isLoggedIn()) {
-                $state.go('app.login', {}, {reload: true});
-            }else if($scope.setting.getPartyboard().id_partyboard === false){
-                console.log("presmerovavam na settings");
-                $scope.userFactory = JSON.parse(localStorage.getItem('user'));
-                $state.go('app.setting'); //, {}, {reload: false}
+            console.log("jsem tu");
+            console.log(localStorage.getItem('user'));
+            if (localStorage.getItem('user') === "login") {
+                $state.go('app.login');
             }else{
+                $scope.userFactory =  JSON.parse(localStorage.getItem('user'));
                 $scope.loadMore();
             }
+            //if (!UserFactory.isLoggedIn()) {
+            //    $state.go('app.login');
+            //}else if($scope.setting.getPartyboard().id_partyboard === false){
+            //    console.log("presmerovavam na settings");
+            //    $scope.userFactory = JSON.parse(localStorage.getItem('user'));
+            //    $state.go('app.setting'); //, {}, {reload: false}
+            //}else{
+            //    $scope.loadMore();
+            //}
         });
 
         /**

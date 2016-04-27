@@ -1,9 +1,4 @@
 // Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
     .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate, $state) {
@@ -14,6 +9,8 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
         var language = localStorage.getItem('language') === null ? (navigator.language || navigator.userLanguage).split("-")[0] : localStorage.getItem('language');
         $translate.use(language);
         localStorage.setItem("language", language);
+
+        localStorage.getItem('user') === null ? localStorage.setItem('user', "login") : null;
 
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -34,23 +31,7 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 NetworkService.init();
             },false);
 
-
-            /**
-             * Vyskoci modalni okno pro prihlaseni
-             */
-            if(localStorage.getItem('user') !== null) {
-                $state.go('app.setting'); //,{}, {reload: false}
-           }
-
-
         });
-
-        /**
-         * ZAREHISTROVANI UDALOSTI NA TLACITKO BACK
-         */
-        //$ionicPlatform.registerBackButtonAction(function(e) {
-        //    e.preventDefault();
-        //}, 1000);
 
     })
 

@@ -1,54 +1,19 @@
 'user strict';
 angular.module('app')
-    .controller('LoginController', function ($scope, $ionicPopup, $state, $translate, UserFactory, ModalService, SettingFactory, NetworkService, RestService) {
+    .controller('LoginController', function ($scope, $ionicPopup, $state, $translate, UserFactory, ModalService, SettingFactory, NetworkService, RestService, BackButtonFactory) {
 
         $scope.user = UserFactory;
         $scope.modalService = ModalService;
+        BackButtonFactory.backButtonCancel();
 
         $scope.loginData = {};
 
         //login
         $scope.doLogin = function () {
-            /*
-             Alert.show({loading: true});
-             $http.post(SERVER_URL + "/login", {
-             user: $scope.loginData,
-             device: Device.getDataToServer()
-             }, {timeout: SERVER_TIMEOUT})
-             .success(function (data, status, header, config) {
-             if (data.success) {
-             UserFactory.logIn(data.user.firstName, data.user.lastName, data.user.gender, $scope.loginData.email, data.user.country, data.user.profilePicture, 'account', null);
-             //ulozeni dat pro silent login
-             localStorage.setItem('userEmail', $scope.loginData.email);
-             localStorage.setItem('userId', data._id);
-
-             ModalService.showProfile();
-             ModalService.hideLogin();
-             ModalService.hideChooseAccount();
-             Alert.hide();
-
-             $scope.loginData = {};
-
-             } else
-             Alert.show({msg: 'INVALID_EMAIL_OR_PASS', time: 3000});
-             })
-             .error(function (data, status, header, config) {
-             Device.isOnline() ? Alert.show({
-             msg: "AN_ERROR_CONNECTION",
-             time: 3000
-             }) : Alert.show({msg: "AN_ERROR_NOT_CONNECTED", time: 3000});
-             });
-             */
-
-            // UserFactory.logIn(1, "jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null, {admin:true, noob:"test"});
-            //$state.go('app.partyboard', {}, {reload: false});
-
-            // ModalService.hideLogin();
 
             /**
              * Pokud nebude online tak me to nenecha skryt prihlaseni
              */
-
             if (NetworkService.checkOnline()) {
                 //TODO kdyz localstorage nastavena tak zadnej dotaz a rovnou presmeruj - OVERIT PRES MOBIL V CONSOLE LG
                 var logData = {
@@ -59,7 +24,7 @@ angular.module('app')
                     //console.log(response.headers());
                     if (response.status === 404) {
                         $translate('loginError').then(
-                            function (translate) {//prelozeno
+                            function (translate) {
                                 $ionicPopup.alert({
                                     title: translate,
                                     template: '{{"emailError" | translate}}'
@@ -67,7 +32,7 @@ angular.module('app')
                             });
                     } else if (response.status === 403) {
                         $translate('loginError').then(
-                            function (translate) {//prelozeno
+                            function (translate) {
                                 $ionicPopup.alert({
                                     title: translate,
                                     template: '{{"passwordError" | translate}}'
@@ -81,6 +46,7 @@ angular.module('app')
                                 noob: "test"
                             }, response.headers("x-access-token"));
                         // console.log(UserFactory.getDataToServer());
+                        BackButtonFactory.backButtonDisable();
                         $state.go('app.partyboard');
                     }
                 });
@@ -103,15 +69,8 @@ angular.module('app')
             //});
 
             delete($scope.loginData);
-            //delete(window.history);
-            // console.log($ionicHistory.viewHistory());
-            //console.log($ionicHistory.removeBackView());
-            //console.log($ionicHistory.clearCache());
-            //$ionicHistory.clearHistory();
-            //$ionicViewService.clearHistory();
-            //console.log($rootScope.$viewHistory.histories);
-            $state.go('app.login', {}, {reload: true});
-            SettingFactory.del();
+            $state.go('app.login');
+           // SettingFactory.del();
             //console.log(SettingFactory.get());
             UserFactory.logOut();
         }

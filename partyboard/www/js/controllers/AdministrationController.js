@@ -1,11 +1,12 @@
 'user strict';
 angular.module('app')
-    .controller('AdministrationController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, RestService) {
+    .controller('AdministrationController', function ($scope, $translate, ModalService, ColorsFactory, SendInternetFactory, RestService, BackButtonFactory) {
 
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
         $scope.modalService = ModalService;
+        BackButtonFactory.backButtonCancel();
 
         RestService.get("groupSettings", $scope,  function () {
             console.log($scope.result);
