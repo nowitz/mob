@@ -45,7 +45,7 @@ angular.module('app')
                         firstname: $scope.registerData.firstName,
                         lastname: $scope.registerData.lastName,
                         email: $scope.registerData.email,
-                        phone: "00420"+$scope.registerData.phone
+                        phone: "00000"+$scope.registerData.phone
                     };
 
                     RestService.post("users", data).then(function(response) {

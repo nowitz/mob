@@ -4,7 +4,7 @@
         <!--</button>-->
     <!--</ion-nav-buttons>-->
     <ion-nav-buttons side="right">
-        <button class="button icon ion-gear-a" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }"
+        <button class="button icon ion-gear-a" ng-class="{ 'hideButton': !userFactory.permissions.admin }"
                 ng-click="data.showAdministration = !data.showAdministration;"></button>
     </ion-nav-buttons>
 
@@ -15,12 +15,6 @@
                     <div class="obsah">{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>
                     <div ng-class="{'hideButton': data.showAdministration===true}" class="buttona"> <a class="ion-gear-a button-clear " ng-click="administration(msg)"></a></div>
                 </div>
-                <!--<table class="tableMessage">-->
-                    <!--<tr style="background-color: {{colors.getRgbColor()}}">-->
-                        <!--<td>{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</td>-->
-                        <!--<td><a ng-class="{'hideButton': data.showAdministration===true}" class="ion-gear-a" ng-click="administration(msg)"></a></td>-->
-                    <!--</tr>-->
-                </table>
             </ionic-item>
         </ionic-list>
 

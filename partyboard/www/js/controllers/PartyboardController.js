@@ -6,7 +6,8 @@ angular.module('app')
 
         $scope.setting = SettingFactory;
         $scope.colors = ColorsFactory;
-        $scope.userFactory = UserFactory;
+        $scope.userFactory = JSON.parse(localStorage.getItem('user'));
+
 
         /**
          * Pøenáší data do view
@@ -35,6 +36,7 @@ angular.module('app')
         var sendData = {
             "id_partyboard": null,
             "id_user": null,
+            "phone": null,
             "key_word": null,
             "nick": null,
             "text": null
@@ -60,12 +62,14 @@ angular.module('app')
 
         $scope.send = function (message) {
             //todo bude se tu nacitat mobilni cislo, message, atd..
-            //console.log(SendInternetFactory.getTypeMessager());
-            sendData.nick = UserFactory.getNick();
+            //console.log($scope.userFactory);
+            sendData.nick = $scope.userFactory.nick;
             sendData.text = message;
+            sendData.phone = $scope.userFactory.phone;
             if (SendInternetFactory.getTypeMessager().key == "int") {
                 sendData.id_partyboard = $scope.setting.getPartyboard().id_partyboard;
-                sendData.id_user = UserFactory.getIdUser();
+                sendData.id_user = $scope.userFactory.idUser;
+                //console.log($scope.userFactory.idUser);
                 MessageService.sendMessage(sendData, $scope);
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
                 sendData.key_word = $scope.setting.getPartyboard().sms_key;
@@ -75,7 +79,7 @@ angular.module('app')
                 alert("vyherni sms");
             }
             $scope.data.message = "";
-            //console.log(data);
+            //console.log(sendData);
         }
 
 
@@ -86,6 +90,7 @@ angular.module('app')
                 $state.go('app.login', {}, {reload: true});
             }else if($scope.setting.getPartyboard().id_partyboard === false){
                 console.log("presmerovavam na settings");
+                $scope.userFactory = JSON.parse(localStorage.getItem('user'));
                 $state.go('app.setting'); //, {}, {reload: false}
             }else{
                 $scope.loadMore();

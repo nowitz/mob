@@ -26,13 +26,28 @@ angular.module('app')
                 });
             },
             post: function(param, obj) {
+                console.log(param);
+                var headers = {'Content-Type': 'application/json'};
+                if(param !== "auth" && param !== "users"){
+                    headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
+                }
+                console.log(headers);
+                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
+                    headers: headers
+                }).then(function successCallback(response) {
+                    return response;
+                }, function errorCallback(response) {
+                    return response;
+                });
+            },
+            put: function(param, obj) {
                 //console.log(param);
                 var headers = {'Content-Type': 'application/json'};
                 if(param !== "auth" && param !== "users"){
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-               // console.log(header);
-                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
+                // console.log(header);
+                return $http.put('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;

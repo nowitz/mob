@@ -1,4 +1,4 @@
-<ion-view class="backgroundColor" hide-back-button="true" hide-nav-bar="true" view-title='{{"login" | translate}}' ng-controller="LoginController">
+<ion-view class="backgroundColor" nav-clear hide-back-button="true" hide-nav-bar="true" view-title='{{"login" | translate}}' ng-controller="LoginController">
 
     <ion-content  class="has-header" padding="true">
         <img class="col text-center" src="./img/logo.png">
@@ -6,11 +6,11 @@
             <ion-list >
                 <label  class="item item-input">
                     <span class="input-label">{{"email" | translate}}</span>
-                    <input type="email" name="email" ng-model="loginData.email" ng-init="loginData.email='user@test.com'"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                    <input type="email" name="email" ng-model="loginData.email" ng-init="loginData.email='root@root.cz'"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">{{"password" | translate}}</span>
-                    <input type="password" name="password" ng-model="loginData.password" ng-init="loginData.password='12345asdyxc'" required>
+                    <input type="password" name="password" ng-model="loginData.password" ng-init="loginData.password='root'" required>
                 </label>
             </ion-list>
             <div style="width: 300px; height: 38px;" class="spacer"></div>

@@ -18,6 +18,7 @@ angular.module('app')
                 //console.log(status);
                 //console.log(headers(['content-type']))
                 //console.log(config);
+               // console.log(data);
                 $scope.result = data;
                 typeof callback === 'function' && callback(); //test jestli se jedna o funkci
 

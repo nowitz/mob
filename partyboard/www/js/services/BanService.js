@@ -8,7 +8,7 @@ angular.module('app')
          * Nastaví ban uživateli
          */
         obj.setBan = function (msg) {
-            console.log(msg);
+            //console.log(msg);
             var obj = {
                 "id_partyboard": msg.id_partyboard,
                 "phone": msg.phone,
@@ -16,8 +16,8 @@ angular.module('app')
                 "length_hour": 24,
                 "description": "Zablokování odesílaní zpráv z dùvodu neslušného chování."
             };
-            console.log(obj);
-            //TODO vyzkoušet...
+            console.log("Struktura pro ban",obj);
+            //TODO vyzkoušet...az bude namapovana tabulka s banama
             //RestService.post("bunUserPartyboard",obj).then(function(data) {
             //   console.log(data);
             //   return data;

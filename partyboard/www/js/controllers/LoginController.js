@@ -40,53 +40,57 @@ angular.module('app')
              });
              */
 
-           // UserFactory.logIn(1, "jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null, {admin:true, noob:"test"});
+            // UserFactory.logIn(1, "jan", "novak", "nowitz", "jan@novak.com", 736300202, "Czech Republic", 'account', null, {admin:true, noob:"test"});
             //$state.go('app.partyboard', {}, {reload: false});
 
-           // ModalService.hideLogin();
+            // ModalService.hideLogin();
 
             /**
              * Pokud nebude online tak me to nenecha skryt prihlaseni
              */
 
-             if(NetworkService.checkOnline()){
-             //TODO kdyz localstorage nastavena tak zadnej dotaz a rovnou presmeruj - OVERIT PRES MOBIL V CONSOLE LG
-                     RestService.post("auth", $scope.loginData).then(function (response) {
-                         //console.log(response.headers());
-                         if (response.status === 404) {
-                             $translate('loginError').then(
-                                 function (translate) {//prelozeno
-                                     $ionicPopup.alert({
-                                         title: translate,
-                                         template: '{{"emailError" | translate}}'
-                                     });
-                                 });
-                         } else if (response.status === 403) {
-                             $translate('loginError').then(
-                                 function (translate) {//prelozeno
-                                     $ionicPopup.alert({
-                                         title: translate,
-                                         template: '{{"passwordError" | translate}}'
-                                     });
-                                 });
-                         } else {
-                             var user = response.data[0];
-                             UserFactory.logIn(user.id_user, user.firstname, user.lastname, user.nick, user.email, user.phone.slice(5, 14),
-                                 user.birthdate, 'account', null, {
-                                     admin: true,
-                                     noob: "test"
-                                 }, response.headers("x-access-token"));
-                             console.log(UserFactory.getDataToServer());
-                             $state.go('app.partyboard');
-                         }
-                     });
+            if (NetworkService.checkOnline()) {
+                //TODO kdyz localstorage nastavena tak zadnej dotaz a rovnou presmeruj - OVERIT PRES MOBIL V CONSOLE LG
+                var logData = {
+                    "email": $scope.loginData.email,
+                    "password": CryptoJS.SHA1($scope.loginData.password).toString()
+                };
+                RestService.post("auth", logData).then(function (response) {
+                    //console.log(response.headers());
+                    if (response.status === 404) {
+                        $translate('loginError').then(
+                            function (translate) {//prelozeno
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"emailError" | translate}}'
+                                });
+                            });
+                    } else if (response.status === 403) {
+                        $translate('loginError').then(
+                            function (translate) {//prelozeno
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"passwordError" | translate}}'
+                                });
+                            });
+                    } else {
+                        var user = response.data[0];
+                        UserFactory.logIn(user.id_user, user.firstname, user.lastname, user.nick, user.email, user.phone, //.slice(5, 14)
+                            user.birthdate, 'account', null, {
+                                admin: true,
+                                noob: "test"
+                            }, response.headers("x-access-token"));
+                        // console.log(UserFactory.getDataToServer());
+                        $state.go('app.partyboard');
+                    }
+                });
 
-             }else{
-                 $ionicPopup.alert({
+            } else {
+                $ionicPopup.alert({
                     title: 'Internet',
                     template: '{{"connection" | translate}}'
-                 });
-             }
+                });
+            }
 
         };
 
@@ -100,7 +104,7 @@ angular.module('app')
 
             delete($scope.loginData);
             //delete(window.history);
-           // console.log($ionicHistory.viewHistory());
+            // console.log($ionicHistory.viewHistory());
             //console.log($ionicHistory.removeBackView());
             //console.log($ionicHistory.clearCache());
             //$ionicHistory.clearHistory();
@@ -108,7 +112,7 @@ angular.module('app')
             //console.log($rootScope.$viewHistory.histories);
             $state.go('app.login', {}, {reload: true});
             SettingFactory.del();
-            console.log(SettingFactory.get());
+            //console.log(SettingFactory.get());
             UserFactory.logOut();
         }
 
@@ -116,7 +120,7 @@ angular.module('app')
         //forgot password
         $scope.forgotPassword = function () {
             var myPopup = null;
-            $translate(['emailExample', 'forgotPasswordButton', 'forgotPasswordText','cancel', 'send']).then(function (translation) {
+            $translate(['emailExample', 'forgotPasswordButton', 'forgotPasswordText', 'cancel', 'send']).then(function (translation) {
                 myPopup = $ionicPopup.show({
                     template: '<input class="popup-input" type="email" placeholder="' + translation.emailExample + '" ng-model="loginData.email" ng-pattern="/^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$/">',
                     title: translation.forgotPasswordButton,
@@ -161,16 +165,16 @@ angular.module('app')
 
         // todo doresit prihlaseni uzivatele
         var permisions = ["public_profile", "email", "user_friends"];
-        $scope.loginFacebook = function(){
+        $scope.loginFacebook = function () {
             facebookConnectPlugin.login(permisions, function (success) {
                 facebookConnectPlugin.api("/me?fields=id,first_name,last_name,age_range", permisions, function (data) {
                     ModalService.hideLogin();
                     alert(JSON.stringify(data));
-                }, function (error){
+                }, function (error) {
                     alert("error data - " + JSON.stringify(error));
                 });
-            }, function(error){
-                alert("login error - " + + JSON.stringify(error));
+            }, function (error) {
+                alert("login error - " + +JSON.stringify(error));
             });
         }
     });

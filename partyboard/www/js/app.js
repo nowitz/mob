@@ -38,8 +38,6 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             /**
              * Vyskoci modalni okno pro prihlaseni
              */
-            console.log(localStorage.getItem('user') === null);
-            console.log(localStorage.getItem('user') );
             if(localStorage.getItem('user') !== null) {
                 $state.go('app.setting'); //,{}, {reload: false}
            }

@@ -116,7 +116,7 @@ angular.module('app')
         }
 
         obj.getDataToServer = function () {
-            return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), bitrhdate: obj.getBirthdate(), xAccessToken:obj.getXAccessToken()};
+            return {idUser: obj.getIdUser(), firstName: obj.getFirstName(), lastName: obj.getLastName(), nick: obj.getNick(), email: obj.getEmail(), phone: obj.getPhone(), birthdate: obj.getBirthdate(), xAccessToken:obj.getXAccessToken()};
         };
 
         return obj;
