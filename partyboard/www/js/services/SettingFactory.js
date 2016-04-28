@@ -4,7 +4,7 @@ angular.module('app')
 
         var setting = {
                 partyboard: {
-                    id_partyboard: false,
+                    id_partyboard: null,
                     name: null,
                     sms_key: null
                 },
@@ -19,7 +19,7 @@ angular.module('app')
             del: function () {
                 setting = {
                     partyboard: {
-                        id_partyboard: false,
+                        id_partyboard: null,
                         name: null,
                         sms_key: null
                     },

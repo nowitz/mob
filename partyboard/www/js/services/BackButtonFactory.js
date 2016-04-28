@@ -1,32 +1,36 @@
 'user strict';
 angular.module('app')
-    .factory('BackButtonFactory', function ($state, $ionicPlatform, $ionicHistory, $timeout) {
+    .factory('BackButtonFactory', function ($state, $ionicPlatform, $translate, $ionicHistory, $timeout) {
 // VOLA SE PAK TAKHLE    backcallFactory.backcallfun();
         var obj = {}
         obj.backButtonCancel = function () {
-            //var backbutton=0;
+            var backbutton=0;
+            //console.log($state.current.name);
             $ionicPlatform.registerBackButtonAction(function () {
-                if ($state.current.name == "app.partyboard" || $state.current.name == "app.login") {
+                if ($state.current.name == "app.partyboard" || $state.current.name == "app.login" || $state.current.name == "app.show") {
 
                     /**
-                     * Mostno pro doubleclick na zavreni aplikace
-
+                     * Moznost pro doubleclick na zavreni aplikace
+                     */
                      if(backbutton==0){
                         backbutton++;
-                        window.plugins.toast.showShortCenter('Press again to exit');
-                        $timeout(function(){backbutton=0;},5000);
+
+                         $translate('exitApp').then(
+                             function (translate) {
+                                 window.plugins.toast.showShortCenter(translate);
+                                 $timeout(function(){backbutton=0;},1500);
+                             });
                     }else{
                         navigator.app.exitApp();
                     }
-                     */
 
                     /*
                      * Moznost pro dialogovy okno s tim jestli chci zavrit aplikaci
                      */
-                    var action = confirm("Do you want to Exit?");
-                    if (action) {
-                        navigator.app.exitApp();
-                    }
+                    //var action = confirm("Do you want to Exit?");
+                    //if (action) {
+                    //    navigator.app.exitApp();
+                    //}
 
                 } else {
                     $ionicHistory.nextViewOptions({

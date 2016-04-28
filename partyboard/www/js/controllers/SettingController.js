@@ -1,15 +1,9 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $ionicLoading,$translate, ModalService, ColorsFactory, SendInternetFactory, SettingFactory, RestService, UserFactory, BackButtonFactory) {
+    .controller('SettingController', function ($scope, $ionicLoading, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
 
-        /**
-         * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
-         */
-        $scope.modalService = ModalService;
         $scope.userFactory = JSON.parse(localStorage.getItem('user'));
-
         $scope.setting = SettingFactory;
-        BackButtonFactory.backButtonCancel();
 
         /**
          * Seznam Partyboardu stazeny z DB
@@ -17,34 +11,40 @@ angular.module('app')
          */
         $scope.partyboards = null;
 
-        RestService.get("partyboards").then(function(data) {
-            $scope.partyboards = data;
-        });
-
-        //$scope.$on("$ionicView.beforeEnter", function () {
-        //  console.log("cekam3");
+        //RestService.get("partyboards").then(function(data) {
+        //    $scope.partyboards = data;
         //});
+
+        $scope.$on("$ionicView.beforeEnter", function () {
+            console.log($scope.setting.getPartyboard().id_partyboard);
+            if ($scope.setting.getPartyboard().id_partyboard === null) {
+                RestService.get("partyboards").then(function (data) {
+                    console.log("stahuju partyboardy " + data);
+                    $scope.partyboards = data;
+                });
+            }
+        });
         //$scope.$on("$ionicView.enter", function () {
-        //  console.log("cekam1");
+        //    console.log("cekam1");
         //});
         //$scope.$on("$ionicView.afterEnter", function () {
-        //  console.log("cekam5");
+        //    console.log("cekam5");
         //});
         //$scope.$on("$ionicView.beforeLeave", function () {
-        //  console.log("cekam4");
+        //    console.log("cekam4");
         //});
         //$scope.$on("$ionicView.leave", function () {
-        //  console.log("cekam2");
+        //    console.log("cekam2");
         //});
         //$scope.$on("$ionicView.afterLeave", function () {
-        //  console.log("cekam6");
+        //    console.log("cekam6");
         //});
         //
         //$scope.$on("$ionicView.unloaded", function () {
-        //  console.log("cekam7");
+        //    console.log("cekam7");
         //});
         //$scope.$on("$ionicView.loaded", function () {
-        //  console.log("cekam");
+        //    console.log("cekam");
         //});
 
 
@@ -70,12 +70,14 @@ angular.module('app')
          * @param partyboard
          */
         $scope.selectionPartyboard = function (partyboard) {
-            var tmp = {
-                id_partyboard: partyboard.id_partyboard,
-                name: partyboard.name,
-                sms_key: partyboard.sms_key
+            if (partyboard !== null) {
+                var tmp = {
+                    id_partyboard: partyboard.id_partyboard,
+                    name: partyboard.name,
+                    sms_key: partyboard.sms_key
+                }
+                $scope.setting.setPartyboard(tmp);
             }
-            $scope.setting.setPartyboard(tmp);
             //console.log( $scope.setting.getPartyboard());
         }
 
@@ -95,7 +97,7 @@ angular.module('app')
         $scope.typeMessages = SendInternetFactory.all();
         $scope.typeMessage = $scope.typeMessages[0];
 
-        $scope.selectionTypeMessage = function(typeMessage){
+        $scope.selectionTypeMessage = function (typeMessage) {
             SendInternetFactory.setTypeMessage(typeMessage);
         }
 

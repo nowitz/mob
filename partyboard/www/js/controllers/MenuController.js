@@ -4,7 +4,6 @@ angular.module('app')
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
-        $scope.modalService = ModalService;
         $scope.userFactory =  UserFactory;
         $scope.network = NetworkService;
 

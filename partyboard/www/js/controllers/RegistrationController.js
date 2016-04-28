@@ -13,10 +13,7 @@ angular.module('app')
             $ionicLoading.hide();
         };
 
-        /**
-         * Seznam mest stazeny z DB
-         * @type {null}
-         */
+
         //$scope.towns = null;
         //
         //RestService.get("towns").then(function(data) {

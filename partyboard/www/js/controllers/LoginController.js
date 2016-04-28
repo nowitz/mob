@@ -70,7 +70,7 @@ angular.module('app')
 
             delete($scope.loginData);
             $state.go('app.login');
-           // SettingFactory.del();
+            SettingFactory.del();
             //console.log(SettingFactory.get());
             UserFactory.logOut();
         }

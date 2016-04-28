@@ -1,7 +1,7 @@
 // Ionic Starter App
 angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate, $state) {
+    .run(function ($ionicPlatform, UserFactory, ModalService, NetworkService, $translate) {
 
         /**
          * Zjisti mi to jazyk prohlizece a nastavi mi podle toho aplikaci
@@ -94,6 +94,17 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                         templateUrl: 'templates/login.html'
                     }
                 }
+            })
+
+            .state('app.show', {
+                url: '/show',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/show.html'
+                    }
+                }
+
+
             })
 
 

@@ -3,22 +3,23 @@
         <button class="button icon ion-gear-a" ng-class="{ 'hideButton': !userFactory.permissions.admin }"
                 ng-click="data.showAdministration = !data.showAdministration;"></button>
     </ion-nav-buttons>
-
     <ion-content class="contentPB" on-drag-end="historyData($event)" has-bouncing="true" overflow-scroll="false">
         <ionic-list>
-            <ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">  <!-- class="viewMessage" -->
+            <ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">
+                <!-- class="viewMessage" -->
                 <div class="obalMsg" style="background-color: {{colors.getRgbColor()}};">
                     <div class="obsah">{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>
-                    <div ng-class="{'hideButton': data.showAdministration===true}" class="buttona"> <a class="ion-gear-a button-clear " ng-click="administration(msg)"></a></div>
+                    <div ng-class="{'hideButton': data.showAdministration===true}" class="buttona"><a
+                            class="ion-gear-a button-clear " ng-click="administration(msg)"></a></div>
                 </div>
             </ionic-item>
         </ionic-list>
 
         <!--<ion-list show-reorder="data.showAdministration">-->
-            <!--<ion-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">-->
-                <!--{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}-->
-                <!--<ion-reorder-button class="ion-gear-a" ng-click="administration(msg)"></ion-reorder-button>-->
-            <!--</ion-item>-->
+        <!--<ion-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">-->
+        <!--{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}-->
+        <!--<ion-reorder-button class="ion-gear-a" ng-click="administration(msg)"></ion-reorder-button>-->
+        <!--</ion-item>-->
         <!--</ion-list>-->
 
         <li class="backgroundColor" style="text-align: center; list-style-type: none" ng-if="loadingHistory"
@@ -41,7 +42,8 @@
             </label>
 
             <div style="padding-left:8px;">
-                <button class="button button-small" ng-click="send(data.message)" ng-disabled="data.message.length == 0">
+                <button class="button button-small" ng-click="send(data.message)"
+                        ng-disabled="data.message.length == 0">
                     {{ 'smsSend' | translate }}
                 </button>
                 <div style="color:white;">

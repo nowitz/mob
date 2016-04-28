@@ -2,26 +2,26 @@
 angular.module('app')
     .service('ModalService', function ($ionicModal) {
 
-        /**
-         * Login
-         */
-        this.showLogin = function () {
-            var service = this;
-            if (service.loginModal) {
-                service.loginModal.show();
-            } else {
-                $ionicModal.fromTemplateUrl('templates/login.html', {
-                    scope: null,
-                    animation: 'no-animation'
-                }).then(function (modal) {
-                    service.loginModal = modal;
-                    service.loginModal.show();
-                });
-            }
-        };
-        this.hideLogin = function () {
-            this.loginModal && this.loginModal.hide();
-        };
+        ///**
+        // * Login
+        // */
+        //this.showLogin = function () {
+        //    var service = this;
+        //    if (service.loginModal) {
+        //        service.loginModal.show();
+        //    } else {
+        //        $ionicModal.fromTemplateUrl('templates/login.html', {
+        //            scope: null,
+        //            animation: 'no-animation'
+        //        }).then(function (modal) {
+        //            service.loginModal = modal;
+        //            service.loginModal.show();
+        //        });
+        //    }
+        //};
+        //this.hideLogin = function () {
+        //    this.loginModal && this.loginModal.hide();
+        //};
 
         ///**
         // * Setting
@@ -86,23 +86,24 @@ angular.module('app')
             this.registrationModal && this.registrationModal.hide();
         };
 
-        this.showShow = function () {
-            var service = this;
-            if (service.showModal) {
-                service.showModal.show();
-            } else {
-                $ionicModal.fromTemplateUrl('templates/show.html', {
-                    scope: null
-                }).then(function (modal) {
-                    service.showModal = modal;
-                    service.showModal.show();
-                });
-            }
-        };
-
-        this.hideShow = function () {
-            this.showModal && this.showModal.hide();
-        };
+        //this.showShow = function () {
+        //    var service = this;
+        //    if (service.showModal) {
+        //        service.showModal.show();
+        //    } else {
+        //        $ionicModal.fromTemplateUrl('templates/show.html', {
+        //            scope: null
+        //           // hardwareBackButtonClose: false
+        //        }).then(function (modal) {
+        //            service.showModal = modal;
+        //            service.showModal.show();
+        //        });
+        //    }
+        //};
+        //
+        //this.hideShow = function () {
+        //    this.showModal && this.showModal.hide();
+        //};
         
         ///**
         // * Administrace

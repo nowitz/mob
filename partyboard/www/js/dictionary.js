@@ -8,6 +8,7 @@ var english = {
     forgetPassword: "Forget your password",
     login: "Log in",
     logout: "Log out",
+    exitApp:"Press again to exit",
 
     checkPassword:"Check Password",
     firstName:"First name",
@@ -72,6 +73,7 @@ var czech = {
     forgetPassword: "Zapomněli jste heslo",
     login: "Přihlásit se",
     logout: "Odhlásit se",
+    exitApp:"Stiskněte 2x pro ukončení aplikace",
 
     checkPassword:"Ověření hesla",
     firstName:"Jméno",
