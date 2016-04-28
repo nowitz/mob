@@ -30,9 +30,9 @@
                     <i class="icon ion-ios-information-outline"></i>
                     {{"info" | translate}}
                 </ion-item>
-                <div class="item item-divider" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }">
+                <div class="item item-divider" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
                 </div>
-                <ion-item class="item-icon-left" menu-close href="#/app/administration" ng-class="{ 'hideButton': !userFactory.getPermissions().admin }">
+                <ion-item class="item-icon-left" menu-close href="#/app/administration" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
                     <i class="icon ion-gear-a"></i>
                     {{"administration" | translate}}
                 </ion-item>

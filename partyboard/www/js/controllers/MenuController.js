@@ -4,7 +4,15 @@ angular.module('app')
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
-        $scope.userFactory =  UserFactory;
+        $scope.userFactory =  null;
         $scope.network = NetworkService;
+
+
+        $scope.$on("$ionicView.beforeEnter", function () {
+           // console.log("menu");
+            if (localStorage.getItem('user') !== "login") {
+                $scope.userFactory =  JSON.parse(localStorage.getItem('user'));
+            }
+        });
 
     });
