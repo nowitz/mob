@@ -60,7 +60,9 @@ var english = {
     errorPassword:"The passwords do not match",
     registrationOK:"Registration successful",
     errorNick:"Specified nick is already registered",
-    errorEmail:"The specified email is already registered"
+    errorEmail:"The specified email is already registered",
+
+    showText:"Welcome to application Partyboard"
 }
 
 var czech = {
@@ -125,5 +127,7 @@ var czech = {
     errorPassword:"Zadaná hesla se neshodují",
     registrationOK:"Registrace proběhla úspěšně",
     errorNick:"Zadaná přezdívka je již registrovaná",
-    errorEmail:"Zadaný email je již registrovaný"
+    errorEmail:"Zadaný email je již registrovaný",
+
+    showText:"Vítejte v aplikaci Partyboard"
 }

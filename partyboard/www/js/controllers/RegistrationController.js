@@ -46,7 +46,7 @@ angular.module('app')
                     };
 
                     RestService.post("users", data).then(function(response) {
-                       // console.log(response.headers("x-error-type"));
+                       console.log(response);
                         if(response.status === 409){
                             $ionicLoading.show({
                                 template: response.headers("x-error-type")==="nick"?'{{ "errorNick" | translate }}':'{{ "errorEmail" | translate }}',
@@ -73,7 +73,7 @@ angular.module('app')
                 //});
                 $ionicPopup.alert({
                     title: 'Internet',
-                    template: '<span class="z-index:10000;">{{"connection" | translate}}</span>'
+                    template: '<span>{{"connection" | translate}}</span>'
                 });
             }
         };
