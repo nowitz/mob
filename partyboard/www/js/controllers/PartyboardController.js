@@ -1,7 +1,7 @@
 'user strict';
 angular.module('app')
     .controller('PartyboardController', function ($scope, $state, $timeout, $translate, $ionicLoading, ColorsFactory, SendSMSService, UserFactory,
-                                                  SendInternetFactory, MessageService, $ionicLoading, BanService, RestService,
+                                                  SendInternetFactory, MessageService, BanService, RestService,
                                                   $ionicScrollDelegate, SettingFactory, BackButtonFactory) {
 
         $scope.setting = SettingFactory;

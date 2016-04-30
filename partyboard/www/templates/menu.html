@@ -25,11 +25,6 @@
                     <i class="icon ion-android-settings"></i>
                     {{"setting" | translate}}
                 </ion-item>
-
-                <ion-item class="item-icon-left" menu-close  href="#/app/info">
-                    <i class="icon ion-ios-information-outline"></i>
-                    {{"info" | translate}}
-                </ion-item>
                 <div class="item item-divider" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
                 </div>
                 <ion-item class="item-icon-left" menu-close href="#/app/administration" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
@@ -41,6 +36,10 @@
                    {{"networkStatus" | translate}}
                     <span ng-if="network.checkOnline()" class="item-note" style="color:green">{{"connected" | translate}}</span>
                     <span ng-if="!network.checkOnline()" class="item-note" style="color:red">{{"disconnected" | translate}}</span>
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close  href="#/app/info">
+                    <i class="icon ion-ios-information-outline"></i>
+                    {{"info" | translate}}
                 </ion-item>
                 <div class="item item-divider">
                 </div>

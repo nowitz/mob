@@ -1,6 +1,8 @@
 'user strict';
 angular.module('app')
     .service('RestService', function ($http) {
+        var baseURL = 'http://students.kiv.zcu.cz:8088/~nowitz/';
+
         var url = {
             groupSettings: "group_settings",
             partyboards: "partyboards",
@@ -19,20 +21,20 @@ angular.module('app')
                     //console.log(JSON.parse(localStorage.getItem('user')));
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                return $http.get('http://students.kiv.zcu.cz:8088/~nowitz/'+url[param],{
+                return $http.get(baseURL+url[param],{
                     headers: headers
                 }).then(function(response) {
                     return response.data;
                 });
             },
             post: function(param, obj) {
-                //console.log(param);
+                console.log(param);
                 var headers = {'Content-Type': 'application/json'};
                 if(param !== "auth" && param !== "users"){
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                //console.log(headers);
-                return $http.post('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
+                console.log(headers);
+                return $http.post(baseURL+ url[param], obj,{
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;
@@ -47,7 +49,7 @@ angular.module('app')
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
                 // console.log(header);
-                return $http.put('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param], obj,{
+                return $http.put(baseURL+ url[param], obj,{
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;
@@ -60,7 +62,7 @@ angular.module('app')
                 if(param !== "auth" && param !== "users"){
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                return $http.delete('http://students.kiv.zcu.cz:8088/~nowitz/' + url[param]+"/"+id,{
+                return $http.delete(baseURL+ url[param]+"/"+id,{
                     headers: headers
                 }).then(function (response) {
                     return response;

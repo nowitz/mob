@@ -62,7 +62,9 @@ var english = {
     errorNick:"Specified nick is already registered",
     errorEmail:"The specified email is already registered",
 
-    showText:"Welcome to application Partyboard"
+    showText:"Welcome to application Partyboard",
+    showInfo:"The application allows convenient operation of the Partyboard, whether the position of the current user or administrator.",
+    showContact: "To report errors or ideas for improvements, please use the email info@partyboard.cz"
 }
 
 var czech = {
@@ -129,5 +131,7 @@ var czech = {
     errorNick:"Zadaná přezdívka je již registrovaná",
     errorEmail:"Zadaný email je již registrovaný",
 
-    showText:"Vítejte v aplikaci Partyboard"
+    showText:"Vítejte v aplikaci Partyboard",
+    showInfo:"Tato aplikace umožňuje pohodlnou obsluhu systému Partyboard, ať už z pozice běžného uživatele nebo administrátora.",
+    showContact: "Pro nahlášení chyby nebo nápadu pro vylepšení prosím použijte email info@partyboard.cz"
 }
