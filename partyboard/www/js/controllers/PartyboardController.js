@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('PartyboardController', function ($scope, $state, $timeout, $ionicLoading, ColorsFactory, SendSMSService, UserFactory,
+    .controller('PartyboardController', function ($scope, $state, $timeout, $translate, $ionicLoading, ColorsFactory, SendSMSService, UserFactory,
                                                   SendInternetFactory, MessageService, $ionicLoading, BanService, RestService,
                                                   $ionicScrollDelegate, SettingFactory, BackButtonFactory) {
 
@@ -73,7 +73,7 @@ angular.module('app')
                 MessageService.sendMessage(sendData, $scope);
             } else if (SendInternetFactory.getTypeMessager().key == "sms") {
                 sendData.key_word = $scope.setting.getPartyboard().sms_key;
-                SendSMSService.init(736300202, sendData.key_word+" "+ sendData.nick+" "+message);
+                SendSMSService.init(736300202, sendData.key_word + " " + sendData.nick + " " + message);
             } else {
                 //todo doresit vyherni sms
                 alert("vyherni sms");
@@ -88,11 +88,11 @@ angular.module('app')
             //console.log(localStorage.getItem('user'));
             if (localStorage.getItem('user') === "login") {
                 $state.go('app.login');
-            }else if($scope.setting.getPartyboard().id_partyboard === null){
+            } else if ($scope.setting.getPartyboard().id_partyboard === null) {
                 $state.go('app.show');
             }
-            else{
-                $scope.userFactory =  JSON.parse(localStorage.getItem('user'));
+            else {
+                $scope.userFactory = JSON.parse(localStorage.getItem('user'));
                 $scope.loadMore();
             }
         });
@@ -116,9 +116,9 @@ angular.module('app')
          * Stahne historické zprávy
          * @param param
          */
-        $scope.historyData = function(param){
+        $scope.historyData = function (param) {
             //console.log(param.gesture);
-            if(param.gesture.direction == 'down' && params.limit < 100){
+            if (param.gesture.direction == 'down' && params.limit < 100) {
                 params.limit = params.limit + 10;
                 MessageService.loadBlogs(params, function () {
                     $scope.$broadcast("scroll.infiniteScrollComplete");
@@ -130,7 +130,7 @@ angular.module('app')
         /**
          * Skryje notifikaci
          */
-        $scope.hide = function(){
+        $scope.hide = function () {
             $ionicLoading.hide();
         };
 
@@ -138,22 +138,26 @@ angular.module('app')
          * Notifikace s výberem tlacitek
          * @param msg
          */
-        $scope.administration = function(msg){
+        $scope.administration = function (msg) {
             //console.log(msg);
-           // console.log(UserFactory.getPermissions().admin);
+            // console.log(UserFactory.getPermissions().admin);
             objMessage = msg;
-            $ionicLoading.show({
-                template: '<div >'+
-                    '<button style="margin-right: 2ch" class="button button-energized" ng-click="setBan()">BAN</button>' +
-                    '<button class="button button-assertive" ng-click="delMessage()">DEL</button>'+
-                    '<br>'+
-                    '<button class="button button-stable loadingClose" ng-click="hide()">Cancel</button>'+
-                '</div>',
-                scope: $scope
-            });
+
+            $translate('cancel').then(
+                function (translate) {
+                    $ionicLoading.show({
+                        template: '<div >' +
+                        '<a style="margin-right: 2ch" ng-click="setBan()"><img src="img/ban.png"></a>' +
+                        '<a ng-click="delMessage()"><img src="img/del.png"></a>' +
+                        '<br>' +
+                        '<button class="button button-stable loadingClose" ng-click="hide()">' + translate + '</button>' +
+                        '</div>',
+                        scope: $scope
+                    });
+                });
         };
 
-        $scope.setBan = function(){
+        $scope.setBan = function () {
             var response = BanService.setBan(objMessage);
             console.log(response); //todo overit azbude namapovana tabulka users a banuser
         };
@@ -161,20 +165,20 @@ angular.module('app')
         /**
          * Slouži pro odstranìní zprávy
          */
-        $scope.delMessage = function(){
-            RestService.delete("incommingMessages",objMessage.id_incomming_message).then(function(response) {
-                if(response.status == 200){
+        $scope.delMessage = function () {
+            RestService.delete("incommingMessages", objMessage.id_incomming_message).then(function (response) {
+                if (response.status == 200) {
                     $ionicLoading.show({
                         template: '{{ "delMessage" | translate }}',
                         scope: $scope
                     });
-                }else{
+                } else {
                     $ionicLoading.show({
                         template: '{{ "delErrorMessage" | translate }}',
                         scope: $scope
                     });
                 }
-                $timeout(function() {
+                $timeout(function () {
                     $scope.hide();
                     $scope.loadMore();
                 }, 1500);
