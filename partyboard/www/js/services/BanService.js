@@ -7,14 +7,14 @@ angular.module('app')
         /**
          * Nastaví ban uživateli
          */
-        obj.setBan = function (msg) {
+        obj.setBan = function (msg, data) {
             //console.log(msg);
             var obj = {
                 "id_partyboard": msg.id_partyboard,
                 "phone": msg.phone,
                 "id_user": msg.id_user,
-                "length_hour": 24,
-                "description": "Zablokování odesílaní zpráv z dùvodu neslušného chování."
+                "length_hour": data.timeSelected.hour,
+                "description": data.text
             };
             console.log("Struktura pro ban",obj);
             //TODO vyzkoušet...az bude namapovana tabulka s banama

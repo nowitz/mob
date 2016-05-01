@@ -1,7 +1,7 @@
 'user strict';
 angular.module('app')
     .controller('PartyboardController', function ($scope, $state, $timeout, $translate, $ionicLoading, ColorsFactory, SendSMSService, UserFactory,
-                                                  SendInternetFactory, MessageService, BanService, RestService,
+                                                  SendInternetFactory, $ionicPopup, MessageService, BanService, RestService,
                                                   $ionicScrollDelegate, SettingFactory, BackButtonFactory) {
 
         $scope.setting = SettingFactory;
@@ -10,7 +10,7 @@ angular.module('app')
         BackButtonFactory.backButtonCancel();
 
         /**
-         * P¯en·öÌ data do view
+         * P≈ôen√°≈°√≠ data do view
          * @type {{showAdministration: boolean, message: string}}
          */
         $scope.data = {
@@ -19,7 +19,7 @@ angular.module('app')
         };
 
         /**
-         * Z·kladni nastaveni pro stahovani zprav
+         * Z√°kladni nastaveni pro stahovani zprav
          * @type {number}
          * @private
          */
@@ -30,7 +30,7 @@ angular.module('app')
         };
 
         /**
-         * Form·t struktury pro odeslanÌ pr·vy
+         * Form√°t struktury pro odeslan√≠ pr√°vy
          * @type {{id_partyboard: null, key_word: null, nick: null, text: null}}
          */
         var sendData = {
@@ -98,7 +98,7 @@ angular.module('app')
         });
 
         /**
-         * St·hne nejnovÏjöÌ zpravy
+         * St√°hne nejnovƒõj≈°√≠ zpravy
          */
         $scope.loadMore = function () {
             //console.log(params.limit);
@@ -113,7 +113,7 @@ angular.module('app')
         };
 
         /**
-         * Stahne historickÈ zpr·vy
+         * Stahne historick√© zpr√°vy
          * @param param
          */
         $scope.historyData = function (param) {
@@ -135,7 +135,7 @@ angular.module('app')
         };
 
         /**
-         * Notifikace s v˝berem tlacitek
+         * Notifikace s v√Ωberem tlacitek
          * @param msg
          */
         $scope.administration = function (msg) {
@@ -157,13 +157,58 @@ angular.module('app')
                 });
         };
 
+
+        $scope.times = [
+                { hour: 1 },
+                { hour: 2 },
+                { hour: 4 },
+                { hour: 6 },
+                { hour: 12 },
+                { hour: 24 },
+                { hour: 48 },
+                { hour: 96 }
+            ];
+        $scope.data = {
+            timeSelected: $scope.times[5],
+            text:"Zablokov√°n√≠ odes√≠lan√≠ zpr√°v z d≈Øvodu neslu≈°n√©ho chov√°n√≠."
+        };
+        $scope.changeTime = function(timeSelected){
+            $scope.data.timeSelected = timeSelected ;
+        };
+
         $scope.setBan = function () {
-            var response = BanService.setBan(objMessage);
-            console.log(response); //todo overit azbude namapovana tabulka users a banuser
+            $scope.hide();
+            var myPopup = null;
+            $translate(['cancel', 'send']).then(function (translation) {
+                myPopup = $ionicPopup.show({
+                    template: '<input class="popup-input" type="text" ng-model="data.text">' +
+                              '</br>' + '<select style="width: 100%" required ng-change="changeTime(data.timeSelected)" ng-model="data.timeSelected" ng-options="time.hour for time in times"></select>',//'<input class="popup-input" type="text" ng-model="data.time" ng-init="data.time">',
+                    title: 'BAN',
+                    scope: $scope,
+                    buttons: [
+                        {text: translation.cancel},
+                        {
+                            text: '<b>' + translation.send + '</b>',
+                            type: 'button-positive',
+                            onTap: function (e) {
+                                if (!$scope.data.text && ! $scope.data.timeSelected) {
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data;
+                                }
+                            }
+                        }
+                    ]
+                });
+                myPopup.then(function (data) {
+                    var response = BanService.setBan(objMessage, data);
+                    console.log(response); //todo overit azbude namapovana tabulka users a banuser
+                });
+            });
         };
 
         /**
-         * Slouûi pro odstranÏnÌ zpr·vy
+         * Slou≈æi pro odstranƒõn√≠ zpr√°vy
          */
         $scope.delMessage = function () {
             RestService.delete("incommingMessages", objMessage.id_incomming_message).then(function (response) {

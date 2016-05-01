@@ -46,7 +46,7 @@
 
                 <label class="item item-input">
                     <span class="input-label">{{"phone" | translate}} <i ng-class="{ 'has-error': registerForm.phone.$invalid }" class="error icon ion-android-alert placeholder-icon"></i></span>
-                    <input type="text" name="phone" ng-model="registerData.phone" placeholder="776642532" ng-pattern="/^\d{9}$/" maxlength="9" required>
+                    <input type="tel" name="phone" ng-model="registerData.phone" placeholder="776642532" ng-pattern="/^\d{9}$/" maxlength="9" required>
                 </label>
 
                 <label class="item item-input">
