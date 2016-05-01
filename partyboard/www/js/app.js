@@ -95,7 +95,14 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                     }
                 }
             })
-
+            .state('app.usersBan', {
+                url: '/usersBan',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/usersBan.html'
+                    }
+                }
+            })
             .state('app.show', {
                 url: '/show',
                 views: {

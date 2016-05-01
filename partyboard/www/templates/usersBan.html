@@ -1,0 +1,13 @@
+<ion-view class="backgroundColor" ng-controller="UsersBanController">
+    <ion-nav-title>  {{"usersBan" | translate}} </ion-nav-title>
+    <ion-content has-bouncing="true" overflow-scroll="false">
+        <ion-list>
+            <ion-item ng-repeat="item in items" item="item">
+                Item {{ item.id }}
+                <ion-option-button class="button-balanced" ng-click="unBan(item)">
+                    unBan
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

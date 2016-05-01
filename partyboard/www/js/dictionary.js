@@ -45,7 +45,7 @@ var english = {
     disconnected:"offline",
 
     registrationForm: "Registration",
-
+    usersBan:"Users ban",
     administration:"Administration",
     groupSetting:"Group setting",
 
@@ -114,7 +114,7 @@ var czech = {
     disconnected:"offline",
 
     registrationForm: "Registrace",
-
+    usersBan:"Správa uživatelů",
     administration:"Administrace",
     groupSetting: "Skupina nastavení",
 

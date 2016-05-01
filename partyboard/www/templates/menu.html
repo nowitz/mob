@@ -31,6 +31,10 @@
                     <i class="icon ion-gear-a"></i>
                     {{"administration" | translate}}
                 </ion-item>
+                <ion-item class="item-icon-left" menu-close href="#/app/usersBan" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
+                    <i class="icon ion-person-stalker"></i>
+                    {{"usersBan" | translate}}
+                </ion-item>
                 <ion-item class="item-icon-left">
                     <i class="icon ion-wifi"></i>
                    {{"networkStatus" | translate}}
