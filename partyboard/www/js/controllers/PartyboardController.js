@@ -103,7 +103,7 @@ angular.module('app')
         $scope.loadMore = function () {
             //console.log(params.limit);
             $scope.loadingHistory = true;
-            MessageService.loadBlogs(params, function () {
+            MessageService.loadBlogs(params, $scope.setting.getPartyboard().id_partyboard,function () {
                 $scope.$broadcast("scroll.infiniteScrollComplete");
                 $scope.loadingHistory = false;
                 params.limit = _limit;
@@ -120,7 +120,7 @@ angular.module('app')
             //console.log(param.gesture);
             if (param.gesture.direction == 'down' && params.limit < 100) {
                 params.limit = params.limit + 10;
-                MessageService.loadBlogs(params, function () {
+                MessageService.loadBlogs(params,  $scope.setting.getPartyboard().id_partyboard, function () {
                     $scope.$broadcast("scroll.infiniteScrollComplete");
                 }, $scope);
             }

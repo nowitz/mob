@@ -9,9 +9,9 @@ angular.module('app')
 
         var obj = {};
 
-        obj.loadBlogs = function (params, callback, $scope) {
+        obj.loadBlogs = function (params, idPartyboard,callback, $scope) {
             //console.log(params);
-            $http.get(baseURL+"incomming_messages/", { // http://private-23397-partyboard.apiary-mock.com/v1/messages/board/1/?count=6 https://public-api.wordpress.com/rest/v1/freshly-pressed/
+            $http.get(baseURL+"incomming_messages/"+idPartyboard, { // http://private-23397-partyboard.apiary-mock.com/v1/messages/board/1/?count=6 https://public-api.wordpress.com/rest/v1/freshly-pressed/
                 params: params,
                 headers: {'Content-Type': 'application/json',
                     'X-Access-Token': JSON.parse(localStorage.getItem('user')).xAccessToken}
