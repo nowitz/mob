@@ -4,6 +4,10 @@ angular.module('app')
 
         $scope.setting = SettingFactory;
 
+        $scope.data = {
+            showReorder: false
+        };
+
         $scope.$on("$ionicView.beforeEnter", function () {
             //console.log($scope.setting.getPartyboard().id_partyboard, $scope.setting.getPartyboard().id_partyboard !== null);
             if ($scope.setting.getPartyboard().id_partyboard !== null) {

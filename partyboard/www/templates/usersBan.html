@@ -1,14 +1,18 @@
 <ion-view class="backgroundColor" ng-controller="UsersBanController">
-    <ion-nav-title>  {{"usersBan" | translate}} </ion-nav-title>
+    <ion-nav-title> {{"usersBan" | translate}}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="data.showReorder = !data.showReorder">
+            unBan
+        </button>
+    </ion-nav-buttons>
     <ion-content has-bouncing="true" overflow-scroll="false">
-        <ion-list>
-            <ion-item ng-repeat="item in items" item="item">
+        <ion-list show-reorder="data.showReorder">
+            <ion-item ng-repeat="item in items" item="item" class="item-right-editable">
                 <span ng-show="item.users.nick != null">  {{ item.users.nick }} -</span>
                 <span ng-show="item.users.nick == null">  {{ item.phone }} -</span>
-                 {{ item.length_hour }} hod. - {{ item.create_ts }}
-                <ion-option-button class="button-balanced" ng-click="unBan(item)">
-                    unBan
-                </ion-option-button>
+                {{ item.length_hour }} hod. - {{ item.create_ts }}
+                <ion-reorder-button  ng-click="unBan(item)" style="background-image: url('img/unban.png'); background-size: 90%; background-repeat: no-repeat;
+                background-position: 50%; " on-reorder="false" draggable="null"></ion-reorder-button>
             </ion-item>
         </ion-list>
     </ion-content>
