@@ -10,7 +10,7 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate'])
         $translate.use(language);
         localStorage.setItem("language", language);
 
-        localStorage.getItem('user') === null ? localStorage.setItem('user', "login") : null;
+        localStorage.getItem('user') === null ? localStorage.setItem("user", JSON.stringify('login')) : null;
 
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

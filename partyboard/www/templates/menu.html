@@ -25,13 +25,13 @@
                     <i class="icon ion-android-settings"></i>
                     {{"setting" | translate}}
                 </ion-item>
-                <div class="item item-divider" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
+                <div class="item item-divider">
                 </div>
-                <ion-item class="item-icon-left" menu-close href="#/app/administration" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
+                <ion-item class="item-icon-left" menu-close href="#/app/administration" ng-class="{ 'hideButton': userFactory.permissions === null }">
                     <i class="icon ion-gear-a"></i>
                     {{"administration" | translate}}
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close href="#/app/usersBan" ng-class="{ 'hideButton': !userFactory.permissions.admin }">
+                <ion-item class="item-icon-left" menu-close href="#/app/usersBan" ng-class="{ 'hideButton': userFactory.permissions === null }">
                     <i class="icon ion-person-stalker"></i>
                     {{"usersBan" | translate}}
                 </ion-item>

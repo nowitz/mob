@@ -41,10 +41,7 @@ angular.module('app')
                     } else {
                         var user = response.data[0];
                         UserFactory.logIn(user.id_user, user.firstname, user.lastname, user.nick, user.email, user.phone, //.slice(5, 14)
-                            user.birthdate, 'account', null, {
-                                admin: true,
-                                noob: "test"
-                            }, response.headers("x-access-token"));
+                            user.birthdate, 'account', null, null, response.headers("x-access-token"));
                         // console.log(UserFactory.getDataToServer());
                         BackButtonFactory.backButtonDisable();
                         $state.go('app.partyboard');

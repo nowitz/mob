@@ -1,6 +1,6 @@
 <ion-view class="backgroundColor" view-title='{{"partyboard" | translate}}' ng-controller="PartyboardController">
     <ion-nav-buttons side="right">
-        <button class="button icon ion-gear-a" ng-class="{ 'hideButton': !userFactory.permissions.admin }"
+        <button class="button icon ion-gear-a" ng-class="{ 'hideButton': userFactory.permissions === null }"
                 ng-click="data.showAdministration = !data.showAdministration;"></button>
     </ion-nav-buttons>
     <ion-content class="contentPB" on-drag-end="historyData($event)" has-bouncing="true" overflow-scroll="false">

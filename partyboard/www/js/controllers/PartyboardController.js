@@ -10,12 +10,28 @@ angular.module('app')
         BackButtonFactory.backButtonCancel();
 
         /**
+         * Ciselnik s poctem hodin pro nastaveni banu
+         * @type {*[]}
+         */
+        $scope.times = [
+            { hour: 1 },
+            { hour: 2 },
+            { hour: 4 },
+            { hour: 6 },
+            { hour: 12 },
+            { hour: 24 },
+            { hour: 48 },
+            { hour: 96 }
+        ];
+        /**
          * Přenáší data do view
          * @type {{showAdministration: boolean, message: string}}
          */
         $scope.data = {
             showAdministration: true, // Nastaveni pro tlacitka administrace
-            message: "" //Zprava z texboxu (obsah zpravy)
+            message: "", //Zprava z texboxu (obsah zpravy)
+            timeSelected: $scope.times[5],//Defaultni nastaveni banu na 24 hodin
+            text:"Zablokování odesílaní zpráv z důvodu neslušného chování." //Defaultni messages banu
         };
 
         /**
@@ -85,8 +101,8 @@ angular.module('app')
 
         //pred nactenim kontroleru se zavola takhle funkce a overi se zda je vybranej nejaky PB
         $scope.$on("$ionicView.beforeEnter", function () {
-            //console.log(localStorage.getItem('user'));
-            if (localStorage.getItem('user') === "login") {
+            //console.log(JSON.parse(localStorage.getItem('user')));
+            if (JSON.parse(localStorage.getItem('user')) === "login") {
                 $state.go('app.login');
             } else if ($scope.setting.getPartyboard().id_partyboard === null) {
                 $state.go('app.show');
@@ -158,24 +174,17 @@ angular.module('app')
         };
 
 
-        $scope.times = [
-                { hour: 1 },
-                { hour: 2 },
-                { hour: 4 },
-                { hour: 6 },
-                { hour: 12 },
-                { hour: 24 },
-                { hour: 48 },
-                { hour: 96 }
-            ];
-        $scope.data = {
-            timeSelected: $scope.times[5],
-            text:"Zablokování odesílaní zpráv z důvodu neslušného chování."
-        };
+        /**
+         * Funkce ktera resi zmenu casu pro ban
+         * @param timeSelected
+         */
         $scope.changeTime = function(timeSelected){
             $scope.data.timeSelected = timeSelected ;
         };
 
+        /**
+         * Nastavi ban uzivateli/telefonimu cislu
+         */
         $scope.setBan = function () {
             $scope.hide();
             var myPopup = null;

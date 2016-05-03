@@ -10,21 +10,24 @@ angular.module('app')
             banUserPartyboard: "ban_user_partyboard",
             incommingMessages: "incomming_messages",
             users: "users",
-            auth: "auth"
+            auth: "auth",
+            rolesUsersPartyboards:"roles_users_partyboards"
         };
 
         return {
-            get: function (param) {
+            get: function (param, parFilter) {
                 //console.log(param);
                 var headers = {'Content-Type': 'application/json'};
                 if (param !== "auth" && param !== "users") {
                     //console.log(JSON.parse(localStorage.getItem('user')));
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                return $http.get(baseURL + url[param], {
+                return $http.get(baseURL + url[param]+parFilter, {
                     headers: headers
-                }).then(function (response) {
-                    return response.data;
+                }).then(function successCallback(response) {
+                    return response;
+                }, function errorCallback(response) {
+                    return response;
                 });
             },
             post: function (param, obj) {

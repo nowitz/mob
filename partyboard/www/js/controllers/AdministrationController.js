@@ -2,9 +2,9 @@
 angular.module('app')
     .controller('AdministrationController', function ($scope, $translate, ColorsFactory, SendInternetFactory, RestService) {
 
-        RestService.get("groupSettings", $scope,  function () {
-            console.log($scope.result);
-            $scope.groupSettings = $scope.result;
+        RestService.get("groupSettings", "/", $scope,  function (response) {
+            console.log(response);
+           // $scope.groupSettings = $scope.result;
         });
 
         /**

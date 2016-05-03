@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $ionicLoading, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
+    .controller('SettingController', function ($scope, $state, $ionicLoading, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
 
         $scope.userFactory = JSON.parse(localStorage.getItem('user'));
         $scope.setting = SettingFactory;
@@ -11,42 +11,20 @@ angular.module('app')
          */
         $scope.partyboards = null;
 
-        //RestService.get("partyboards").then(function(data) {
-        //    $scope.partyboards = data;
-        //});
+        // PRIPRAVA TLACITKA PRO IPHONE NA BACK
+        //$scope.doSomething = function(){
+        //    console.log("jsemtu");
+        //}
 
         $scope.$on("$ionicView.beforeEnter", function () {
-            console.log($scope.setting.getPartyboard().id_partyboard);
+            //console.log($scope.setting.getPartyboard().id_partyboard);
             if ($scope.setting.getPartyboard().id_partyboard === null) {
-                RestService.get("partyboards").then(function (data) {
-                    console.log("stahuju partyboardy " + data);
-                    $scope.partyboards = data;
+                RestService.get("partyboards","").then(function (response) {
+                    //console.log("stahuju partyboardy " + data);
+                    $scope.partyboards = response.data;
                 });
             }
         });
-        //$scope.$on("$ionicView.enter", function () {
-        //    console.log("cekam1");
-        //});
-        //$scope.$on("$ionicView.afterEnter", function () {
-        //    console.log("cekam5");
-        //});
-        //$scope.$on("$ionicView.beforeLeave", function () {
-        //    console.log("cekam4");
-        //});
-        //$scope.$on("$ionicView.leave", function () {
-        //    console.log("cekam2");
-        //});
-        //$scope.$on("$ionicView.afterLeave", function () {
-        //    console.log("cekam6");
-        //});
-        //
-        //$scope.$on("$ionicView.unloaded", function () {
-        //    console.log("cekam7");
-        //});
-        //$scope.$on("$ionicView.loaded", function () {
-        //    console.log("cekam");
-        //});
-
 
         /**
          * Prepinani jazyka
@@ -77,6 +55,24 @@ angular.module('app')
                     sms_key: partyboard.sms_key
                 }
                 $scope.setting.setPartyboard(tmp);
+
+
+                RestService.get("rolesUsersPartyboards","/"+$scope.userFactory.idUser+"/"+partyboard.id_partyboard).then(function (response) {
+                    if(response.status === 200){
+                        //console.log(response.data[0].roles_partyboard.permissions);
+                        $scope.userFactory.permissions = response.data[0].roles_partyboard.permissions;
+                        localStorage.setItem("user", JSON.stringify($scope.userFactory));
+                    }else{
+                        $scope.userFactory.permissions = null;
+                        localStorage.setItem("user", JSON.stringify($scope.userFactory));
+                    }
+                   // console.log( JSON.parse(localStorage.getItem('user')));
+
+                    //REFRESHNE MI TO MENU !!! POUZIVAM TO PRO SKRYTI A ZOBRAZENI TLACITEK
+                    $state.go('app.setting', {}, { reload: true, inherit: true, notify: true });
+                });
+
+
             }
             //console.log( $scope.setting.getPartyboard());
         }
