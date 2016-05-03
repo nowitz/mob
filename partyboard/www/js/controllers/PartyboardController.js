@@ -201,8 +201,21 @@ angular.module('app')
                     ]
                 });
                 myPopup.then(function (data) {
-                    var response = BanService.setBan(objMessage, data);
-                    console.log(response); //todo overit azbude namapovana tabulka users a banuser
+                    BanService.setBan(objMessage, data, function (response){
+                        if(response === 201){
+                            $ionicLoading.show({
+                                template: '{{ "banMessage" | translate }}',
+                                duration: 1500,
+                                scope: $scope
+                            });
+                        }else{
+                            $ionicLoading.show({
+                                template: '{{ "banErrorMessage" | translate }}',
+                                duration: 1500,
+                                scope: $scope
+                            });
+                        }
+                    });
                 });
             });
         };

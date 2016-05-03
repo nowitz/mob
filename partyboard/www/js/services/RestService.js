@@ -6,35 +6,35 @@ angular.module('app')
         var url = {
             groupSettings: "group_settings",
             partyboards: "partyboards",
-            towns:"towns",
-            bunUserPartyboard:"ban_user_partyboard",
-            incommingMessages:"incomming_messages",
-            users:"users",
-            auth:"auth"
+            towns: "towns",
+            banUserPartyboard: "ban_user_partyboard",
+            incommingMessages: "incomming_messages",
+            users: "users",
+            auth: "auth"
         };
 
         return {
-            get: function(param){
+            get: function (param) {
                 //console.log(param);
                 var headers = {'Content-Type': 'application/json'};
-                if(param !== "auth" && param !== "users"){
+                if (param !== "auth" && param !== "users") {
                     //console.log(JSON.parse(localStorage.getItem('user')));
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                return $http.get(baseURL+url[param],{
+                return $http.get(baseURL + url[param], {
                     headers: headers
-                }).then(function(response) {
+                }).then(function (response) {
                     return response.data;
                 });
             },
-            post: function(param, obj) {
-                console.log(param);
+            post: function (param, obj) {
+                //console.log(obj);
                 var headers = {'Content-Type': 'application/json'};
-                if(param !== "auth" && param !== "users"){
+                if (param !== "auth" && param !== "users") {
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                console.log(headers);
-                return $http.post(baseURL+ url[param], obj,{
+                //  console.log(headers);
+                return $http.post(baseURL + url[param], obj, {
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;
@@ -42,14 +42,14 @@ angular.module('app')
                     return response;
                 });
             },
-            put: function(param, obj) {
+            put: function (param, obj) {
                 //console.log(param);
                 var headers = {'Content-Type': 'application/json'};
-                if(param !== "auth" && param !== "users"){
+                if (param !== "auth" && param !== "users") {
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
                 // console.log(header);
-                return $http.put(baseURL+ url[param], obj,{
+                return $http.put(baseURL + url[param], obj, {
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;
@@ -57,12 +57,12 @@ angular.module('app')
                     return response;
                 });
             },
-            delete: function(param, id) {
+            delete: function (param, id) {
                 var headers = {'Content-Type': 'application/json'};
-                if(param !== "auth" && param !== "users"){
+                if (param !== "auth" && param !== "users") {
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
-                return $http.delete(baseURL+ url[param]+"/"+id,{
+                return $http.delete(baseURL + url[param] + "/" + id, {
                     headers: headers
                 }).then(function (response) {
                     return response;
@@ -70,42 +70,4 @@ angular.module('app')
             }
         };
     });
-
-
-        /*
-        var url = {
-            groupSettings: "groupSettings/",
-            partyboards: "partyboards/"
-        };
-
-        var obj = {};
-
-        obj.get = function (params, callback) {
-            console.log(params);
-            $http.get("http://students.kiv.zcu.cz:8088/~nowitz/"+url[params], {
-                params: params
-            }).success(function (data, status, headers, config, statusText) {
-                //console.log(status);
-                //console.log(headers(['content-type']))
-                //console.log(data);
-                typeof callback === 'function' && callback(data);
-            });
-        }
-
-
-        obj.post = function (data, $scope){
-            $http.post("http://students.kiv.zcu.cz:8088/~nowitz/"+url[params], data,{
-                headers: {'Content-Type': 'application/json'}
-            }).success(function (result) {
-                console.log(result);
-                $scope.loadMore();
-            });
-        };
-
-
-        return obj;
-
-
-    });*/
-
 

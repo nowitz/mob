@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('MessageService', function ($http) {
+    .service('MessageService', function ($http, $ionicLoading) {
 
         var baseURL = 'http://students.kiv.zcu.cz:8088/~nowitz/';
         /**
@@ -16,17 +16,20 @@ angular.module('app')
                 headers: {'Content-Type': 'application/json',
                     'X-Access-Token': JSON.parse(localStorage.getItem('user')).xAccessToken}
             }).success(function (data, status, headers, config, statusText) {
-                //console.log(status);
-                //console.log(headers(['content-type']))
-                //console.log(config);
-               // console.log(data);
+                //console.log(status, headers(['content-type']), config, data);
                 $scope.result = data;
                 typeof callback === 'function' && callback(); //test jestli se jedna o funkci
 
             }).error(function (data, status, headers, config) {
                 //console.log(status);
                 if(status == 404){
-                    console.log(headers(['X-Error']));
+                    $scope.result = null;
+                    typeof callback === 'function' && callback();
+                    $ionicLoading.show({
+                        template: '{{ "anyMessages" | translate }}',
+                        duration: 1500,
+                        scope: $scope
+                    });
                 }
             });
         }

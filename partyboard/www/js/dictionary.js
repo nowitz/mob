@@ -64,7 +64,11 @@ var english = {
 
     showText:"Welcome to application Partyboard",
     showInfo:"The application allows convenient operation of the Partyboard, whether the position of the current user or administrator.",
-    showContact: "To report errors or ideas for improvements, please use the email info@partyboard.cz"
+    showContact: "To report errors or ideas for improvements, please use the email info@partyboard.cz",
+
+    banMessage:"Ban success",
+    banErrorMessage:"Ban failed",
+    anyMessages:"There are not any messages"
 }
 
 var czech = {
@@ -133,5 +137,9 @@ var czech = {
 
     showText:"Vítejte v aplikaci Partyboard",
     showInfo:"Tato aplikace umožňuje pohodlnou obsluhu systému Partyboard, ať už z pozice běžného uživatele nebo administrátora.",
-    showContact: "Pro nahlášení chyby nebo nápadu pro vylepšení prosím použijte email info@partyboard.cz"
+    showContact: "Pro nahlášení chyby nebo nápadu pro vylepšení prosím použijte email info@partyboard.cz",
+
+    banMessage:"Ban byl nastaven",
+    banErrorMessage:"Ban se nepovedlo nastavit",
+    anyMessages:"Žádné zprávy k zobrazení"
 }

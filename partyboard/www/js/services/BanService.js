@@ -7,8 +7,7 @@ angular.module('app')
         /**
          * Nastaví ban uživateli
          */
-        obj.setBan = function (msg, data) {
-            //console.log(msg);
+        obj.setBan = function (msg, data, callback) {
             var obj = {
                 "id_partyboard": msg.id_partyboard,
                 "phone": msg.phone,
@@ -16,12 +15,10 @@ angular.module('app')
                 "length_hour": data.timeSelected.hour,
                 "description": data.text
             };
-            console.log("Struktura pro ban",obj);
-            //TODO vyzkoušet...az bude namapovana tabulka s banama
-            //RestService.post("bunUserPartyboard",obj).then(function(data) {
-            //   console.log(data);
-            //   return data;
-            //});
+            RestService.post("banUserPartyboard",obj).then(function(data) {
+              // console.log(data);
+                typeof callback === 'function' &&  callback(data.status);
+            });
         };
 
         /**
