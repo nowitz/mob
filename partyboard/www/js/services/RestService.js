@@ -11,7 +11,8 @@ angular.module('app')
             incommingMessages: "incomming_messages",
             users: "users",
             auth: "auth",
-            rolesUsersPartyboards:"roles_users_partyboards"
+            rolesUsersPartyboards:"roles_users_partyboards",
+            banUserPartyboard: "ban_user_partyboard"
         };
 
         return {
@@ -45,14 +46,14 @@ angular.module('app')
                     return response;
                 });
             },
-            put: function (param, obj) {
+            put: function (param, id, obj) {
                 //console.log(param);
                 var headers = {'Content-Type': 'application/json'};
                 if (param !== "auth" && param !== "users") {
                     headers['X-Access-Token'] = JSON.parse(localStorage.getItem('user')).xAccessToken;
                 }
                 // console.log(header);
-                return $http.put(baseURL + url[param], obj, {
+                return $http.put(baseURL + url[param]+"/"+id, obj, {
                     headers: headers
                 }).then(function successCallback(response) {
                     return response;

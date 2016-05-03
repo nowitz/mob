@@ -68,6 +68,8 @@ var english = {
 
     banMessage:"Ban success",
     banErrorMessage:"Ban failed",
+    unBanMessage:"Ban was canceled",
+    unBanErrorMessage:"Ban failed to cancel",
     anyMessages:"There are not any messages"
 }
 
@@ -141,5 +143,7 @@ var czech = {
 
     banMessage:"Ban byl nastaven",
     banErrorMessage:"Ban se nepovedlo nastavit",
+    unBanMessage:"Ban byl zrušen",
+    unBanErrorMessage:"Ban se nepovedlo zrušit",
     anyMessages:"Žádné zprávy k zobrazení"
 }

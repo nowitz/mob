@@ -3,7 +3,9 @@
     <ion-content has-bouncing="true" overflow-scroll="false">
         <ion-list>
             <ion-item ng-repeat="item in items" item="item">
-                Item {{ item.id }}
+                <span ng-show="item.users.nick != null">  {{ item.users.nick }} -</span>
+                <span ng-show="item.users.nick == null">  {{ item.phone }} -</span>
+                 {{ item.length_hour }} hod. - {{ item.create_ts }}
                 <ion-option-button class="button-balanced" ng-click="unBan(item)">
                     unBan
                 </ion-option-button>

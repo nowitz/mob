@@ -21,11 +21,30 @@ angular.module('app')
             });
         };
 
+
+        obj.getBan = function ($scope,id){
+            RestService.get("banUserPartyboard","/partyboard/"+id).then(function (response) {
+       //         console.log(response.data);
+                $scope.items = response.data;
+            });
+        };
+
         /**
          * Zruší ban uživateli
         */
-        obj.cancelBan = function (obj) {
-            //return device.isOnline;
+        obj.unBan = function (id,data, callback) {
+            var obj = {
+                "id_partyboard": data.partyboards.id_partyboard,
+                "phone": data.phone,
+                "id_user": data.users.id_user,
+                "length_hour": data.length_hour,
+                "ongoing": false,
+                "description": data.description
+            };
+            RestService.put("banUserPartyboard",id, obj).then(function (response) {
+                console.log(response);
+                typeof callback === 'function' &&  callback(response.status);
+            });
         };
         return obj;
     });

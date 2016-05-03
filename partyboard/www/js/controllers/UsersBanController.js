@@ -1,27 +1,35 @@
 'user strict';
 angular.module('app')
-    .controller('UsersBanController', function ($scope) {
+    .controller('UsersBanController', function ($scope, $ionicLoading, SettingFactory, BanService) {
 
-        $scope.data = {
-            showDelete: false
-        };
+        $scope.setting = SettingFactory;
+
+        $scope.$on("$ionicView.beforeEnter", function () {
+            //console.log($scope.setting.getPartyboard().id_partyboard, $scope.setting.getPartyboard().id_partyboard !== null);
+            if ($scope.setting.getPartyboard().id_partyboard !== null) {
+                BanService.getBan($scope, $scope.setting.getPartyboard().id_partyboard);
+            }
+        });
+
 
         $scope.unBan = function(item) {
-            alert('Share Item: ' + item.id_user);
-        };
+            BanService.unBan(item.id_ban_user_partyboard, item, function (status){
+                if(status === 200){
+                    BanService.getBan($scope, $scope.setting.getPartyboard().id_partyboard);
+                    $ionicLoading.show({
+                        template: '{{ "unBanMessage" | translate }}',
+                        duration: 1500,
+                        scope: $scope
+                    });
+                }else{
+                    $ionicLoading.show({
+                        template: '{{ "unBanErrorMessage" | translate }}',
+                        duration: 1500,
+                        scope: $scope
+                    });
+                }
 
-        $scope.items = [
-            { id: 0, id_user: 1 },
-            { id: 1, id_user: 1 },
-            { id: 2, id_user: 1 },
-            { id: 3, id_user: 1 },
-            { id: 4, id_user: 1 },
-            { id: 5, id_user: 1 },
-            { id: 6, id_user: 1 },
-            { id: 7, id_user: 1 },
-            { id: 8, id_user: 1 },
-            { id: 9, id_user: 1 },
-            { id: 10, id_user: 1 }
-        ];
+            });
+        };
 
     });

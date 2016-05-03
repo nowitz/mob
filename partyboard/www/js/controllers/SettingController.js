@@ -59,15 +59,12 @@ angular.module('app')
 
                 RestService.get("rolesUsersPartyboards","/"+$scope.userFactory.idUser+"/"+partyboard.id_partyboard).then(function (response) {
                     if(response.status === 200){
-                        //console.log(response.data[0].roles_partyboard.permissions);
                         $scope.userFactory.permissions = response.data[0].roles_partyboard.permissions;
                         localStorage.setItem("user", JSON.stringify($scope.userFactory));
                     }else{
                         $scope.userFactory.permissions = null;
                         localStorage.setItem("user", JSON.stringify($scope.userFactory));
                     }
-                   // console.log( JSON.parse(localStorage.getItem('user')));
-
                     //REFRESHNE MI TO MENU !!! POUZIVAM TO PRO SKRYTI A ZOBRAZENI TLACITEK
                     $state.go('app.setting', {}, { reload: true, inherit: true, notify: true });
                 });
