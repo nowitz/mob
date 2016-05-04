@@ -1,64 +1,58 @@
 'user strict';
 angular.module('app')
-    .controller('AdministrationController', function ($scope, $translate, ColorsFactory, SendInternetFactory, RestService) {
-
-        RestService.get("groupSettings", "/", $scope,  function (response) {
-            console.log(response);
-           // $scope.groupSettings = $scope.result;
-        });
-
-        /**
-         * Prepinani jazyka
-         * @type {*[]}
-         */
-        $scope.languages = [
-            {name: 'English', shade: 'en'},
-            {name: 'Česky', shade: 'cs'}
-        ];
-        if (localStorage.getItem("language") === "en") {
-            $scope.language = $scope.languages[0];
-        } else {
-            $scope.language = $scope.languages[1];
-        }
-        $scope.changeLanguage = function (language) {
-            $translate.use(language);
-        }
+    .controller('AdministrationController', function ($scope, $translate, ColorsFactory, SendInternetFactory, RestService, SettingFactory) {
 
 
-        /**
-         * Vyber partyboardu
-         * @type {*[]}
-         */
-
-        $scope.selectionPartyboard = function (partyboard) {
-            console.log(partyboard);
-        }
-
-        /**
-         * Uchovani prezdivky pro odesilani zprav
-         * @param nick
-         */
-        $scope.nickChange = function (nick) {
-            console.log(nick);
-        }
-
+        $scope.setting = SettingFactory;
         /**
          * Nastaveni barvy
          */
         $scope.colors = ColorsFactory.all();
-        $scope.color = $scope.colors[6];
-        $scope.colorChange = function (rgb) {
-            ColorsFactory.setRgbColor(rgb);
+        $scope.colorBack = null;
+        $scope.colorText = null;
+
+
+        //TODO opravit url
+        $scope.$on("$ionicView.beforeEnter", function () {
+            //console.log("administration", $scope.setting.getPartyboard().id_partyboard);
+            if ($scope.setting.getPartyboard().id_partyboard !== null) {
+                RestService.get("groupSettings","/"+$scope.setting.getPartyboard().id_partyboard).then(function (response) {
+                    //console.log(response.data[0].settings);
+                    angular.forEach(response.data[0].settings, function(value, key) {
+                        ColorsFactory.getFindColor(value,$scope);
+                        //console.log(key + ': ' + value.value, value.type_setting.name);
+                        //if(value.type_setting.name === "background_color"){
+                        //    $scope.colorBack = ColorsFactory.getFindColor(value.value);
+                        //    console.log($scope.colorBack);
+                        //}else if(value.type_setting.name === "text_color"){
+                        //    $scope.colorText = ColorsFactory.getFindColor(value.value);
+                        //    console.log($scope.colorText);
+                        //}else if(value.type_setting.name === "text_size"){
+                        //    console.log("text_size");
+                        //}
+                        //console.log("totate");
+                    });
+                });
+
+                console.log($scope.colorBack, $scope.colorText);
+            }
+        });
+
+
+
+
+
+
+        $scope.colorChangeText = function (rgb) {
+            $scope.colorText = rgb;
+            console.log("colorText", $scope.colorText);
         }
 
-        /**
-         * Nastaveni typu zpravy
-         */
-        $scope.typeMessages = SendInternetFactory.all();
-        $scope.typeMessage = $scope.typeMessages[0];
-
-        $scope.selectionTypeMessage = function(typeMessage){
-            SendInternetFactory.setTypeMessage(typeMessage);
+        $scope.colorChangeBackground = function (rgb) {
+            $scope.colorBack = rgb;
+            console.log("colorBack", $scope.colorBack);
         }
+
+
 
     });

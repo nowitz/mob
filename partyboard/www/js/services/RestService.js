@@ -5,6 +5,7 @@ angular.module('app')
 
         var url = {
             groupSettings: "group_settings",
+            settings: "settings",
             partyboards: "partyboards",
             towns: "towns",
             banUserPartyboard: "ban_user_partyboard",

@@ -13,7 +13,8 @@ angular.module('app')
             {id: 5, color: "#00CCCC", name: "Light blue", rgb: "00, 204, 204"},
             {id: 6, color: "#003366", name: "Dark blue", rgb: "0, 51, 102"},
             {id: 7, color: "#50D420", name: "Light Green", rgb: "80, 212, 32"},
-            {id: 8, color: "#009933", name: "Dark green", rgb: "0, 153, 51"}
+            {id: 8, color: "#009933", name: "Dark green", rgb: "0, 153, 51"},
+            {id: 9, color: "#FFFFFF", name: "White", rgb: "255, 255, 255"}
         ];
 
         return {
@@ -28,6 +29,22 @@ angular.module('app')
             },
             getRgbColor: function(){
                 return coloRgb;
+            },
+            getFindColor: function (pos, $scope){
+                angular.forEach(colors, function(value, key) {
+                   // console.log(pos,"         ",key + ': ' + value.color);
+                    if(value.color === pos.value){
+                       // console.log(value);
+                        if(pos.type_setting.name === "background_color"){
+                            $scope.colorBack = value;
+                           // console.log($scope.colorBack);
+                        }else if(pos.type_setting.name === "text_color"){
+                            $scope.colorText = value;
+                          //  console.log($scope.colorText);
+                        }
+
+                    }
+                });
             }
         }
     });

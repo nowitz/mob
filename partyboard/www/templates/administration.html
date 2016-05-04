@@ -2,46 +2,26 @@
   <ion-nav-title> {{"administration" | translate}} </ion-nav-title>
   <ion-content scroll="false">
     <ul class="list">
-      <li class="item item-input item-select">
-        <label>
-          <div class="input-label">
-            {{"groupSetting" | translate}}
-          </div>
-          <select ng-change="selectionPartyboard(partyboard.shade)" ng-model="groupSetting" ng-options="groupSetting.gs_name for groupSetting in groupSettings"></select>
-        </label>
-      </li>
-      <li class="item item-input">
-          <span class="input-label">{{"setNick" | translate}}</span>
-          <input ng-change="nickChange(nick)" ng-model="nick" style="background-color: #444; color:white; padding-left: 5px;" maxlength="15" type="text">
-      </li>
-      <li class="item item-input item-select">
-        <label>
-          <div class="input-label">
-            {{"setMessage" | translate}}
-          </div>
-          <select ng-change="selectionTypeMessage(typeMessage)" ng-model="typeMessage" ng-options="typeMessage.name for typeMessage in typeMessages"></select>
-        </label>
-      </li>
-
-      <li class="item item-divider"></li>
 
       <li class="item item-input item-select">
         <label>
           <div class="input-label">
             {{"colors" | translate}}
           </div>
-          <select ng-change="colorChange(color)" ng-model="color" ng-options="color.name for color in colors"></select>
+          <select ng-change="colorChangeBackground(colorBack)" ng-model="colorBack" ng-options="color.name for color in colors"></select>
         </label>
       </li>
-
+      <li class="item item-divider"></li>
       <li class="item item-input item-select">
         <label>
           <div class="input-label">
-            {{"language" | translate}}
+            {{"colors" | translate}}
           </div>
-          <select ng-change="changeLanguage(language.shade)" ng-model="language" ng-options="language.name for language in languages"></select>
+          <select ng-change="colorChangeText(colorText)" ng-model="colorText" ng-options="color.name for color in colors"></select>
         </label>
       </li>
+
+
     </ul>
   </ion-content>
 </ion-view>
