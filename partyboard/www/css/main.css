@@ -30,11 +30,11 @@
   color: white;
   width: 97%;
 }
-.obsah {
+.msg {
   display: table-cell;
   padding: 1ch;
 }
-.buttona {
+.buttMsg {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
