@@ -34,15 +34,11 @@ angular.module('app')
                 angular.forEach(colors, function(value, key) {
                    // console.log(pos,"         ",key + ': ' + value.color);
                     if(value.color === pos.value){
-                       // console.log(value);
                         if(pos.type_setting.name === "background_color"){
-                            $scope.colorBack = value;
-                           // console.log($scope.colorBack);
+                            $scope.data.colorBack = value;
                         }else if(pos.type_setting.name === "text_color"){
-                            $scope.colorText = value;
-                          //  console.log($scope.colorText);
+                            $scope.data.colorText = value;
                         }
-
                     }
                 });
             }
