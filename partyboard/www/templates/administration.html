@@ -1,6 +1,6 @@
 <ion-view   ng-controller="AdministrationController">
   <ion-nav-title> {{"administration" | translate}} </ion-nav-title>
-  <ion-content scroll="false">
+  <ion-content scroll="false" has-header="true" padding="true">
     <ul class="list">
 
       <li class="item item-input item-select">
@@ -8,7 +8,7 @@
           <div class="input-label">
             {{"colorBack" | translate}}
           </div>
-          <select ng-change="colorChangeBackground(data.colorBack)" ng-model="data.colorBack" ng-options="color.name for color in colors"></select>
+          <select ng-change="colorChangeBackground(data.colorBack.value)" ng-model="data.colorBack.value" ng-options="color.name for color in colors"></select>
         </label>
       </li>
       <li class="item item-divider"></li>
@@ -17,11 +17,18 @@
           <div class="input-label">
             {{"colorText" | translate}}
           </div>
-          <select ng-change="colorChangeText(data.colorText)" ng-model="data.colorText" ng-options="color.name for color in colors"></select>
+          <select ng-change="colorChangeText(data.colorText.value)" ng-model="data.colorText.value" ng-options="color.name for color in colors"></select>
         </label>
       </li>
-
-
+      <li class="item item-input item-select">
+        <label>
+          <div class="input-label">
+            {{"textSize" | translate}}
+          </div>
+          <select ng-change="changeTextSize(data.textSize.value)" ng-model="data.textSize.value" ng-options="size.size for size in sizes"></select>
+        </label>
+      </li>
     </ul>
+    <button class="button button-block button-positive" ng-click="sendSettings()">{{ 'smsSend' | translate }}</button>
   </ion-content>
 </ion-view>

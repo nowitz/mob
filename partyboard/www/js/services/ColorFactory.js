@@ -32,12 +32,16 @@ angular.module('app')
             },
             getFindColor: function (pos, $scope){
                 angular.forEach(colors, function(value, key) {
-                   // console.log(pos,"         ",key + ': ' + value.color);
+                   console.log(pos,"         ",key + ': ' + value.color);
                     if(value.color === pos.value){
                         if(pos.type_setting.name === "background_color"){
-                            $scope.data.colorBack = value;
+                            $scope.data.colorBack.value = value;
+                            $scope.data.colorBack.idTypeSetting = pos.type_setting.id_type_setting;
+                            $scope.data.colorBack.idSetting = pos.id_setting;
                         }else if(pos.type_setting.name === "text_color"){
-                            $scope.data.colorText = value;
+                            $scope.data.colorText.value = value;
+                            $scope.data.colorText.idTypeSetting = pos.type_setting.id_type_setting;
+                            $scope.data.colorText.idSetting = pos.id_setting;
                         }
                     }
                 });
