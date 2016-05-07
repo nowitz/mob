@@ -74,7 +74,10 @@ var english = {
 
     colorBack:"Background color",
     colorText:"Text color",
-    textSize:"Font size"
+    textSize:"Font size",
+
+    settingPartyboard:"Setting success",
+    settingErrorPartyboard:"Setting failed"
 }
 
 var czech = {
@@ -153,6 +156,9 @@ var czech = {
 
     colorBack:"Barva pozadí",
     colorText:"Barva textu",
-    textSize:"Velikost textu"
+    textSize:"Velikost textu",
+
+    settingPartyboard:"Nastavení bylo změněno",
+    settingErrorPartyboard:"Nastavení se nepovedlo změnit"
 
 }

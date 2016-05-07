@@ -42,7 +42,7 @@ angular.module('app')
                 "description": data.description
             };
             RestService.put("banUserPartyboard",id, obj).then(function (response) {
-                console.log(response);
+                //console.log(response);
                 typeof callback === 'function' &&  callback(response.status);
             });
         };

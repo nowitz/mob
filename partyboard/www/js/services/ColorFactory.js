@@ -32,7 +32,7 @@ angular.module('app')
             },
             getFindColor: function (pos, $scope){
                 angular.forEach(colors, function(value, key) {
-                   console.log(pos,"         ",key + ': ' + value.color);
+                   //console.log(pos,"         ",key + ': ' + value.color);
                     if(value.color === pos.value){
                         if(pos.type_setting.name === "background_color"){
                             $scope.data.colorBack.value = value;
