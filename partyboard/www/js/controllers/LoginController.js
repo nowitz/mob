@@ -21,8 +21,16 @@ angular.module('app')
                     "password": CryptoJS.SHA1($scope.loginData.password).toString()
                 };
                 RestService.post("auth", logData).then(function (response) {
-                    //console.log(response.headers());
-                    if (response.status === 404) {
+                    //console.log(response);
+                    if(response.status === -1){
+                        $translate('error').then(
+                            function (translate) {
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"serverDisconnect" | translate}}'
+                                });
+                            });
+                    }else if (response.status === 404) {
                         $translate('loginError').then(
                             function (translate) {
                                 $ionicPopup.alert({

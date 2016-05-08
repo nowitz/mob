@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('AdministrationController', function ($scope, $translate, $ionicLoading, ColorsFactory, SendInternetFactory, RestService, SettingFactory) {
+    .controller('AdministrationController', function ($scope, $q, $translate, $ionicLoading, $ionicPopup, ColorsFactory, SendInternetFactory, RestService, SettingFactory) {
 
 
         $scope.setting = SettingFactory;
@@ -12,9 +12,9 @@ angular.module('app')
         $scope.data = {
             idGroupSetting: null,
 
-            colorBack:{idTypeSetting: null, value: null, idSetting:null},
-            colorText:{idTypeSetting: null, value: null, idSetting:null},
-            textSize:{idTypeSetting: null, value: null, idSetting:null}
+            colorBack: {idTypeSetting: null, value: null, idSetting: null},
+            colorText: {idTypeSetting: null, value: null, idSetting: null},
+            textSize: {idTypeSetting: null, value: null, idSetting: null}
         };
 
         $scope.sizes = [
@@ -32,23 +32,33 @@ angular.module('app')
             if ($scope.setting.getPartyboard().id_partyboard !== null) {
                 RestService.get("groupSettings", "/?active=true&partyboard=" + $scope.setting.getPartyboard().id_partyboard).then(function (response) {
                     //console.log(response);
-                    $scope.data.idGroupSetting = response.data[0].id_group_setting;
-                    angular.forEach(response.data[0].settings, function (value, key) {
-                        ColorsFactory.getFindColor(value, $scope);
-
-                        if (value.type_setting.name === "text_size") {
-                            //console.log(value);
-                            angular.forEach($scope.sizes, function (size, key) {
-                                if (size.size === value.value) {
-                                    $scope.data.textSize.value = size;
-                                    $scope.data.textSize.idTypeSetting = value.type_setting.id_type_setting;
-                                    $scope.data.textSize.idSetting = value.id_setting;
-                                }
+                    if (response.status === -1) {
+                        $translate('error').then(
+                            function (translate) {
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"serverDisconnect" | translate}}'
+                                });
                             });
-                            //console.log("text_size",$scope.data.textSize);
-                        }
+                    } else {
+                        $scope.data.idGroupSetting = response.data[0].id_group_setting;
+                        angular.forEach(response.data[0].settings, function (value, key) {
+                            ColorsFactory.getFindColor(value, $scope);
 
-                    });
+                            if (value.type_setting.name === "text_size") {
+                                //console.log(value);
+                                angular.forEach($scope.sizes, function (size, key) {
+                                    if (size.size === value.value) {
+                                        $scope.data.textSize.value = size;
+                                        $scope.data.textSize.idTypeSetting = value.type_setting.id_type_setting;
+                                        $scope.data.textSize.idSetting = value.id_setting;
+                                    }
+                                });
+                                //console.log("text_size",$scope.data.textSize);
+                            }
+
+                        });
+                    }
                 });
             }
         });
@@ -70,58 +80,70 @@ angular.module('app')
         };
 
 
-
         $scope.sendSettings = function () {
+            var requests = [];
+            var status = 0;
+
             //BACKGROUND COLOR
             var param = {
                 "id_group_setting": $scope.data.idGroupSetting,
                 "id_type_setting": $scope.data.colorBack.idTypeSetting,
                 "value": $scope.data.colorBack.value.color
             }
-            var status = 0;
-            RestService.put("settings",$scope.data.colorBack.idSetting, param).then(function (response) {
-                if(response.status === 200){
+            var deferred1 = $q.defer();
+            requests.push(deferred1.promise);
+            RestService.put("settings", $scope.data.colorBack.idSetting, param).then(function (response) {
+                if (response.status === 200) {
                     status = status + 1;
                 }
+                deferred1.resolve();
             });
+
             //TEXT COLOR
             var param = {
                 "id_group_setting": $scope.data.idGroupSetting,
                 "id_type_setting": $scope.data.colorText.idTypeSetting,
                 "value": $scope.data.colorText.value.color
             }
-            console.log(param);
-            RestService.put("settings",$scope.data.colorText.idSetting, param).then(function (response) {
-                if(response.status === 200){
+            var deferred2 = $q.defer();
+            requests.push(deferred2.promise);
+            RestService.put("settings", $scope.data.colorText.idSetting, param).then(function (response) {
+                if (response.status === 200) {
                     status = status + 1;
                 }
+                deferred2.resolve();
             });
+
             //TEXT SIZE
             var param = {
                 "id_group_setting": $scope.data.idGroupSetting,
                 "id_type_setting": $scope.data.textSize.idTypeSetting,
                 "value": $scope.data.textSize.value.size
             }
-            RestService.put("settings",$scope.data.textSize.idSetting, param).then(function (response) {
-                if(response.status === 200){
+            var deferred3 = $q.defer();
+            requests.push(deferred3.promise);
+            RestService.put("settings", $scope.data.textSize.idSetting, param).then(function (response) {
+                if (response.status === 200) {
                     status = status + 1;
                 }
+                deferred3.resolve();
             });
-            //TODO doresit asynchrone ... bach prosel if
-            console.log(status, status === 3);
-            if(status === 3){
-                $ionicLoading.show({
-                    template: '{{ "settingPartyboard" | translate }}',
-                    duration: 1500,
-                    scope: $scope
-                });
-            }else{
-                $ionicLoading.show({
-                    template: '{{ "settingErrorPartyboard" | translate }}',
-                    duration: 1500,
-                    scope: $scope
-                });
-            }
+
+            $q.all(requests).then(function () {
+                if (status === 3) {
+                    $ionicLoading.show({
+                        template: '{{ "settingPartyboard" | translate }}',
+                        duration: 1500,
+                        scope: $scope
+                    });
+                } else {
+                    $ionicLoading.show({
+                        template: '{{ "settingErrorPartyboard" | translate }}',
+                        duration: 1500,
+                        scope: $scope
+                    });
+                }
+            });
         };
 
 

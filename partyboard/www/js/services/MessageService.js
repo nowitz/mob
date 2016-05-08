@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('MessageService', function ($http, $ionicLoading) {
+    .service('MessageService', function ($http, $ionicLoading, $translate, $ionicPopup) {
 
         var baseURL = 'http://students.kiv.zcu.cz:8088/~nowitz/';
         /**
@@ -22,7 +22,16 @@ angular.module('app')
 
             }).error(function (data, status, headers, config) {
                 //console.log(status);
-                if(status == 404){
+                if(status === -1){
+                    $translate('error').then(
+                        function (translate) {
+                            $ionicPopup.alert({
+                                title: translate,
+                                template: '{{"serverDisconnect" | translate}}'
+                            });
+                        });
+                }
+                else if(status == 404){
                     $scope.result = null;
                     typeof callback === 'function' && callback();
                     $ionicLoading.show({
@@ -35,12 +44,11 @@ angular.module('app')
         }
 
         obj.sendMessage = function (data, $scope){
-            console.log(data);
+           // console.log(data);
             $http.post(baseURL+"incomming_messages/", data,{
                 headers: {'Content-Type': 'application/json',
                     'X-Access-Token': JSON.parse(localStorage.getItem('user')).xAccessToken}
             }).success(function (result) {
-                console.log(result); //TODO overit az bude namapovana tabulka users
                 $scope.loadMore();
             });
         };

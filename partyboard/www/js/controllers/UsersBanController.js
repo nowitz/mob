@@ -5,7 +5,7 @@ angular.module('app')
         $scope.setting = SettingFactory;
 
         $scope.data = {
-            showReorder: false
+            showButton: true
         };
 
         $scope.$on("$ionicView.beforeEnter", function () {

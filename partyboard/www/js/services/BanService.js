@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .service('BanService', function (RestService) {
+    .service('BanService', function (RestService, $translate, $ionicPopup) {
 
 
         var obj = {};
@@ -15,17 +15,36 @@ angular.module('app')
                 "length_hour": data.timeSelected.hour,
                 "description": data.text
             };
-            RestService.post("banUserPartyboard",obj).then(function(data) {
-              // console.log(data);
-                typeof callback === 'function' &&  callback(data.status);
+            //console.log(msg, data, obj);
+            RestService.post("banUserPartyboard",obj).then(function(response) {
+                if(response.status === -1){
+                    $translate('error').then(
+                        function (translate) {
+                            $ionicPopup.alert({
+                                title: translate,
+                                template: '{{"serverDisconnect" | translate}}'
+                            });
+                        });
+                }else {
+                    typeof callback === 'function' && callback(response.status);
+                }
             });
         };
 
 
         obj.getBan = function ($scope,id){
             RestService.get("banUserPartyboard","/partyboard/"+id).then(function (response) {
-       //         console.log(response.data);
-                $scope.items = response.data;
+                if(response.status === -1){
+                    $translate('error').then(
+                        function (translate) {
+                            $ionicPopup.alert({
+                                title: translate,
+                                template: '{{"serverDisconnect" | translate}}'
+                            });
+                        });
+                }else {
+                    $scope.items = response.data;
+                }
             });
         };
 
@@ -42,8 +61,17 @@ angular.module('app')
                 "description": data.description
             };
             RestService.put("banUserPartyboard",id, obj).then(function (response) {
-                //console.log(response);
-                typeof callback === 'function' &&  callback(response.status);
+                if(response.status === -1){
+                    $translate('error').then(
+                        function (translate) {
+                            $ionicPopup.alert({
+                                title: translate,
+                                template: '{{"serverDisconnect" | translate}}'
+                            });
+                        });
+                }else {
+                    typeof callback === 'function' && callback(response.status);
+                }
             });
         };
         return obj;

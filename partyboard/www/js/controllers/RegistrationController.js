@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('RegistrationController', function ($scope, $ionicLoading, $ionicPopup, ModalService, RestService, NetworkService) {
+    .controller('RegistrationController', function ($scope, $ionicLoading, $translate, $ionicPopup, ModalService, RestService, NetworkService) {
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
@@ -46,8 +46,17 @@ angular.module('app')
                     };
 
                     RestService.post("users", data).then(function(response) {
-                       console.log(response);
-                        if(response.status === 409){
+                       //console.log(response);
+                        if(response.status === -1){
+                            $translate('error').then(
+                                function (translate) {
+                                    $ionicPopup.alert({
+                                        title: translate,
+                                        template: '{{"serverDisconnect" | translate}}'
+                                    });
+                                });
+                        }
+                        else if(response.status === 409){
                             $ionicLoading.show({
                                 template: response.headers("x-error-type")==="nick"?'{{ "errorNick" | translate }}':'{{ "errorEmail" | translate }}',
                                 duration:3000,

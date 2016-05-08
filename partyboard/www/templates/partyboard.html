@@ -5,7 +5,7 @@
     </ion-nav-buttons>
     <ion-content class="contentPB" on-drag-end="historyData($event)" has-bouncing="true" overflow-scroll="false">
         <ionic-list>
-            <ionic-item class="viewMessage" ng-repeat="msg in result.slice().reverse()">
+            <ionic-item class="viewMessage" ng-repeat="msg in result">
                 <!-- class="viewMessage" -->
                 <div class="obalMsg" style="background-color: {{colors.getRgbColor()}};">
                     <div class="msg">{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>

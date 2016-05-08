@@ -1,6 +1,6 @@
 'user strict';
 angular.module('app')
-    .controller('SettingController', function ($scope, $state, $ionicLoading, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
+    .controller('SettingController', function ($scope, $state, $ionicLoading, $ionicPopup, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
 
         $scope.userFactory = JSON.parse(localStorage.getItem('user'));
         $scope.setting = SettingFactory;
@@ -21,7 +21,17 @@ angular.module('app')
             if ($scope.setting.getPartyboard().id_partyboard === null) {
                 RestService.get("partyboards","").then(function (response) {
                     //console.log("stahuju partyboardy " + data);
-                    $scope.partyboards = response.data;
+                    if(response.status === -1){
+                        $translate('error').then(
+                            function (translate) {
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"serverDisconnect" | translate}}'
+                                });
+                            });
+                    }else {
+                        $scope.partyboards = response.data;
+                    }
                 });
             }
         });
@@ -58,7 +68,17 @@ angular.module('app')
 
 
                 RestService.get("rolesUsersPartyboards","/"+$scope.userFactory.idUser+"/"+partyboard.id_partyboard).then(function (response) {
-                    if(response.status === 200){
+
+                    if(response.status === -1){
+                        $translate('error').then(
+                            function (translate) {
+                                $ionicPopup.alert({
+                                    title: translate,
+                                    template: '{{"serverDisconnect" | translate}}'
+                                });
+                            });
+                    }
+                    else if(response.status === 200){
                         $scope.userFactory.permissions = response.data[0].roles_partyboard.permissions;
                         localStorage.setItem("user", JSON.stringify($scope.userFactory));
                     }else{

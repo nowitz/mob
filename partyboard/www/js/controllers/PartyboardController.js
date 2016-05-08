@@ -96,7 +96,7 @@ angular.module('app')
             }
             $scope.data.message = "";
             //console.log(sendData);
-        }
+        };
 
 
         //pred nactenim kontroleru se zavola takhle funkce a overi se zda je vybranej nejaky PB
@@ -211,7 +211,16 @@ angular.module('app')
                 });
                 myPopup.then(function (data) {
                     BanService.setBan(objMessage, data, function (response){
-                        if(response === 201){
+                        if(response.status === -1){
+                            $translate('error').then(
+                                function (translate) {
+                                    $ionicPopup.alert({
+                                        title: translate,
+                                        template: '{{"serverDisconnect" | translate}}'
+                                    });
+                                });
+                        }
+                        else if(response === 201){
                             $ionicLoading.show({
                                 template: '{{ "banMessage" | translate }}',
                                 duration: 1500,

@@ -77,7 +77,9 @@ var english = {
     textSize:"Font size",
 
     settingPartyboard:"Setting success",
-    settingErrorPartyboard:"Setting failed"
+    settingErrorPartyboard:"Setting failed",
+    serverDisconnect:"Server disconnect",
+    error:"Error"
 }
 
 var czech = {
@@ -159,6 +161,8 @@ var czech = {
     textSize:"Velikost textu",
 
     settingPartyboard:"Nastavení bylo změněno",
-    settingErrorPartyboard:"Nastavení se nepovedlo změnit"
+    settingErrorPartyboard:"Nastavení se nepovedlo změnit",
+    serverDisconnect:"Chyba ve spojení se servrem",
+    error:"Chyba"
 
 }
