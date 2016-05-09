@@ -3,22 +3,35 @@
   <ion-content scroll="false" has-header="true" padding="true">
     <ul class="list">
 
-      <li class="item item-input item-select">
-        <label>
-          <div class="input-label">
-            {{"colorBack" | translate}}
-          </div>
-          <select ng-change="colorChangeBackground(data.colorBack.value)" ng-model="data.colorBack.value" ng-options="color.name for color in colors"></select>
-        </label>
+      <!--<li class="item item-input item-select">-->
+        <!--<label>-->
+          <!--<div class="input-label">-->
+            <!--{{"colorBack" | translate}}-->
+          <!--</div>-->
+          <!--<select ng-change="colorChangeBackground(data.colorBack.value)" ng-model="data.colorBack.value" ng-options="color.name for color in colors"></select>-->
+        <!--</label>-->
+      <!--</li>-->
+      <li class="item item-input">
+        <div class="input-label">
+          {{"colorBack" | translate}}
+        </div>
+        <a class="badge" style="width: 10vh; height: 3vh; border: 1px solid black; background-color: {{data.colorBack.value.color}};" ng-click="setColorBack()"> </a>
       </li>
+
       <li class="item item-divider"></li>
-      <li class="item item-input item-select">
-        <label>
-          <div class="input-label">
-            {{"colorText" | translate}}
-          </div>
-          <select ng-change="colorChangeText(data.colorText.value)" ng-model="data.colorText.value" ng-options="color.name for color in colors"></select>
-        </label>
+      <!--<li class="item item-input item-select">-->
+        <!--<label>-->
+          <!--<div class="input-label">-->
+            <!--{{"colorText" | translate}}-->
+          <!--</div>-->
+          <!--<select ng-change="colorChangeText(data.colorText.value)" ng-model="data.colorText.value" ng-options="color.name for color in colors"></select>-->
+        <!--</label>-->
+      <!--</li>-->
+      <li class="item item-input">
+        <div class="input-label">
+          {{"colorText" | translate}}
+        </div>
+        <a class="badge" style="width: 10vh; height: 3vh; border: 1px solid black; background-color: {{data.colorText.value.color}};" ng-click="setColorText()"> </a>
       </li>
       <li class="item item-input item-select">
         <label>

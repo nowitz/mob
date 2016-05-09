@@ -55,7 +55,8 @@ angular.module('app')
         }
         $scope.changeLanguage = function (language) {
             $translate.use(language);
-        }
+            localStorage.setItem("language",language);
+        };
 
         /**
          * Prepinani Partyboardu
@@ -102,12 +103,38 @@ angular.module('app')
         /**
          * Nastaveni barvy
          */
-        $scope.colors = ColorsFactory.all();
-        $scope.color = $scope.colors[6];
+       $scope.colors = ColorsFactory.all();
+       $scope.color = $scope.colors[6];
         $scope.colorChange = function (rgb) {
             ColorsFactory.setRgbColor(rgb);
+            $scope.color = rgb;
+            $scope.hide();
         }
 
+
+        $scope.setColor = function(){
+            $translate('cancel').then(
+                function (translate) {
+                    $ionicLoading.show({
+                        template: '<div >' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[0].color}};" ng-click="colorChange({{colors[0]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[1].color}};" ng-click="colorChange({{colors[1]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[2].color}};" ng-click="colorChange({{colors[2]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[3].color}};" ng-click="colorChange({{colors[3]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[4].color}};" ng-click="colorChange({{colors[4]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[5].color}};" ng-click="colorChange({{colors[5]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[6].color}};" ng-click="colorChange({{colors[6]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[7].color}};" ng-click="colorChange({{colors[7]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[8].color}};" ng-click="colorChange({{colors[8]}})"></button>' +
+                        '</br>' +
+                        '<button class="button button-stable loadingClose" ng-click="hide()">' + translate + '</button>' +
+                        '</div>',
+                        scope: $scope
+                    });
+                });
+        };
         /**
          * Nastaveni typu zpravy
          */
@@ -117,5 +144,13 @@ angular.module('app')
         $scope.selectionTypeMessage = function (typeMessage) {
             SendInternetFactory.setTypeMessage(typeMessage);
         }
+
+
+        /**
+         * Skryje notifikaci
+         */
+        $scope.hide = function () {
+            $ionicLoading.hide();
+        };
 
     });

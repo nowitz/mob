@@ -73,11 +73,69 @@ angular.module('app')
 
         $scope.colorChangeText = function (rgb) {
             $scope.data.colorText.value = rgb;
+            $scope.hide();
         };
 
         $scope.colorChangeBackground = function (rgb) {
             $scope.data.colorBack.value = rgb;
+            $scope.hide();
         };
+
+        /**
+         * Skryje notifikaci
+         */
+        $scope.hide = function () {
+            $ionicLoading.hide();
+        };
+
+        $scope.setColorBack = function(){
+            $translate('cancel').then(
+                function (translate) {
+                    $ionicLoading.show({
+                        template: '<div >' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[0].color}};" ng-click="colorChangeBackground({{colors[0]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[1].color}};" ng-click="colorChangeBackground({{colors[1]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[2].color}};" ng-click="colorChangeBackground({{colors[2]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[3].color}};" ng-click="colorChangeBackground({{colors[3]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[4].color}};" ng-click="colorChangeBackground({{colors[4]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[5].color}};" ng-click="colorChangeBackground({{colors[5]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[6].color}};" ng-click="colorChangeBackground({{colors[6]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[7].color}};" ng-click="colorChangeBackground({{colors[7]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[8].color}};" ng-click="colorChangeBackground({{colors[8]}})"></button>' +
+                        '</br>' +
+                        '<button class="button button-stable loadingClose" ng-click="hide()">' + translate + '</button>' +
+                        '</div>',
+                        scope: $scope
+                    });
+                });
+        };
+
+        $scope.setColorText = function(){
+            $translate('cancel').then(
+                function (translate) {
+                    $ionicLoading.show({
+                        template: '<div >' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[0].color}};" ng-click="colorChangeText({{colors[0]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[1].color}};" ng-click="colorChangeText({{colors[1]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[2].color}};" ng-click="colorChangeText({{colors[2]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[3].color}};" ng-click="colorChangeText({{colors[3]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[4].color}};" ng-click="colorChangeText({{colors[4]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[5].color}};" ng-click="colorChangeText({{colors[5]}})"></button>' +
+                        '<div style="margin-top: 2ch;"></div>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[6].color}};" ng-click="colorChangeText({{colors[6]}})"></button>' +
+                        '<button class="button" style="margin-right: 2ch; background-color: {{colors[7].color}};" ng-click="colorChangeText({{colors[7]}})" ></button>' +
+                        '<button class="button" style="background-color: {{colors[8].color}};" ng-click="colorChangeText({{colors[8]}})"></button>' +
+                        '</br>' +
+                        '<button class="button button-stable loadingClose" ng-click="hide()">' + translate + '</button>' +
+                        '</div>',
+                        scope: $scope
+                    });
+                });
+        };
+
 
 
         $scope.sendSettings = function () {

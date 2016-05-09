@@ -30,14 +30,11 @@
       </li>
 
       <li class="item item-divider"></li>
-
-      <li class="item item-input item-select">
-        <label>
+      <li class="item item-input">
           <div class="input-label">
-            {{"colors" | translate}}
-          </div>
-          <select ng-change="colorChange(color)" ng-model="color" ng-options="color.name for color in colors"></select>
-        </label>
+        {{"colors" | translate}}
+            </div>
+        <a class="badge" style="width: 10vh; height: 3vh; border: 1px solid black; background-color: {{color.color}};" ng-click="setColor()"> </a>
       </li>
 
       <li class="item item-input item-select">

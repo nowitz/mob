@@ -13,9 +13,10 @@ angular.module('app')
             {id: 5, color: "#00CCCC", name: "Light blue", rgb: "00, 204, 204"},
             {id: 6, color: "#003366", name: "Dark blue", rgb: "0, 51, 102"},
             {id: 7, color: "#50D420", name: "Light Green", rgb: "80, 212, 32"},
-            {id: 8, color: "#009933", name: "Dark green", rgb: "0, 153, 51"},
-            {id: 9, color: "#FFFFFF", name: "White", rgb: "255, 255, 255"}
+            {id: 8, color: "#009933", name: "Dark green", rgb: "0, 153, 51"}
+           // {id: 9, color: "#FFFFFF", name: "White", rgb: "255, 255, 255"}
         ];
+
 
         return {
             all: function () {
