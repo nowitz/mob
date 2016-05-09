@@ -4,6 +4,10 @@ angular.module('app')
                                                   SendInternetFactory, $ionicPopup, MessageService, BanService, RestService,
                                                   $ionicScrollDelegate, SettingFactory, BackButtonFactory) {
 
+        /**
+         * Controller pro stránku partyboard.html
+         */
+
         $scope.setting = SettingFactory;
         $scope.colors = ColorsFactory;
         $scope.userFactory = null;

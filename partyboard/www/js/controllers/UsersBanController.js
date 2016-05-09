@@ -2,6 +2,10 @@
 angular.module('app')
     .controller('UsersBanController', function ($scope, $ionicLoading, SettingFactory, BanService) {
 
+        /**
+         * Controller pro stránku usersBan.html
+         */
+
         $scope.setting = SettingFactory;
 
         $scope.data = {

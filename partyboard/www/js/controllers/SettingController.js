@@ -2,6 +2,10 @@
 angular.module('app')
     .controller('SettingController', function ($scope, $state, $ionicLoading, $ionicPopup, $translate, ColorsFactory, SendInternetFactory, SettingFactory, RestService) {
 
+        /**
+         * Controller pro stránku setting.html
+         */
+
         $scope.userFactory = JSON.parse(localStorage.getItem('user'));
         $scope.setting = SettingFactory;
 

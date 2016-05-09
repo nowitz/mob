@@ -21,9 +21,9 @@
                 <!-- class="viewMessage" -->
                 <div class="obalMsg" style="    box-shadow: inset 0px -7px 11px -8px rgba(255,255,255,0.7); border-radius: 0ch !important;">
                     <div class="msg" style="vertical-align: top !important; ">
-                        <span ng-show="item.users.nick != null">  {{ item.users.nick }} -</span>
-                        <span ng-show="item.users.nick == null">  {{ item.phone }} -</span>
-                        {{ item.length_hour }} hod. - {{ item.create_ts }}
+                        <span ng-show="item.users.nick == null">  {{ item.phone.substring(5, 14) }} -</span>
+                        <span ng-show="item.users.nick != null">  {{ item.users.nick.toUpperCase() }} -</span>
+                        {{ item.length_hour }} hod. - {{item.create_ts.substring(0, 10)}} {{item.create_ts.substring(11, 16)}}hod.
                         <div>{{ item.description }}</div>
                     </div>
 

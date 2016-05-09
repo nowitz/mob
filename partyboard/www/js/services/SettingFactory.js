@@ -2,6 +2,10 @@
 angular.module('app')
     .factory('SettingFactory', function () {
 
+        /**
+         * Factory pro nastavení aplikace
+         */
+
         var setting = {
                 partyboard: {
                     id_partyboard: null,

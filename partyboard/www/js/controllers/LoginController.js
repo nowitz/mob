@@ -2,6 +2,11 @@
 angular.module('app')
     .controller('LoginController', function ($scope, $ionicPopup, $state, $translate, UserFactory, ModalService, SettingFactory, NetworkService, RestService, BackButtonFactory) {
 
+
+        /**
+         * Controller pro stránku login.html
+         */
+
         $scope.user = UserFactory;
         $scope.modalService = ModalService;
         BackButtonFactory.backButtonCancel();

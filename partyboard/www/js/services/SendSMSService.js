@@ -2,6 +2,10 @@
 angular.module('app')
     .service('SendSMSService', function ($cordovaSms, $translate) {
 
+        /**
+         * Service pro odesílání SMS zpráv
+         */
+
         var device = {};
         device.options = {
             replaceLineBreaks: false, // true to replace \n by a new line, false by default

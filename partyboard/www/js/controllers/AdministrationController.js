@@ -2,6 +2,9 @@
 angular.module('app')
     .controller('AdministrationController', function ($scope, $q, $translate, $ionicLoading, $ionicPopup, ColorsFactory, SendInternetFactory, RestService, SettingFactory) {
 
+        /**
+         * Controller pro stránku administration.html
+         */
 
         $scope.setting = SettingFactory;
         /**
@@ -66,17 +69,14 @@ angular.module('app')
 
         $scope.changeTextSize = function (size) {
             $scope.data.textSize.value = size;
-            //console.log("textSize", $scope.data.textSize.value);
         };
 
         $scope.colorChangeText = function (rgb) {
             $scope.data.colorText.value = rgb;
-            //console.log("colorText", $scope.data.colorText.value);
         };
 
         $scope.colorChangeBackground = function (rgb) {
             $scope.data.colorBack.value = rgb;
-            //console.log("colorBack", $scope.data.colorBack.value);
         };
 
 

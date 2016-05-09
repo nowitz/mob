@@ -2,6 +2,9 @@
 angular.module('app')
     .factory('UserFactory', function () {
 
+        /**
+         * Factory pro obsloužení uživatele
+         */
         var user = {};
 
         user.isLoggedIn = false;

@@ -8,7 +8,7 @@
             <ionic-item class="viewMessage" ng-repeat="msg in result">
                 <!-- class="viewMessage" -->
                 <div class="obalMsg" style="background-color: {{colors.getRgbColor()}};">
-                    <div class="msg">{{ msg.id_incomming_message}}:{{msg.nick}} - {{ msg.text }}</div>
+                    <div class="msg">{{msg.nick.toUpperCase()}} - {{ msg.text }}</div> <!-- {{ msg.id_incomming_message}}: -->
                     <div ng-class="{'hideButton': data.showAdministration===true}" class="buttMsg">
                         <a class="ion-gear-a button-clear " ng-click="administration(msg)"></a>
                     </div>

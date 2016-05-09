@@ -1,6 +1,11 @@
 'user strict';
 angular.module('app')
     .controller('RegistrationController', function ($scope, $ionicLoading, $translate, $ionicPopup, ModalService, RestService, NetworkService) {
+
+        /**
+         * Controller pro stránku registration.html
+         */
+
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
@@ -34,7 +39,7 @@ angular.module('app')
                     });
                 }else{
                     var data = {
-                        id_role_account:1,
+                        id_role_account:3,
                         id_facebook: null,
                         birthdate: $scope.registerData.birthday.toISOString(),
                         password: CryptoJS.SHA1($scope.registerData.password).toString(),

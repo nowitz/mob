@@ -31,7 +31,11 @@ angular.module('app')
             });
         };
 
-
+        /**
+         * Získání zabanovaných uživatelù k pøíslušnému Partyboardu
+         * @param $scope
+         * @param id
+         */
         obj.getBan = function ($scope,id){
             RestService.get("banUserPartyboard","/partyboard/"+id).then(function (response) {
                 if(response.status === -1){

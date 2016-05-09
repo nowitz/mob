@@ -1,10 +1,14 @@
 'user strict';
 angular.module('app')
     .controller('MenuController', function ($scope, ModalService, UserFactory, NetworkService) {
+
+        /**
+         * Controller pro stránku menu.html
+         */
+
         /**
          * Propisu si ModalService abych nemusel metody implementovat v kontroleru MenuController.js
          */
-       // $scope.userFactory = JSON.parse(localStorage.getItem('user'));
         $scope.network = NetworkService;
 
 

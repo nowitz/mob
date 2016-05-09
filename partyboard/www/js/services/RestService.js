@@ -3,12 +3,15 @@ angular.module('app')
     .service('RestService', function ($http) {
         var baseURL = 'http://students.kiv.zcu.cz:8088/~nowitz/';
 
+        /**
+         * Service pro obslouzeni GET, POST, PUT, DELETE požadavkù
+         */
+
         var url = {
             groupSettings: "group_settings",
             settings: "settings",
             partyboards: "partyboards",
             towns: "towns",
-            banUserPartyboard: "ban_user_partyboard",
             incommingMessages: "incomming_messages",
             users: "users",
             auth: "auth",
