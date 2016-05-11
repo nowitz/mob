@@ -21,12 +21,12 @@ angular.module('app')
                 .then(function () {
                     $translate('smsSuccess').then(
                         function (translate) {//prelozeno
-                            alert(translate);
+                           // alert(translate);
                         });
                 }, function (error) {
                     $translate('smsError').then(
                         function (translate) {
-                            alert(translate + error);
+                            //alert(translate + error);
                         });
                 });
         }
