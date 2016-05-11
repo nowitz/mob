@@ -60,8 +60,8 @@ angular.module('app')
             user.xAccessToken = null;
 
             //smazani informaci o uctu
-            localStorage.removeItem('user');
-           // localStorage.removeItem('userId');
+            //localStorage.removeItem('user');
+            localStorage.setItem("user", JSON.stringify('login'))
         };
         obj.isLoggedIn = function () {
             return user.isLoggedIn;

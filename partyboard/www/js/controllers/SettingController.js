@@ -6,7 +6,7 @@ angular.module('app')
          * Controller pro stránku setting.html
          */
 
-        $scope.userFactory = JSON.parse(localStorage.getItem('user'));
+       // $scope.userFactory = JSON.parse(localStorage.getItem('user'));
         $scope.setting = SettingFactory;
 
         /**
